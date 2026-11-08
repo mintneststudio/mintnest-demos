@@ -3,618 +3,193 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>See Your Business as a Website — Live Demo Customiser · MintNest Studio</title>
-<meta name="description" content="Type your business name, pick a template and a colour — and watch a website demo with YOUR details appear in real time. Free instant preview from MintNest Studio.">
+<title>See Your Business as a Website — Live Demo Builder · MintNest Studio</title>
+<meta name="description" content="Type your business details and watch a real, working website demo appear with your name on it. Scroll it, tap the menu, try the buttons — then copy your own branded demo link.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --ink:#14161f; --paper:#f7f5f1; --card:#ffffff; --accent:#0f766e; --accent-d:#0b5f58; --accent2:#b45309;
-    --muted:#5b606e; --line:#e5e1d8; --radius:16px;
-  }
+  :root{--ink:#1c2430;--muted:#5c6572;--accent:#0f766e;--accent-d:#0b5f58;--gold:#b98a2f;--line:#e5e0d4;--bg:#f7f5f1;--card:#ffffff}
   *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--paper);color:var(--ink);line-height:1.55}
-  img{max-width:100%;display:block}
-  a{color:inherit}
-  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
-  /* header */
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
   header{position:sticky;top:0;z-index:60;background:rgba(247,245,241,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-  .nav{display:flex;align-items:center;gap:18px;padding:13px 0}
-  .logo{font-family:'Fraunces',serif;font-weight:700;font-size:1.35rem;letter-spacing:.2px;text-decoration:none;white-space:nowrap}
-  .logo span{color:var(--accent)}
-  .back{margin-left:auto;font-weight:600;font-size:.92rem;text-decoration:none;padding:9px 16px;border-radius:999px;border:1.5px solid var(--ink)}
-  .back:hover{border-color:var(--accent);color:var(--accent)}
-  /* intro */
-  .intro{padding:48px 0 8px;text-align:center;background:radial-gradient(640px 300px at 50% -60px,rgba(15,118,110,.14),transparent 70%)}
-  .badge{display:inline-block;background:#e6f4f1;color:var(--accent);font-weight:600;font-size:.82rem;padding:6px 14px;border-radius:999px;margin-bottom:16px}
-  .intro h1{font-family:'Fraunces',serif;font-size:clamp(2rem,5.5vw,3.1rem);line-height:1.1;font-weight:700;max-width:760px;margin:0 auto 14px}
+  .hwrap{max-width:1160px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .brand{font-family:'Fraunces',serif;font-weight:700;font-size:1.25rem;color:var(--ink);text-decoration:none}
+  .brand span{color:var(--accent)}
+  .back{font-size:.9rem;font-weight:600;color:var(--accent-d);text-decoration:none}
+  .intro{max-width:1160px;margin:0 auto;padding:38px 20px 6px;text-align:center}
+  .intro h1{font-family:'Fraunces',serif;font-size:clamp(1.9rem,5vw,2.9rem);line-height:1.12;font-weight:700;max-width:780px;margin:0 auto 12px}
   .intro h1 em{font-style:normal;color:var(--accent)}
-  .intro p{color:var(--muted);font-size:1.05rem;max-width:620px;margin:0 auto}
-  /* layout */
-  .stage{display:grid;gap:34px;padding:34px 0 10px;align-items:start}
-  @media(min-width:920px){.stage{grid-template-columns:1fr 400px;gap:44px}}
-  /* form */
-  .panel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px 22px;margin-bottom:20px}
-  .panel h2{font-family:'Fraunces',serif;font-size:1.2rem;margin-bottom:4px}
-  .panel .hint{color:var(--muted);font-size:.9rem;margin-bottom:16px}
+  .intro p{color:var(--muted);max-width:640px;margin:0 auto;font-size:1.02rem}
+  .layout{max-width:1160px;margin:0 auto;padding:26px 20px 60px;display:grid;gap:30px}
+  @media(min-width:960px){.layout{grid-template-columns:1fr 420px;align-items:start}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:0 6px 24px rgba(28,36,48,.05)}
+  .card h2{font-family:'Fraunces',serif;font-size:1.3rem;margin-bottom:4px}
+  .card .sub{color:var(--muted);font-size:.92rem;margin-bottom:18px}
+  label{display:block;font-size:.82rem;font-weight:600;letter-spacing:.02em;margin:14px 0 6px;color:var(--ink)}
+  input[type=text],input[type=tel],input[type=email]{width:100%;padding:11px 13px;border:1.5px solid var(--line);border-radius:10px;font:inherit;font-size:.95rem;background:#fff}
+  input:focus{outline:none;border-color:var(--accent)}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
   .pills{display:flex;flex-wrap:wrap;gap:8px}
-  .pill{font-family:inherit;font-weight:600;font-size:.9rem;padding:10px 16px;border-radius:999px;border:1.5px solid var(--line);background:#fff;color:var(--ink);cursor:pointer}
-  .pill:hover{border-color:var(--accent);color:var(--accent)}
-  .pill.active{background:var(--ink);border-color:var(--ink);color:#fff}
-  .field{margin-bottom:14px}
-  .field:last-child{margin-bottom:0}
-  .field label{display:block;font-weight:600;font-size:.88rem;margin-bottom:6px}
-  .field input{width:100%;font-family:inherit;font-size:.97rem;padding:12px 14px;border:1.5px solid var(--line);border-radius:11px;background:#fff;color:var(--ink)}
-  .field input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(15,118,110,.15)}
-  .swatches{display:flex;gap:12px;flex-wrap:wrap}
-  .swatch{width:46px;height:46px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 1.5px var(--line);cursor:pointer;padding:0}
-  .swatch.active{box-shadow:0 0 0 3px var(--ink)}
-  .sw-label{font-size:.82rem;color:var(--muted);margin-top:10px;font-weight:600}
-  .btn{display:inline-block;text-decoration:none;font-weight:600;padding:14px 26px;border-radius:999px;font-size:.97rem;border:0;cursor:pointer;font-family:inherit;text-align:center}
-  .btn-dark{background:var(--ink);color:#fff;width:100%}
-  .btn-dark:hover{background:var(--accent)}
-  .btn-dark.copied{background:var(--accent)}
-  .copy-note{color:var(--muted);font-size:.85rem;margin-top:10px;text-align:center}
-  /* preview phone */
-  .preview-col{display:flex;flex-direction:column;align-items:center}
-  @media(min-width:920px){.preview-col{position:sticky;top:96px}}
-  .live-tag{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
-  .live-tag::before{content:"";width:9px;height:9px;border-radius:50%;background:#e5484d;box-shadow:0 0 0 4px rgba(229,72,77,.18)}
-  .phone{width:min(390px,100%);background:#14161f;border-radius:44px;padding:11px;box-shadow:0 30px 60px rgba(20,22,31,.28)}
-  .screen{background:#fff;border-radius:34px;overflow:hidden;--pv-accent:#0f766e;--pv-dark:#0b5f58}
-  /* mini site */
-  .pv-header{position:sticky;top:0;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--pv-dark);color:#fff;padding:13px 16px}
-  .pv-brand{font-family:'Fraunces',serif;font-weight:700;font-size:1.02rem;line-height:1.2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .pv-call{flex:none;background:#fff;color:var(--pv-dark);text-decoration:none;font-weight:700;font-size:.78rem;padding:7px 13px;border-radius:999px}
-  .pv-hero{position:relative;color:#fff;text-align:center;padding:52px 20px 44px;background:#262a35;overflow:hidden}
-  .pv-heroBg{position:absolute;inset:0;background-size:cover;background-position:center}
-  .pv-heroIn{position:relative;z-index:1}
-  .pv-hero h3{font-family:'Fraunces',serif;font-size:1.65rem;line-height:1.15;margin-bottom:8px;overflow-wrap:break-word}
-  .pv-hero p{font-size:.92rem;color:#f0ece2;max-width:280px;margin:0 auto 18px;overflow-wrap:break-word}
-  .pv-btn{display:inline-block;background:var(--pv-accent);color:#fff;text-decoration:none;font-weight:700;font-size:.9rem;padding:11px 22px;border-radius:999px}
-  .pv-sec{padding:22px 20px 6px}
-  .pv-sec h4{font-family:'Fraunces',serif;font-size:1.12rem;color:var(--pv-dark);text-align:center;margin-bottom:6px}
-  .pv-about{font-size:.88rem;color:#4a4f5c;text-align:center;max-width:300px;margin:0 auto}
-  .pv-list{padding:6px 20px 4px}
-  .pv-item{display:flex;gap:8px;padding:9px 0;border-bottom:1px dashed #ddd6c8}
-  .pv-item:last-child{border-bottom:0}
-  .pv-item .tx{flex:1;min-width:0}
-  .pv-item b{display:block;font-size:.9rem}
-  .pv-item small{display:block;font-size:.78rem;color:#7a7f8c}
-  .pv-item .pr{font-weight:800;color:var(--pv-accent);font-size:.9rem;white-space:nowrap}
-  .pv-hours{margin:14px 20px 0;background:#faf7f1;border:1px solid #eee6d6;border-radius:12px;padding:14px 16px;font-size:.85rem}
-  .pv-hours b{display:block;font-family:'Fraunces',serif;font-size:.95rem;color:var(--pv-dark);margin-bottom:6px}
-  .pv-hours .row{display:flex;justify-content:space-between;padding:3px 0;color:#4a4f5c}
-  .pv-contact{margin:14px 20px 20px;background:var(--pv-dark);color:#fff;border-radius:12px;padding:16px;font-size:.86rem;display:grid;gap:5px;overflow-wrap:break-word}
-  .pv-contact b{font-family:'Fraunces',serif;font-size:.98rem}
-  .pv-contact a{color:#fff;text-decoration:none;font-weight:600}
-  .pv-foot{border-top:1px solid #eee9dd;padding:12px 16px 16px;text-align:center;font-size:.74rem;color:#8a8f9c;overflow-wrap:break-word}
-  .microcopy{max-width:390px;text-align:center;color:var(--muted);font-size:.85rem;margin-top:16px}
-  /* ------- design tiers (levels) ------- */
-  .tiers{display:flex;gap:5px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px;margin-bottom:14px;width:min(390px,100%)}
-  .tier{flex:1;font-family:inherit;border:0;background:transparent;border-radius:999px;padding:8px 2px;cursor:pointer;color:var(--muted);line-height:1.3}
-  .tier b{display:block;font-size:.84rem;font-weight:700;color:var(--ink)}
-  .tier span{font-size:.72rem;font-weight:600}
-  .tier.active{background:var(--ink);color:#cfd3dd}
-  .tier.active b{color:#fff}
-  .tier-info{width:min(390px,100%);margin-top:16px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;text-align:left}
-  .tier-info h3{font-family:'Fraunces',serif;font-size:1.02rem;margin-bottom:6px}
-  .tier-info h3 span{color:var(--accent)}
-  .tier-info ul{list-style:none;display:grid;gap:4px;font-size:.85rem;color:var(--muted)}
-  .tier-info li::before{content:"✔ ";color:var(--accent);font-weight:700}
-  .ti-hint{font-size:.78rem;color:#8a8f9c;margin-top:9px}
-  .phone{touch-action:pan-y}
-  /* tier-only blocks: hidden unless the level shows them */
-  .pv-rate{display:none;margin:0 auto 12px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.35);color:#fff;font-weight:700;font-size:.8rem;padding:5px 12px;border-radius:999px;width:fit-content}
-  .pv-gallery{display:none}
-  .pv-thumb{display:none}
-  .pv-reviews,.pv-testi,.pv-enquiry,.pv-book{display:none}
-  .pv-rev{background:#faf7f1;border:1px solid #eee6d6;border-radius:12px;padding:12px 14px;margin-bottom:10px;text-align:left}
-  .pv-stars{color:#d9930d;letter-spacing:2px;font-size:.85rem}
-  .pv-rev p{font-size:.85rem;color:#3d4250;margin:4px 0}
-  .pv-rev small{color:#7a7f8c;font-weight:600}
-  .pv-testi blockquote{font-family:'Fraunces',serif;font-size:1.02rem;font-style:italic;color:#333947;line-height:1.5}
-  .pv-testi figcaption{color:#7a7f8c;font-size:.8rem;margin-top:8px;font-weight:600}
-  .pv-form{margin:8px 20px 4px;background:#faf7f1;border:1px solid #eee6d6;border-radius:14px;padding:16px}
-  .pv-form h5{font-family:'Fraunces',serif;font-size:1rem;color:var(--pv-dark);margin-bottom:10px;text-align:center}
-  .pv-form input,.pv-form select{width:100%;font-family:inherit;font-size:.88rem;padding:10px 12px;border:1.5px solid #e0d9c8;border-radius:9px;margin-bottom:9px;background:#fff;color:var(--ink)}
-  .pv-form button{width:100%;background:var(--pv-accent);color:#fff;border:0;font-family:inherit;font-weight:700;font-size:.9rem;padding:11px;border-radius:999px;cursor:pointer}
-  .pv-form .fnote{font-size:.72rem;color:#8a8f9c;text-align:center;margin-top:8px}
-  /* ------- level 60 · Clean (flatter, simpler) ------- */
-  .screen[data-lvl="60"] .pv-hero{padding:34px 18px 28px}
-  .screen[data-lvl="60"] .pv-hero h3{font-size:1.35rem}
-  .screen[data-lvl="60"] .pv-sec{padding-top:16px}
-  /* ------- level 199 · Modern Pro ------- */
-  .screen[data-lvl="199"] .pv-hero{padding:64px 20px 54px}
-  .screen[data-lvl="199"] .pv-hero h3{font-size:1.9rem}
-  .screen[data-lvl="199"] .pv-rate{display:block}
-  .screen[data-lvl="199"] .pv-reviews,.screen[data-lvl="199"] .pv-enquiry{display:block}
-  .screen[data-lvl="199"] .pv-list{padding-top:12px}
-  .screen[data-lvl="199"] .pv-thumb{display:block;width:46px;height:46px;border-radius:10px;object-fit:cover;flex:none}
-  .screen[data-lvl="199"] .pv-item{background:#fff;border:1px solid #eee6d6;border-radius:14px;padding:10px 12px;margin-bottom:10px;box-shadow:0 4px 14px rgba(20,22,31,.06);align-items:center}
-  .screen[data-lvl="199"] .pv-hours,.screen[data-lvl="199"] .pv-contact{box-shadow:0 6px 18px rgba(20,22,31,.08)}
-  /* ------- level 299 · Premium ------- */
-  @keyframes pvZoom{from{transform:scale(1)}to{transform:scale(1.14)}}
-  @keyframes pvUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-  .screen[data-lvl="299"] .pv-hero{padding:0;min-height:340px;display:flex;align-items:center;justify-content:center}
-  .screen[data-lvl="299"] .pv-heroIn{padding:58px 22px}
-  .screen[data-lvl="299"] .pv-heroBg{animation:pvZoom 16s ease-in-out infinite alternate}
-  .screen[data-lvl="299"] .pv-hero h3{font-size:2.05rem;letter-spacing:.01em}
-  .screen[data-lvl="299"] .pv-rate{display:block;border-color:rgba(201,163,92,.75);color:#f3d98b}
-  .screen[data-lvl="299"] .pv-btn{background:linear-gradient(135deg,var(--pv-accent),#c9a35c)}
-  .screen[data-lvl="299"] .pv-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:6px;background:#14161f}
-  .pv-gallery img{width:100%;height:76px;object-fit:cover;border-radius:8px}
-  .screen[data-lvl="299"] .pv-reviews,.screen[data-lvl="299"] .pv-testi,.screen[data-lvl="299"] .pv-book{display:block}
-  .screen[data-lvl="299"] .pv-list{padding:16px 14px 8px;background-size:cover;background-position:center}
-  .screen[data-lvl="299"] .pv-thumb{display:block;width:46px;height:46px;border-radius:10px;object-fit:cover;flex:none}
-  .screen[data-lvl="299"] .pv-item{background:rgba(255,255,255,.82);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.9);border-radius:14px;padding:10px 12px;margin-bottom:10px;box-shadow:0 8px 20px rgba(15,15,20,.18);align-items:center}
-  .screen[data-lvl="299"] .pv-item .pr{color:#9c7c1e}
-  .screen[data-lvl="299"] .pv-form button{background:linear-gradient(135deg,var(--pv-accent),#c9a35c)}
-  .screen[data-lvl="299"] .pv-contact{border-top:3px solid #c9a35c}
-  .screen[data-lvl="299"] .pv-sec,.screen[data-lvl="299"] .pv-item,.screen[data-lvl="299"] .pv-gallery,.screen[data-lvl="299"] .pv-hours,.screen[data-lvl="299"] .pv-contact{animation:pvUp .6s ease both}
-  .screen[data-lvl="299"] .pv-item:nth-child(2){animation-delay:.06s}
-  .screen[data-lvl="299"] .pv-item:nth-child(3){animation-delay:.12s}
-  .screen[data-lvl="299"] .pv-item:nth-child(4){animation-delay:.18s}
-  /* bottom CTA */
-  .contact{margin:44px 0 64px;background:var(--ink);color:#fff;border-radius:22px;padding:38px 26px;text-align:center}
-  .contact h2{font-family:'Fraunces',serif;font-size:clamp(1.5rem,4.5vw,2.1rem);margin-bottom:10px}
-  .contact p{color:#c9ccd6;max-width:560px;margin:0 auto 22px}
-  .contact .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-  .btn-wa{background:#128c4a;color:#fff}
-  .btn-wa:hover{background:#0d7039}
-  .btn-mail{background:transparent;border:2px solid #fff;color:#fff}
-  .btn-mail:hover{background:rgba(255,255,255,.12)}
-  footer{border-top:1px solid var(--line);padding:22px 0 34px;color:var(--muted);font-size:.88rem;text-align:center}
+  .pill{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:8px 14px;font:inherit;font-size:.88rem;font-weight:600;cursor:pointer;color:var(--ink)}
+  .pill.active{border-color:var(--accent);background:#e6f4f1;color:var(--accent-d)}
+  .swatches{display:flex;gap:10px;align-items:center}
+  .swatch{width:32px;height:32px;border-radius:50%;border:2.5px solid #fff;box-shadow:0 0 0 1.5px var(--line);cursor:pointer;padding:0}
+  .swatch.active{box-shadow:0 0 0 2.5px var(--accent)}
+  .swlabel{font-size:.85rem;color:var(--muted);font-weight:600}
+  .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .tier{border:1.5px solid var(--line);background:#fff;border-radius:12px;padding:10px 8px;cursor:pointer;font:inherit;text-align:center;color:var(--ink)}
+  .tier b{display:block;font-size:1.05rem}
+  .tier small{color:var(--muted);font-weight:600;font-size:.76rem}
+  .tier.active{border-color:var(--gold);background:#fdf6e3}
+  .tierfeat{margin-top:10px;font-size:.88rem;color:var(--muted);background:#faf8f2;border:1px dashed var(--line);border-radius:10px;padding:10px 12px}
+  .phone-col{position:sticky;top:84px}
+  .phone{margin:0 auto;width:min(380px,94vw);background:#14161c;border-radius:46px;padding:12px;box-shadow:0 24px 60px rgba(20,22,28,.35)}
+  .screen{background:#fff;border-radius:36px;overflow:hidden;height:660px;position:relative}
+  .screen iframe{width:100%;height:100%;border:0;display:block}
+  .notch{position:absolute;top:8px;left:50%;transform:translateX(-50%);width:110px;height:22px;background:#14161c;border-radius:12px;z-index:3;pointer-events:none}
+  .actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;justify-content:center}
+  .btn{display:inline-block;border:none;cursor:pointer;font:inherit;font-weight:700;font-size:.95rem;border-radius:12px;padding:13px 20px;text-decoration:none}
+  .btn-main{background:var(--accent);color:#fff}
+  .btn-main.copied{background:var(--gold)}
+  .btn-ghost{background:#fff;color:var(--accent-d);border:1.5px solid var(--accent)}
+  .mini{display:block;text-align:center;margin-top:10px;font-size:.84rem;color:var(--muted)}
+  .mini button{background:none;border:none;font:inherit;color:var(--accent-d);font-weight:600;cursor:pointer;text-decoration:underline}
+  .note{max-width:640px;margin:14px auto 0;text-align:center;color:var(--muted);font-size:.9rem}
+  footer{border-top:1px solid var(--line);padding:22px 20px;text-align:center;color:var(--muted);font-size:.86rem}
 </style>
 </head>
 <body>
-
 <header>
-  <div class="wrap nav">
-    <a class="logo" href="index.html">MintNest <span>Studio</span></a>
+  <div class="hwrap">
+    <a class="brand" href="index.html">MintNest <span>Studio</span></a>
     <a class="back" href="index.html">← All demos</a>
   </div>
 </header>
 
-<main class="wrap">
-  <section class="intro">
-    <div class="badge">Free · Instant · No sign-up</div>
-    <h1>See <em>your business</em> as a website — live</h1>
-    <p>Pick your kind of business, type your details, choose a colour — and watch the preview on the phone become yours, as you type.</p>
-  </section>
+<section class="intro">
+  <h1>See <em>your business</em> as a real website</h1>
+  <p>Type your details and the phone below loads a <b>real, working demo website</b> with your name on it. Scroll it, open the menu, tap the call buttons — it behaves exactly like the finished site. Then copy your demo link: that link <b>is</b> your branded demo page, ready to share with anyone.</p>
+</section>
 
-  <div class="stage">
-    <!-- ============ FORM ============ -->
-    <div class="form-col">
-      <form id="customForm" autocomplete="off">
-        <div class="panel">
-          <h2>1 · What kind of business?</h2>
-          <p class="hint">Each template loads matching sample content in the preview.</p>
-          <div class="pills" id="templatePills" role="group" aria-label="Business template">
-            <button type="button" class="pill" data-t="restaurant">Restaurant</button>
-            <button type="button" class="pill" data-t="cafe">Café &amp; Bakery</button>
-            <button type="button" class="pill" data-t="diner">Diner / Fish &amp; Chips</button>
-            <button type="button" class="pill" data-t="barbershop">Barbershop</button>
-            <button type="button" class="pill" data-t="store">Online Store</button>
-            <button type="button" class="pill" data-t="salon">Salon &amp; Spa</button>
-          </div>
-        </div>
+<div class="layout">
+  <form class="card" id="customForm" autocomplete="off">
+    <h2>Your details</h2>
+    <p class="sub">Everything updates the live demo on the right.</p>
 
-        <div class="panel">
-          <h2>2 · Your details</h2>
-          <p class="hint">Everything updates the preview in real time — no button to press.</p>
-          <div class="field">
-            <label for="fName">Business name</label>
-            <input id="fName" type="text" maxlength="60" placeholder="e.g. Luigi's Trattoria">
-          </div>
-          <div class="field">
-            <label for="fTagline">Tagline</label>
-            <input id="fTagline" type="text" maxlength="90" placeholder="e.g. Family-run Italian kitchen since 1987">
-          </div>
-          <div class="field">
-            <label for="fCity">City / Address</label>
-            <input id="fCity" type="text" maxlength="90" placeholder="e.g. 214 Maple Street, Chicago">
-          </div>
-          <div class="field">
-            <label for="fPhone">Phone</label>
-            <input id="fPhone" type="tel" maxlength="30" placeholder="e.g. (555) 214-8890">
-          </div>
-          <div class="field">
-            <label for="fEmail">Email</label>
-            <input id="fEmail" type="email" maxlength="80" placeholder="e.g. hello@yourbusiness.com">
-          </div>
-        </div>
+    <label for="fName">Business name</label>
+    <input type="text" id="fName" placeholder="e.g. The Golden Hind">
 
-        <div class="panel">
-          <h2>3 · Pick a colour theme</h2>
-          <p class="hint">Tap a swatch — the preview changes instantly.</p>
-          <div class="swatches" id="themeSwatches" role="group" aria-label="Colour theme">
-            <button type="button" class="swatch" data-th="teal" style="background:#0f766e" aria-label="Teal theme"></button>
-            <button type="button" class="swatch" data-th="burgundy" style="background:#6d1f2c" aria-label="Burgundy theme"></button>
-            <button type="button" class="swatch" data-th="navy" style="background:#1d4e89" aria-label="Navy theme"></button>
-            <button type="button" class="swatch" data-th="rose" style="background:#b23a5e" aria-label="Rose theme"></button>
-            <button type="button" class="swatch" data-th="charcoal" style="background:linear-gradient(135deg,#23202b 55%,#b98a2f 55%)" aria-label="Charcoal and gold theme"></button>
-          </div>
-          <p class="sw-label" id="swLabel">Theme: Teal</p>
-        </div>
+    <label for="fTagline">Tagline (the line under your name on the homepage)</label>
+    <input type="text" id="fTagline" placeholder="e.g. Fish &amp; chips the way they should be">
 
-        <div class="panel">
-          <h2>4 · Save your preview</h2>
-          <p class="hint">Copy a link that opens this demo already branded with your details — send it to a partner, or keep it for later.</p>
-          <button type="button" class="btn btn-dark" id="copyBtn">Copy my demo link</button>
-          <p class="copy-note">The link carries your template, details and colour — nothing is stored on a server.</p>
-        </div>
-      </form>
+    <div class="row">
+      <div>
+        <label for="fCity">City / area</label>
+        <input type="text" id="fCity" placeholder="e.g. London">
+      </div>
+      <div>
+        <label for="fPhone">Phone</label>
+        <input type="tel" id="fPhone" placeholder="e.g. 020 7123 4567">
+      </div>
     </div>
 
-    <!-- ============ LIVE PREVIEW ============ -->
-    <div class="preview-col">
-      <div class="tiers" id="tierTabs" role="group" aria-label="Design level">
-        <button type="button" class="tier" data-lvl="60"><b>Design $60</b><span>Clean</span></button>
-        <button type="button" class="tier" data-lvl="199"><b>Design $199</b><span>Modern Pro</span></button>
-        <button type="button" class="tier" data-lvl="299"><b>Design $299</b><span>Premium ⭐</span></button>
-      </div>
-      <div class="live-tag">Live preview</div>
-      <div class="phone" id="phone">
-        <div class="screen" id="screen" data-lvl="60">
-          <div class="pv-header">
-            <div class="pv-brand" id="pvBrand">Your Business Name</div>
-            <a class="pv-call" id="pvCallTop" href="#">Call</a>
-          </div>
-          <div class="pv-hero" id="pvHero">
-            <div class="pv-heroBg" id="pvHeroBg"></div>
-            <div class="pv-heroIn">
-              <div class="pv-rate" id="pvRate">★ 4.8 · Loved by 300+ customers</div>
-              <h3 id="pvName">Your Business Name</h3>
-              <p id="pvTagline">Your tagline goes here</p>
-              <a class="pv-btn" id="pvCallBtn" href="#">Call Now</a>
-            </div>
-          </div>
-          <div class="pv-gallery" id="pvGallery"></div>
-          <div class="pv-sec">
-            <h4>Welcome</h4>
-            <p class="pv-about" id="pvAbout">Welcome to Your Business Name — a much-loved local business. Take a look around, and get in touch to book or order.</p>
-          </div>
-          <div class="pv-sec">
-            <h4 id="pvListHeading">Our Menu</h4>
-          </div>
-          <div class="pv-list" id="pvList"></div>
-          <div class="pv-sec pv-reviews" id="pvReviews">
-            <h4>What customers say</h4>
-            <div id="pvRevList"></div>
-          </div>
-          <div class="pv-sec pv-testi" id="pvTesti">
-            <figure>
-              <blockquote id="pvQuote"></blockquote>
-              <figcaption id="pvQuoteBy"></figcaption>
-            </figure>
-          </div>
-          <div class="pv-form pv-enquiry" id="pvEnquiry">
-            <h5>Request a call back</h5>
-            <input type="text" placeholder="Your name" aria-label="Your name">
-            <input type="tel" placeholder="Your phone number" aria-label="Your phone number">
-            <button type="button">Request a call back</button>
-            <p class="fnote">Demo form — on your real site, this sends straight to the owner.</p>
-          </div>
-          <div class="pv-form pv-book" id="pvBook">
-            <h5>Book an appointment</h5>
-            <input type="text" placeholder="Your name" aria-label="Your name">
-            <input type="tel" placeholder="Your phone number" aria-label="Your phone number">
-            <input type="date" aria-label="Preferred date">
-            <select id="pvBookSel" aria-label="Choose a service"></select>
-            <button type="button">Book now</button>
-            <p class="fnote">Demo form — on your real site, this sends straight to the owner.</p>
-          </div>
-          <div class="pv-hours">
-            <b>Opening Hours</b>
-            <div class="row"><span>Monday – Saturday</span><span>9:00 AM – 8:00 PM</span></div>
-            <div class="row"><span>Sunday</span><span>10:00 AM – 4:00 PM</span></div>
-          </div>
-          <div class="pv-contact">
-            <b>Visit or contact us</b>
-            <span id="pvAddress">Your address</span>
-            <a id="pvPhone" href="#">Your phone number</a>
-            <a id="pvEmail" href="#">you@example.com</a>
-          </div>
-          <div class="pv-foot">© <span id="pvFootName">Your Business Name</span> · Website preview by MintNest Studio</div>
-        </div>
-      </div>
-      <div class="tier-info" id="tierInfo">
-        <h3 id="tiTitle">Clean design · <span>$60</span></h3>
-        <ul id="tiFeats"></ul>
-        <p class="ti-hint">Tap a design level above — or swipe the phone — to compare all three.</p>
-      </div>
-      <p class="microcopy">This is an instant style preview — your real website is hand-built from this starting point, with your full menu, photos and pages.</p>
+    <label for="fEmail">Email</label>
+    <input type="email" id="fEmail" placeholder="e.g. info@yourbusiness.com">
+
+    <label>Website style</label>
+    <div class="pills" id="templatePills">
+      <button type="button" class="pill" data-t="restaurant">Restaurant</button>
+      <button type="button" class="pill" data-t="cafe">Café &amp; Bakery</button>
+      <button type="button" class="pill" data-t="diner">Diner / Fish &amp; Chips</button>
+      <button type="button" class="pill" data-t="barbershop">Barbershop</button>
+      <button type="button" class="pill" data-t="store">Online Store</button>
+      <button type="button" class="pill" data-t="salon">Salon &amp; Spa</button>
     </div>
+
+    <label>Theme colour</label>
+    <div class="swatches" id="themeSwatches">
+      <button type="button" class="swatch" data-th="teal" style="background:#0f766e" aria-label="Teal"></button>
+      <button type="button" class="swatch" data-th="burgundy" style="background:#6d1f2c" aria-label="Burgundy"></button>
+      <button type="button" class="swatch" data-th="navy" style="background:#1d4e89" aria-label="Navy"></button>
+      <button type="button" class="swatch" data-th="rose" style="background:#b23a5e" aria-label="Rose"></button>
+      <button type="button" class="swatch" data-th="charcoal" style="background:#b98a2f" aria-label="Charcoal and gold"></button>
+      <span class="swlabel" id="swLabel">Theme: Teal</span>
+    </div>
+
+    <label>Design level</label>
+    <div class="tiers" id="tierTabs">
+      <button type="button" class="tier" data-lvl="60"><b>$60</b><small>CLEAN</small></button>
+      <button type="button" class="tier" data-lvl="199"><b>$199</b><small>MODERN PRO</small></button>
+      <button type="button" class="tier" data-lvl="299"><b>$299</b><small>PREMIUM ⭐</small></button>
+    </div>
+    <div class="tierfeat" id="tierFeat"></div>
+  </form>
+
+  <div class="phone-col">
+    <div class="phone">
+      <div class="screen">
+        <div class="notch"></div>
+        <iframe id="demoFrame" title="Your live branded demo" loading="lazy"></iframe>
+      </div>
+    </div>
+    <div class="actions">
+      <button class="btn btn-main" id="copyBtn" type="button">🔗 Copy my demo link</button>
+      <a class="btn btn-ghost" id="openBtn" href="#" target="_blank" rel="noopener">↗ Open full-screen</a>
+    </div>
+    <span class="mini">Working on a client's demo? <button type="button" id="copyCustomBtn">Copy the customiser link instead</button> — it re-opens this form pre-filled.</span>
+    <p class="note">Your demo link opens the full website — scrollable, tappable, with your business name, phone and email already in place. Send it to anyone; it works on every phone and computer.</p>
   </div>
+</div>
 
-  <!-- ============ CTA ============ -->
-  <section class="contact">
-    <h2>Like your preview? Get the full website from $60</h2>
-    <p>Send us your preview link on WhatsApp and we'll turn it into a complete, hand-built website — your full menu, your photos, your pages — live within a few days.</p>
-    <div class="btns">
-      <a class="btn btn-wa" href="https://wa.me/923338739929?text=Hi%20Waseem%2C%20I%20tried%20the%20live%20demo%20preview%20and%20I%20want%20a%20website%20for%20my%20business." target="_blank" rel="noopener">WhatsApp us your preview</a>
-      <a class="btn btn-mail" href="mailto:muhammadwaseem2559@gmail.com?subject=I%20want%20a%20website%20for%20my%20business">Email us instead</a>
-    </div>
-  </section>
-</main>
-
-<footer>
-  <div class="wrap">MintNest Studio — website design by Muhammad Waseem · WhatsApp: +92 333 8739929 · muhammadwaseem2559@gmail.com</div>
-</footer>
+<footer>© MintNest Studio · Live demo builder · Prices are one-time: $60 Clean · $199 Modern Pro · $299 Premium</footer>
 
 <script>
 (function(){
   "use strict";
-
-  /* ---------- Template content ---------- */
-  var TEMPLATES = {
-    restaurant: {
-      label: "Restaurant",
-      heading: "Our Menu",
-      hero: "url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=70')",
-      about: "a much-loved restaurant serving honest, freshly cooked food",
-      items: [
-        ["Margherita Pizza", "San Marzano tomato, fior di latte, basil", "$14"],
-        ["Tagliatelle al Ragù", "Slow-cooked beef ragù, shaved parmesan", "$19"],
-        ["Grilled Sea Bass", "Lemon, herbs and seasonal vegetables", "$24"],
-        ["Classic Tiramisu", "Espresso-soaked sponge, mascarpone cream", "$9"]
-      ]
-    },
-    cafe: {
-      label: "Café & Bakery",
-      heading: "Bakery & Brews",
-      hero: "url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1200&q=70')",
-      about: "a cosy café and bakery known for fresh bakes and great coffee",
-      items: [
-        ["Butter Croissant", "Baked fresh in-house every morning", "$3.50"],
-        ["Sourdough Loaf", "48-hour fermented, crusty and light", "$6"],
-        ["Flat White", "Double shot with silky steamed milk", "$4.50"],
-        ["Blueberry Muffin", "Golden crumble top, bursting berries", "$3.75"]
-      ]
-    },
-    diner: {
-      label: "Diner / Fish & Chips",
-      heading: "Our Menu",
-      hero: "url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=70')",
-      about: "a proper local diner serving generous plates all day long",
-      items: [
-        ["Classic Fish & Chips", "Beer-battered cod, chips and mushy peas", "£9.95"],
-        ["Full English Breakfast", "Eggs, bacon, sausage, beans and toast", "£8.50"],
-        ["Buttermilk Pancakes", "Maple syrup and fresh berries", "£6.95"],
-        ["Thick Milkshake", "Vanilla, chocolate or strawberry", "£4.50"]
-      ]
-    },
-    barbershop: {
-      label: "Barbershop",
-      heading: "Services & Prices",
-      hero: "url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1200&q=70')",
-      about: "a friendly barbershop for sharp cuts, clean fades and classic shaves",
-      items: [
-        ["Classic Haircut", "Consultation, cut and styled finish", "$25"],
-        ["Skin Fade", "Precision fade with a sharp finish", "$28"],
-        ["Beard Trim & Shape", "Hot-towel finish and beard oils", "$15"],
-        ["Cut & Beard Combo", "The full works, top to chin", "$35"]
-      ]
-    },
-    store: {
-      label: "Online Store",
-      heading: "Our Products",
-      hero: "url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1200&q=70')",
-      about: "an independent online store with carefully made products, shipped with care",
-      items: [
-        ["Handmade Ceramic Mug", "Glazed stoneware, 350ml", "$18"],
-        ["Organic Cotton Tote", "Heavyweight canvas, reinforced straps", "$22"],
-        ["Scented Soy Candle", "Cedar and amber, 40-hour burn", "$16"],
-        ["Linen Cushion Cover", "Stonewashed linen, 45 × 45 cm", "$24"]
-      ]
-    },
-    salon: {
-      label: "Salon & Spa",
-      heading: "Services & Prices",
-      hero: "url('https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1200&q=70')",
-      about: "a relaxing salon and spa for hair, beauty and quiet time out",
-      items: [
-        ["Signature Facial", "60 minutes, tailored to your skin", "$65"],
-        ["Balayage & Gloss", "Consultation included", "$120"],
-        ["Gel Manicure", "Shape, cuticle care and gel polish", "$45"],
-        ["Deep-Tissue Massage", "45 minutes of proper unwinding", "$70"]
-      ]
-    }
-  };
-
-  /* ---------- Colour themes ---------- */
+  var FILES = { restaurant:"restaurant.html", cafe:"cafe-bakery.html", diner:"diner.html", barbershop:"barbershop.html", store:"store.html", salon:"salon.html" };
   var THEMES = {
-    teal:     { label: "Teal",            accent: "#0f766e", dark: "#0b5f58" },
-    burgundy: { label: "Burgundy",        accent: "#6d1f2c", dark: "#571824" },
-    navy:     { label: "Navy",            accent: "#1d4e89", dark: "#163a66" },
-    rose:     { label: "Rose",            accent: "#b23a5e", dark: "#932c4c" },
-    charcoal: { label: "Charcoal & Gold", accent: "#b98a2f", dark: "#23202b" }
+    teal:     { label:"Teal",            accent:"#0f766e" },
+    burgundy: { label:"Burgundy",        accent:"#6d1f2c" },
+    navy:     { label:"Navy",            accent:"#1d4e89" },
+    rose:     { label:"Rose",            accent:"#b23a5e" },
+    charcoal: { label:"Charcoal & Gold", accent:"#b98a2f" }
   };
-
-  /* ---------- Gallery photos per template ---------- */
-  var U = "https://images.unsplash.com/";
-  var PICS = {
-    restaurant: [U+"photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=600&q=60", U+"photo-1552566626-52f8b828add9?auto=format&fit=crop&w=600&q=60", U+"photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=60"],
-    cafe:       [U+"photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=600&q=60", U+"photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=60", U+"photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=600&q=60"],
-    diner:      [U+"photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=60", U+"photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=60", U+"photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=60"],
-    barbershop: [U+"photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=600&q=60", U+"photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=600&q=60", U+"photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=600&q=60"],
-    store:      [U+"photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=600&q=60", U+"photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=600&q=60", U+"photo-1567401893414-76b7b1e5a7f5?auto=format&fit=crop&w=600&q=60"],
-    salon:      [U+"photo-1560066984-138dadb4c035?auto=format&fit=crop&w=600&q=60", U+"photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=600&q=60", U+"photo-1600334129128-685c5582fd35?auto=format&fit=crop&w=600&q=60"]
-  };
-
-  /* ---------- Design levels ---------- */
-  var LVLS = ["60", "199", "299"];
   var TIERS = {
-    "60":  { name: "Clean",      feats: ["Simple, neat layout — nothing wasted", "Your details, menu & prices, opening hours", "Click-to-call header and contact bar"] },
-    "199": { name: "Modern Pro", feats: ["Everything in Clean, with a richer design", "Photo cards, star ratings & customer reviews", "Enquiry form that sends enquiries to you"] },
-    "299": { name: "Premium",    feats: ["Everything in Modern Pro, at the highest level", "Cinematic animated hero, gallery & testimonial", "Booking form, glass cards & smooth animations"] }
+    "60":  "Clean — $60 one-time. Simple, neat layout with your details, menu and click-to-call. Nothing wasted.",
+    "199": "Modern Pro — $199 one-time. The full modern design: gallery, reviews and rich sections, polished on every screen.",
+    "299": "Premium — $299 one-time. Top-tier finish: premium styling, depth and shadows — the version that makes people say wow."
   };
-  var REVIEWS = [
-    ["★★★★★", "Fast, friendly and great value — the website made booking so easy.", "Sarah M."],
-    ["★★★★★", "Looks the part and works perfectly on my phone. Best around, no contest.", "James T."]
-  ];
-  var TESTI = {
-    q: "“We found them on Google and the website did the rest — clear prices, easy booking, and it looked so professional we didn't even shop around.”",
-    by: "— Priya K., happy customer"
-  };
+  var LVLS = ["60","199","299"];
+  var state = { t:"restaurant", th:"teal", lvl:"199" };
 
-  var state = { t: "restaurant", th: "teal", lvl: "60" };
-
-  /* ---------- Element refs ---------- */
   function $(id){ return document.getElementById(id); }
-  var fName=$("fName"), fTagline=$("fTagline"), fCity=$("fCity"), fPhone=$("fPhone"), fEmail=$("fEmail"),
-      screen=$("screen"), pvBrand=$("pvBrand"), pvName=$("pvName"), pvTagline=$("pvTagline"),
-      pvAbout=$("pvAbout"), pvListHeading=$("pvListHeading"), pvList=$("pvList"),
-      pvAddress=$("pvAddress"), pvPhone=$("pvPhone"), pvEmail=$("pvEmail"),
-      pvCallTop=$("pvCallTop"), pvCallBtn=$("pvCallBtn"), pvFootName=$("pvFootName"),
-      pvHero=$("pvHero"), pvHeroBg=$("pvHeroBg"), pvGallery=$("pvGallery"),
-      pvRevList=$("pvRevList"), pvQuote=$("pvQuote"), pvQuoteBy=$("pvQuoteBy"),
-      pvBookSel=$("pvBookSel"), tiTitle=$("tiTitle"), tiFeats=$("tiFeats"),
-      phone=$("phone"), swLabel=$("swLabel"), copyBtn=$("copyBtn");
+  var fName=$("fName"), fTagline=$("fTagline"), fCity=$("fCity"), fPhone=$("fPhone"), fEmail=$("fEmail");
+  var frame=$("demoFrame"), openBtn=$("openBtn"), copyBtn=$("copyBtn"), swLabel=$("swLabel"), tierFeat=$("tierFeat");
+  var lastSrc = "";
 
-  function val(input, fallback){ var v = input.value.trim(); return v ? v : fallback; }
-
-  /* ---------- Render preview ---------- */
-  function render(){
-    var tpl = TEMPLATES[state.t], theme = THEMES[state.th];
-    var name = val(fName, "Your Business Name");
-    var city = val(fCity, "");
-
-    screen.style.setProperty("--pv-accent", theme.accent);
-    screen.style.setProperty("--pv-dark", theme.dark);
-    screen.setAttribute("data-lvl", state.lvl);
-    pvHeroBg.style.backgroundImage = "linear-gradient(rgba(15,15,20,.45),rgba(15,15,20,.62)), " + tpl.hero;
-
-    pvBrand.textContent = name;
-    pvName.textContent = name;
-    pvFootName.textContent = name;
-    pvTagline.textContent = val(fTagline, "Your tagline goes here");
-
-    var where = city ? (" right here in " + city + ".") : " in your neighbourhood.";
-    pvAbout.textContent = "Welcome to " + name + " — " + tpl.about + where + " Take a look around, and get in touch to book or order.";
-
-    pvListHeading.textContent = tpl.heading;
-    var pics = PICS[state.t];
-    pvList.innerHTML = "";
-    tpl.items.forEach(function(it, idx){
-      var row = document.createElement("div"); row.className = "pv-item";
-      var thumb = document.createElement("img"); thumb.className = "pv-thumb";
-      thumb.src = pics[idx % pics.length]; thumb.alt = ""; thumb.loading = "lazy";
-      thumb.onerror = function(){ this.style.display = "none"; };
-      var tx = document.createElement("div"); tx.className = "tx";
-      var b = document.createElement("b"); b.textContent = it[0];
-      var s = document.createElement("small"); s.textContent = it[1];
-      tx.appendChild(b); tx.appendChild(s);
-      var pr = document.createElement("div"); pr.className = "pr"; pr.textContent = it[2];
-      row.appendChild(thumb); row.appendChild(tx); row.appendChild(pr);
-      pvList.appendChild(row);
-    });
-    /* glass list backdrop only shows at Premium via CSS background presence */
-    pvList.style.backgroundImage = (state.lvl === "299")
-      ? "linear-gradient(rgba(18,18,24,.52),rgba(18,18,24,.52)), url('" + pics[0] + "')" : "";
-
-    /* gallery strip (Premium) */
-    pvGallery.innerHTML = "";
-    pics.forEach(function(src){
-      var g = document.createElement("img"); g.src = src; g.alt = ""; g.loading = "lazy";
-      g.onerror = function(){ this.style.display = "none"; };
-      pvGallery.appendChild(g);
-    });
-
-    /* reviews (Modern Pro + Premium) */
-    pvRevList.innerHTML = "";
-    REVIEWS.forEach(function(r){
-      var card = document.createElement("div"); card.className = "pv-rev";
-      var st = document.createElement("div"); st.className = "pv-stars"; st.textContent = r[0];
-      var txp = document.createElement("p"); txp.textContent = r[1];
-      var who = document.createElement("small"); who.textContent = r[2];
-      card.appendChild(st); card.appendChild(txp); card.appendChild(who);
-      pvRevList.appendChild(card);
-    });
-
-    /* testimonial + booking options (Premium) */
-    pvQuote.textContent = TESTI.q;
-    pvQuoteBy.textContent = TESTI.by;
-    pvBookSel.innerHTML = "";
-    tpl.items.forEach(function(it){
-      var op = document.createElement("option"); op.textContent = it[0];
-      pvBookSel.appendChild(op);
-    });
-
-    /* tier tabs + info panel */
-    var tabs = document.querySelectorAll("#tierTabs .tier");
-    for (var k=0;k<tabs.length;k++){ tabs[k].classList.toggle("active", tabs[k].getAttribute("data-lvl") === state.lvl); }
-    var tier = TIERS[state.lvl];
-    tiTitle.innerHTML = "";
-    tiTitle.appendChild(document.createTextNode(tier.name + " design · "));
-    var tsp = document.createElement("span"); tsp.textContent = "$" + state.lvl;
-    tiTitle.appendChild(tsp);
-    tiFeats.innerHTML = "";
-    tier.feats.forEach(function(f){
-      var li = document.createElement("li"); li.textContent = f;
-      tiFeats.appendChild(li);
-    });
-
-    pvAddress.textContent = val(fCity, "Your address");
-    var phone = val(fPhone, "");
-    pvPhone.textContent = phone ? phone : "Your phone number";
-    var tel = phone ? ("tel:" + phone.replace(/[^+\d]/g, "")) : "#";
-    pvPhone.href = tel; pvCallTop.href = tel; pvCallBtn.href = tel;
-    var email = val(fEmail, "");
-    pvEmail.textContent = email ? email : "you@example.com";
-    pvEmail.href = email ? ("mailto:" + email) : "#";
-
-    /* active states */
-    var pills = document.querySelectorAll("#templatePills .pill");
-    for (var i=0;i<pills.length;i++){ pills[i].classList.toggle("active", pills[i].getAttribute("data-t") === state.t); }
-    var sws = document.querySelectorAll("#themeSwatches .swatch");
-    for (var j=0;j<sws.length;j++){ sws[j].classList.toggle("active", sws[j].getAttribute("data-th") === state.th); }
-    swLabel.textContent = "Theme: " + theme.label;
+  function accentHex(){
+    var t = THEMES[state.th];
+    if (t) return t.accent;
+    if (/^#[0-9a-fA-F]{6}$/.test(state.th)) return state.th;
+    return "#0f766e";
   }
 
-  /* ---------- Wire the form ---------- */
-  [fName, fTagline, fCity, fPhone, fEmail].forEach(function(input){
-    input.addEventListener("input", render);
-  });
-  document.querySelectorAll("#templatePills .pill").forEach(function(btn){
-    btn.addEventListener("click", function(){ state.t = btn.getAttribute("data-t"); render(); });
-  });
-  document.querySelectorAll("#themeSwatches .swatch").forEach(function(btn){
-    btn.addEventListener("click", function(){ state.th = btn.getAttribute("data-th"); render(); });
-  });
-  document.querySelectorAll("#tierTabs .tier").forEach(function(btn){
-    btn.addEventListener("click", function(){ state.lvl = btn.getAttribute("data-lvl"); render(); });
-  });
-  /* swipe the phone frame to move between design levels */
-  var touchX = null;
-  phone.addEventListener("touchstart", function(e){ touchX = e.changedTouches[0].clientX; }, {passive:true});
-  phone.addEventListener("touchend", function(e){
-    if (touchX === null) return;
-    var dx = e.changedTouches[0].clientX - touchX;
-    touchX = null;
-    if (Math.abs(dx) < 40) return;
-    var i = LVLS.indexOf(state.lvl);
-    if (dx < 0 && i < LVLS.length - 1) { state.lvl = LVLS[i + 1]; render(); }
-    if (dx > 0 && i > 0) { state.lvl = LVLS[i - 1]; render(); }
-  }, {passive:true});
-  /* preview forms are demos — acknowledge the tap, send nothing */
-  document.querySelectorAll(".pv-form button").forEach(function(btn){
-    btn.addEventListener("click", function(){
-      var old = btn.textContent;
-      btn.textContent = "✓ Sent (demo)";
-      setTimeout(function(){ btn.textContent = old; }, 2000);
-    });
-  });
-  $("customForm").addEventListener("submit", function(e){ e.preventDefault(); });
-
-  /* ---------- Shareable link ---------- */
-  function buildLink(){
-    var p = new URLSearchParams();
-    p.set("t", state.t);
-    p.set("th", state.th);
+  function buildDemoURL(){
+    var u = new URL("demos/" + FILES[state.t], window.location.href);
+    var p = u.searchParams;
+    if (fName.value.trim())    p.set("name", fName.value.trim());
+    if (fTagline.value.trim()) p.set("tagline", fTagline.value.trim());
+    if (fCity.value.trim())    p.set("city", fCity.value.trim());
+    if (fPhone.value.trim())   p.set("phone", fPhone.value.trim());
+    if (fEmail.value.trim())   p.set("email", fEmail.value.trim());
+    p.set("th", accentHex());
     p.set("lvl", state.lvl);
+    return u.href;
+  }
+
+  function buildCustomURL(){
+    var p = new URLSearchParams();
+    p.set("t", state.t); p.set("th", state.th); p.set("lvl", state.lvl);
     if (fName.value.trim())    p.set("name", fName.value.trim());
     if (fTagline.value.trim()) p.set("tagline", fTagline.value.trim());
     if (fCity.value.trim())    p.set("city", fCity.value.trim());
@@ -623,34 +198,42 @@
     return window.location.href.split("?")[0].split("#")[0] + "?" + p.toString();
   }
 
-  copyBtn.addEventListener("click", function(){
-    var link = buildLink();
-    function done(){
-      copyBtn.textContent = "Link copied ✓";
-      copyBtn.classList.add("copied");
-      setTimeout(function(){ copyBtn.textContent = "Copy my demo link"; copyBtn.classList.remove("copied"); }, 2500);
-    }
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(link).then(done, function(){ fallback(); });
-    } else { fallback(); }
-    function fallback(){
-      var ta = document.createElement("textarea");
-      ta.value = link; ta.style.position = "fixed"; ta.style.opacity = "0";
-      document.body.appendChild(ta); ta.select();
-      try { document.execCommand("copy"); } catch(e){}
-      document.body.removeChild(ta); done();
-    }
-    if (window.history && window.history.replaceState) {
-      window.history.replaceState(null, "", link);
-    }
-  });
+  var timer = null;
+  function render(){
+    document.querySelectorAll("#templatePills .pill").forEach(function(b){ b.classList.toggle("active", b.getAttribute("data-t")===state.t); });
+    document.querySelectorAll("#themeSwatches .swatch").forEach(function(b){ b.classList.toggle("active", b.getAttribute("data-th")===state.th); });
+    document.querySelectorAll("#tierTabs .tier").forEach(function(b){ b.classList.toggle("active", b.getAttribute("data-lvl")===state.lvl); });
+    var theme = THEMES[state.th];
+    swLabel.textContent = "Theme: " + (theme ? theme.label : "Custom");
+    tierFeat.textContent = TIERS[state.lvl];
+    var url = buildDemoURL();
+    openBtn.href = url;
+    clearTimeout(timer);
+    timer = setTimeout(function(){
+      if (url !== lastSrc) { lastSrc = url; frame.src = url; }
+    }, 450);
+  }
+
+  [fName,fTagline,fCity,fPhone,fEmail].forEach(function(i){ i.addEventListener("input", render); });
+  document.querySelectorAll("#templatePills .pill").forEach(function(b){ b.addEventListener("click", function(){ state.t=b.getAttribute("data-t"); render(); }); });
+  document.querySelectorAll("#themeSwatches .swatch").forEach(function(b){ b.addEventListener("click", function(){ state.th=b.getAttribute("data-th"); render(); }); });
+  document.querySelectorAll("#tierTabs .tier").forEach(function(b){ b.addEventListener("click", function(){ state.lvl=b.getAttribute("data-lvl"); render(); }); });
+  $("customForm").addEventListener("submit", function(e){ e.preventDefault(); });
+
+  function copyText(text, btn){
+    function done(){ var old=btn.textContent; btn.textContent="Copied ✓"; btn.classList.add("copied"); setTimeout(function(){ btn.textContent=old; btn.classList.remove("copied"); }, 2500); }
+    function fallback(){ var ta=document.createElement("textarea"); ta.value=text; ta.style.position="fixed"; ta.style.opacity="0"; document.body.appendChild(ta); ta.select(); try{ document.execCommand("copy"); }catch(e){} document.body.removeChild(ta); done(); }
+    if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(done, fallback); } else { fallback(); }
+  }
+  copyBtn.addEventListener("click", function(){ copyText(buildDemoURL(), copyBtn); });
+  $("copyCustomBtn").addEventListener("click", function(){ copyText(buildCustomURL(), this); });
 
   /* ---------- Rehydrate from URL params ---------- */
   (function init(){
     var p = new URLSearchParams(window.location.search);
-    var t = p.get("t"), th = p.get("th"), lvl = p.get("lvl");
-    if (t && TEMPLATES[t])  state.t = t;
-    if (th && THEMES[th])   state.th = th;
+    var t=p.get("t"), th=p.get("th"), lvl=p.get("lvl");
+    if (t && FILES[t]) state.t = t;
+    if (th && (THEMES[th] || /^#[0-9a-fA-F]{6}$/.test(th))) state.th = th;
     if (lvl && LVLS.indexOf(lvl) !== -1) state.lvl = lvl;
     if (p.get("name"))    fName.value = p.get("name");
     if (p.get("tagline")) fTagline.value = p.get("tagline");
@@ -658,6 +241,7 @@
     if (p.get("phone"))   fPhone.value = p.get("phone");
     if (p.get("email"))   fEmail.value = p.get("email");
     render();
+    lastSrc = buildDemoURL(); frame.src = lastSrc;
   })();
 })();
 </script>
