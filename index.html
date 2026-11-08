@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MintNest Studio — Website Demos</title>
+<meta name="description" content="Modern, mobile-friendly websites for small businesses, from $60. Browse 23 live demo websites — restaurants, cafés, salons, shops, clinics and local services — or see your own business name on a demo instantly.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#14161f; --paper:#f7f5f1; --card:#ffffff; --accent:#0f766e; --accent-d:#0b5f58; --accent2:#b45309;
+    --muted:#5b606e; --line:#e5e1d8; --radius:16px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--paper);color:var(--ink);line-height:1.55}
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+  /* header */
+  header{position:sticky;top:0;z-index:60;background:rgba(247,245,241,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;gap:18px;padding:13px 0}
+  .logo{font-family:'Fraunces',serif;font-weight:700;font-size:1.35rem;letter-spacing:.2px;text-decoration:none;white-space:nowrap}
+  .logo span{color:var(--accent)}
+  .menu{display:none;align-items:center;gap:4px;margin-left:auto}
+  .menu>a,.menu .drop-btn{font-weight:600;font-size:.94rem;text-decoration:none;color:var(--ink);padding:9px 13px;border-radius:999px;background:none;border:0;cursor:pointer;font-family:inherit}
+  .menu>a:hover,.menu .drop-btn:hover{background:#ece8df}
+  .menu>a.live-link{color:var(--accent);font-weight:700}
+  .drop{position:relative}
+  .drop-panel{position:absolute;top:calc(100% + 8px);left:0;min-width:290px;max-height:70vh;overflow-y:auto;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 18px 40px rgba(20,22,31,.16);padding:8px;display:none}
+  .drop-panel a{display:flex;flex-direction:column;padding:8px 12px;border-radius:9px;text-decoration:none}
+  .drop-panel a:hover{background:var(--paper)}
+  .drop-panel a b{font-size:.94rem}
+  .drop-panel a small{color:var(--muted);font-size:.79rem}
+  .drop-panel .grp{font-size:.7rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--accent2);padding:12px 12px 4px}
+  .drop-panel .grp:first-child{padding-top:4px}
+  .drop.open .drop-panel{display:block}
+  @media(hover:hover) and (min-width:821px){.drop:hover .drop-panel{display:block}}
+  .nav a.cta{margin-left:auto;background:var(--accent);color:#fff;text-decoration:none;padding:11px 20px;border-radius:999px;font-weight:600;font-size:.92rem;white-space:nowrap}
+  .nav a.cta:hover{background:var(--accent-d)}
+  @media(min-width:821px){.menu{display:flex}.nav a.cta{margin-left:6px}}
+  .mobilenav{display:flex;gap:2px;overflow-x:auto;padding:0 0 10px;scrollbar-width:none}
+  .mobilenav::-webkit-scrollbar{display:none}
+  .mobilenav a{white-space:nowrap;font-weight:600;font-size:.88rem;text-decoration:none;padding:7px 12px;border-radius:999px;background:#fff;border:1px solid var(--line);cursor:pointer}
+  @media(min-width:821px){.mobilenav{display:none}}
+  /* hero */
+  .hero{padding:66px 0 40px;text-align:center;background:radial-gradient(640px 300px at 50% -60px,rgba(15,118,110,.14),transparent 70%)}
+  .badge{display:inline-block;background:#e6f4f1;color:var(--accent);font-weight:600;font-size:.82rem;padding:6px 14px;border-radius:999px;margin-bottom:18px}
+  .hero h1{font-family:'Fraunces',serif;font-size:clamp(2.1rem,6vw,3.5rem);line-height:1.08;font-weight:700;max-width:780px;margin:0 auto 16px}
+  .hero h1 em{font-style:normal;color:var(--accent)}
+  .hero p{color:var(--muted);font-size:1.1rem;max-width:640px;margin:0 auto 28px}
+  .hero .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .btn{display:inline-block;text-decoration:none;font-weight:600;padding:14px 28px;border-radius:999px;font-size:.99rem;border:0;cursor:pointer;font-family:inherit}
+  .btn-wa{background:#128c4a;color:#fff}
+  .btn-wa:hover{background:#0d7039}
+  .btn-dark{background:var(--ink);color:#fff}
+  .btn-dark:hover{background:var(--accent)}
+  .btn-line{border:2px solid var(--ink);color:var(--ink);background:transparent}
+  .btn-line:hover{border-color:var(--accent);color:var(--accent)}
+  .points{display:flex;gap:10px 28px;justify-content:center;flex-wrap:wrap;margin-top:30px;color:var(--muted);font-size:.92rem}
+  .points b{color:var(--ink)}
+  /* live customizer band */
+  .liveband{margin:10px 0 4px;background:linear-gradient(120deg,#14161f 25%,#0f766e);color:#fff;border-radius:22px;padding:30px 28px}
+  .liveband-in{display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+  .livepill{display:inline-block;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.35);font-size:.72rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:5px 12px;border-radius:999px}
+  .liveband h2{font-family:'Fraunces',serif;font-size:clamp(1.45rem,4.5vw,2rem);margin:10px 0 6px}
+  .liveband h2 em{font-style:normal;color:#5eead4}
+  .liveband p{color:#d7dae2;max-width:580px}
+  .btn-live{background:#fff;color:var(--ink);white-space:nowrap}
+  .btn-live:hover{background:#e6f4f1}
+  /* sections + carousel */
+  .section-title{font-family:'Fraunces',serif;font-size:1.75rem;margin:50px 0 6px;scroll-margin-top:110px}
+  .section-sub{color:var(--muted);margin-bottom:22px;max-width:700px}
+  .chips{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 16px}
+  .chip{font-family:inherit;font-weight:600;font-size:.88rem;padding:9px 17px;border-radius:999px;border:1.5px solid var(--line);background:#fff;color:var(--ink);cursor:pointer}
+  .chip:hover{border-color:var(--accent);color:var(--accent)}
+  .chip.active{background:var(--ink);border-color:var(--ink);color:#fff}
+  .car-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px}
+  .swipehint{color:var(--muted);font-size:.88rem;font-weight:600}
+  .car-nav{display:none;gap:8px}
+  .js .car-nav{display:flex}
+  .cbtn{width:42px;height:42px;border-radius:50%;border:1.5px solid var(--line);background:#fff;color:var(--ink);font-size:1.05rem;cursor:pointer;font-family:inherit;line-height:1}
+  .cbtn:hover{border-color:var(--accent);color:var(--accent)}
+  .cbtn:disabled{opacity:.35;cursor:default}
+  .cbtn:disabled:hover{border-color:var(--line);color:var(--ink)}
+  .carousel{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:8px 2px 20px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .carousel::-webkit-scrollbar{display:none}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;text-decoration:none;display:flex;flex-direction:column;flex:0 0 84%;scroll-snap-align:start;transition:transform .18s ease,box-shadow .18s ease}
+  @media(min-width:640px){.card{flex-basis:47%}}
+  @media(min-width:1000px){.card{flex-basis:31.9%}}
+  .card:hover{transform:translateY(-4px);box-shadow:0 16px 36px rgba(20,22,31,.13)}
+  .card[hidden]{display:none}
+  .card .thumb{aspect-ratio:16/10;background:linear-gradient(135deg,#334155,#0f766e);overflow:hidden;position:relative}
+  .card .thumb img{width:100%;height:100%;object-fit:cover}
+  .card .thumb .mono{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:3.4rem;color:rgba(255,255,255,.92)}
+  .card .cat{position:absolute;top:12px;left:12px;background:rgba(20,22,31,.85);color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:5px 11px;border-radius:999px}
+  .card .body{padding:18px 18px 20px;display:flex;flex-direction:column;gap:6px;flex:1}
+  .card .where{font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent2)}
+  .card h3{font-family:'Fraunces',serif;font-size:1.28rem}
+  .card p{color:var(--muted);font-size:.94rem;flex:1}
+  .card .open{font-weight:700;font-size:.93rem;color:var(--accent)}
+  /* prices */
+  .prices{display:grid;gap:16px;grid-template-columns:1fr;margin:6px 0 4px}
+  @media(min-width:820px){.prices{grid-template-columns:repeat(3,1fr)}}
+  .price{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px 22px;position:relative}
+  .price.hot{border:2px solid var(--accent)}
+  .price .pop{position:absolute;top:-12px;right:18px;background:var(--accent);color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 11px;border-radius:999px}
+  .price h4{font-size:.95rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+  .price .amt{font-family:'Fraunces',serif;font-size:2.15rem;margin:6px 0 4px}
+  .price .amt small{font-size:.95rem;color:var(--muted);font-family:'Inter',sans-serif}
+  .price ul{list-style:none;margin-top:12px;display:grid;gap:8px;color:var(--muted);font-size:.93rem}
+  .price ul b{color:var(--ink);font-weight:600}
+  .price ul li::before{content:"✔ ";color:var(--accent);font-weight:700}
+  .pricenote{color:var(--muted);font-size:.9rem;margin-top:14px}
+  /* steps */
+  .steps{display:grid;gap:16px;grid-template-columns:1fr;margin:8px 0 10px}
+  @media(min-width:760px){.steps{grid-template-columns:repeat(3,1fr)}}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+  .step .n{width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;margin-bottom:10px}
+  .step h4{margin-bottom:4px}
+  .step p{color:var(--muted);font-size:.93rem}
+  /* contact */
+  .contact{margin:56px 0 64px;background:var(--ink);color:#fff;border-radius:22px;padding:38px 26px;text-align:center;scroll-margin-top:100px}
+  .contact h2{font-family:'Fraunces',serif;font-size:clamp(1.5rem,4.5vw,2.1rem);margin-bottom:10px}
+  .contact p{color:#c9ccd6;max-width:560px;margin:0 auto 22px}
+  .contact .btn{background:var(--accent);color:#fff}
+  .contact .btn:hover{background:var(--accent-d)}
+  .contact .btn-mail{background:transparent;border:2px solid #fff;color:#fff;margin-left:10px}
+  .contact .btn-mail:hover{background:rgba(255,255,255,.12)}
+  .contact .fiverr{margin-top:18px;font-size:.9rem;color:#c9ccd6}
+  .contact .fiverr a{color:#fff;text-decoration:underline}
+  footer{border-top:1px solid var(--line);padding:22px 0 34px;color:var(--muted);font-size:.88rem;text-align:center}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="index.html">MintNest <span>Studio</span></a>
+    <nav class="menu" aria-label="Main">
+      <div class="drop" id="demoDrop">
+        <button class="drop-btn" id="dropBtn" aria-haspopup="true" aria-expanded="false" type="button">Demos ▾</button>
+        <div class="drop-panel" role="menu">
+          <div class="grp">Food &amp; Drink</div>
+          <a href="demos/restaurant.html"><b>Restaurants</b><small>Luigi's Trattoria · Chicago</small></a>
+          <a href="demos/cafe-bakery.html"><b>Cafés &amp; Bakeries</b><small>The Corner Crust Café · Toronto</small></a>
+          <a href="demos/diner.html"><b>Diners &amp; Fish &amp; Chips</b><small>The Golden Catch · London</small></a>
+          <div class="grp">Beauty &amp; Health</div>
+          <a href="demos/barbershop.html"><b>Barbershops</b><small>Sharp &amp; Co. · Brooklyn</small></a>
+          <a href="demos/salon.html"><b>Salons &amp; Spa</b><small>Velvet Rose · Toronto</small></a>
+          <a href="demos/dental.html"><b>Dental Clinics</b><small>BrightSmile Dental · Austin</small></a>
+          <div class="grp">Shops &amp; Web UI</div>
+          <a href="demos/store.html"><b>Online Stores</b><small>Ember &amp; Oak · handmade goods</small></a>
+          <a href="demos/landing.html"><b>Landing Pages</b><small>GlowBox · skincare box</small></a>
+          <a href="demos/contact.html"><b>Contact Forms</b><small>BrightSmile Dental · Austin</small></a>
+          <a href="demos/login.html"><b>Login Pages · Glass</b><small>TaskFlow sign-in</small></a>
+          <a href="demos/login-split.html"><b>Login Pages · Split</b><small>CloudDesk sign-in</small></a>
+          <a href="demos/login-dark.html"><b>Login Pages · Dark Neon</b><small>NeonVault sign-in</small></a>
+          <a href="demos/login-3d.html"><b>Login Pages · 3D Card</b><small>OrbitPay sign-in</small></a>
+          <div class="grp">Local Services</div>
+          <a href="demos/gym.html"><b>Gyms &amp; Fitness</b><small>IronCore Fitness · Chicago</small></a>
+          <a href="demos/realestate.html"><b>Real Estate</b><small>HarborView Estates · London</small></a>
+          <a href="demos/autoshop.html"><b>Auto Repair</b><small>Precision Auto · Houston</small></a>
+          <a href="demos/lawfirm.html"><b>Law Firms</b><small>Sterling &amp; Co. · London</small></a>
+          <a href="demos/photography.html"><b>Photography</b><small>Golden Hour Studio · New York</small></a>
+          <a href="demos/hotel.html"><b>Hotels &amp; B&amp;B</b><small>The Maple Leaf Inn · Ontario</small></a>
+          <a href="demos/pets.html"><b>Pet Care</b><small>Paws &amp; Claws · Chicago</small></a>
+          <a href="demos/academy.html"><b>Academies</b><small>BrightFuture · London</small></a>
+          <a href="demos/homeservices.html"><b>Home Services</b><small>FixIt Fast · Toronto</small></a>
+          <a href="demos/wedding.html"><b>Wedding Venues</b><small>Rosewood Gardens · Napa Valley</small></a>
+        </div>
+      </div>
+      <a class="live-link" href="customize.html">✨ Live Demo</a>
+      <a href="#how">How it works</a>
+      <a href="#prices">Prices</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="cta" href="https://wa.me/923338739929?text=Hi%20Waseem%2C%20I%20saw%20your%20website%20demos%20and%20I%27m%20interested%20in%20a%20website%20for%20my%20business." target="_blank" rel="noopener">WhatsApp me</a>
+  </div>
+  <div class="wrap mobilenav" aria-label="Demo categories">
+    <a href="customize.html">✨ Live Demo</a>
+    <a href="#demos" data-mfilter="food">🍽 Food &amp; Drink</a>
+    <a href="#demos" data-mfilter="beauty">💄 Beauty</a>
+    <a href="#demos" data-mfilter="health">🩺 Health</a>
+    <a href="#demos" data-mfilter="stores">🛍 Online Store</a>
+    <a href="#demos" data-mfilter="web">🖥 Web UI</a>
+    <a href="#demos" data-mfilter="services">🔧 Local Services</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="badge">Website design for small businesses</div>
+    <h1>Your business deserves a website that works as hard as <em>you</em> do.</h1>
+    <p>Modern, mobile-friendly websites for restaurants, cafés, shops and local services — built fast, priced honestly, and designed to turn Google searches into customers.</p>
+    <div class="btns">
+      <a class="btn btn-wa" href="https://wa.me/923338739929?text=Hi%20Waseem%2C%20I%20saw%20your%20website%20demos%20and%20I%27m%20interested%20in%20a%20website%20for%20my%20business." target="_blank" rel="noopener">Chat on WhatsApp</a>
+      <a class="btn btn-line" href="customize.html">See your name on a demo →</a>
+    </div>
+    <div class="points">
+      <span>✔ <b>From $60</b> — complete website</span>
+      <span>✔ <b>Free</b> homepage preview first</span>
+      <span>✔ <b>Mobile-first</b> — most customers are on phones</span>
+      <span>✔ Delivered in <b>a few days</b></span>
+    </div>
+  </section>
+
+  <section class="liveband" aria-label="Live personalised demo">
+    <div class="liveband-in">
+      <div>
+        <span class="livepill">✨ New · Live preview</span>
+        <h2>Try it live — see <em>your</em> business as a website</h2>
+        <p>Type your business name, address and phone number and watch your own branded demo appear instantly — and swipe through three design levels — $60, $199 and $299 — no waiting, no emails back and forth.</p>
+      </div>
+      <a class="btn btn-live" href="customize.html">Build my live demo →</a>
+    </div>
+  </section>
+
+  <h2 class="section-title" id="demos">Live demo websites</h2>
+  <p class="section-sub">Twenty-three complete, working demo websites — one for almost every kind of small business. Swipe through them, filter by category, and tap any card to open the full demo: menus, prices, hours, reviews and click-to-call, exactly like the site your customers would see.</p>
+
+  <div class="chips" id="chips" role="group" aria-label="Filter demos by category">
+    <button class="chip active" type="button" data-filter="all">All demos</button>
+    <button class="chip" type="button" data-filter="food">Food &amp; Drink</button>
+    <button class="chip" type="button" data-filter="beauty">Beauty</button>
+    <button class="chip" type="button" data-filter="health">Health</button>
+    <button class="chip" type="button" data-filter="stores">Online Store</button>
+    <button class="chip" type="button" data-filter="web">Web UI</button>
+    <button class="chip" type="button" data-filter="services">Local Services</button>
+  </div>
+
+  <div class="car-head">
+    <span class="swipehint">← Swipe the cards — tap one to open its demo →</span>
+    <div class="car-nav">
+      <button class="cbtn" id="carPrev" type="button" aria-label="Previous demos">←</button>
+      <button class="cbtn" id="carNext" type="button" aria-label="Next demos">→</button>
+    </div>
+  </div>
+
+  <div class="carousel" id="grid">
+    <a class="card" href="demos/restaurant.html" data-category="food">
+      <div class="thumb" style="background:linear-gradient(135deg,#3f1d1d,#7f1d2d)"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=70" alt="Elegant restaurant interior" loading="lazy"><span class="cat">Restaurant</span></div>
+      <div class="body">
+        <div class="where">Chicago · Fine Dining</div>
+        <h3>Luigi's Trattoria</h3>
+        <p>Fine-dining Italian restaurant with full menu, gallery, reviews and a reservations call-to-action.</p>
+        <span class="open">View live demo →</span>
+      </div>
+    </a>
+
+    <a class="card" href="demos/cafe-bakery.html" data-category="food">
+      <div class="thumb" style="background:linear-gradient(135deg,#92400e,#f59e0b)"><img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=900&q=70" alt="Cosy café interior" loading="lazy"><span class="cat">Café &amp; Bakery</span></div>
+      <div class="body">
+        <div class="where">Toronto · Café &amp; Pies</div>
+        <h3>The Corner Crust Café</h3>
+        <p>Bright, friendly café and pie bakery with daily specials, coffee menu and whole-pie ordering.</p>
+        <span class="open">View live demo →</span>
+      </div>
+    </a>
+
+    <a class="card" href="demos/diner.html" data-category="food">
+      <div class="thumb" style="background:linear-gradient(135deg,#7c2d12,#dc2626)"><img src="https://images.unsplash.com/photo-1579208030886-b937da0925dc?auto=format&fit=crop&w=900&q=70" alt="Fish and chips with lemon" loading="lazy"><span class="cat">Diner · Fish &amp; Chips</span></div>
+      <div class="body">
+        <div class="where">London · Classic Chippy</div>
+        <h3>The Golden Catch</h3>
+        <p>Classic London chippy in bold retro style — full menu with prices, opening hours and click-to-call.</p>
+        <span class="open">View live demo →</span>
+      </div>
+    </a>
+
+    <a class="card" href="demos/barbershop.html" data-category="beauty">
+      <div class="thumb" style="background:linear-gradient(135deg,#111827,#374151)"><img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=900&q=70" alt="Barber cutting hair" loading="lazy"><span class="cat">Barbershop</span></div>
+      <div class="body">
+        <div class="where">Brooklyn · Grooming</div>
+        <h3>Sharp &amp; Co. Barbers</h3>
+        <p>Dark, bold barbershop site with services and price list, barber profiles and a book-now button.</p>
+        <span class="open">View live demo →</span>
+      </div>
+    </a>
+
+    <a class="card" href="demos/salon.html" data-category="beauty">
+      <div class="thumb" style="background:linear-gradient(135deg,#9f1239,#fb7185)"><img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=900&q=70" alt="Stylist working in a beauty salon" loading="lazy"><span class="cat">Salon &amp; Spa</span></div>
+      <div class="body">
+        <div class="where">Toronto · Hair, Nails &amp; Facials</div>
+        <h3>Velvet Rose Salon &amp; Spa</h3>
+        <p>Premium salon &amp; spa site with a service price menu, stylist profiles and a book-now button that fills chairs.</p>
+        <span class="open">View live demo →</span>
+      </div>
+    </a>
+
+    <a class="card" href="demos/dental.html" data-category="health">
+      <div class="thumb" style="background:linear-gradient(135deg,#0369a1,#38bdf8)"><img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=900&q=70" alt="Modern dental clinic" loading="lazy"><span class="cat">Dental Clinic</span></div>
+      <div class="body">
+        <div class="where">Austin · Family Dentistry</div>
+        <h3>BrightSmile Dental Clinic</h3>
+        <p>Friendly dental clinic site: treatments with prices, dentist profiles and easy appointment requests.</p>
+        <span class="open">View live demo →</span>
+      </div>
+    </a>
+
+    <a class="card" href="demos/store.html" data-category="stores">
+      <div class="thumb" style="background:linear-gradient(135deg,#b4551f,#78350f)"><img src="https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&fit=crop&w=900&q=70" alt="Handmade candles in amber jars" loading="lazy"><span class="cat">Online Store</span></div>
+      <div class="body">
+        <div class="where">Online Shop · Handmade Goods</div>
+        <h3>Ember &amp; Oak</h3>
+        <p>A complete little online store: product grid with ratings, a working cart and a checkout — selling while you sleep.</p>
+        <span class="open">View live demo →</span>
+      </div>
+    </a>
+
+    <a class="card" href="demos/landing.html" data-category="web">
+      <div class="thumb" style="background:linear-gradient(135deg,#9d4e63,#e8a0b4)"><img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=900&q=70" alt="Skincare product bottle" loading="lazy"><span class="cat">Landing Page</span></div>
+      <div class="body">
+        <div class="where">Online Product · Subscription</div>
+        <h3>GlowBox</h3>
+        <p>A product landing page built to sell: hero offer, proof numbers, pricing tiers and an FAQ that closes the sale.</p>
+        <span class="open">View live demo →</span>
+      </div>
+    </a>
+
+    <a class="card" href="demos/contact.html" data-category="web">
+      <div class="thumb" style="background:linear-gradient(135deg,#0e5a52,#14b8a6)"><img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=900&q=70" alt="Dentist treating a patient" loading="lazy"><span class="cat">Contact Form</span></div>
+      <div class="body">
+        <div class="where">Local Service · Dental Clinic</div>
+        <h3>BrightSmile Dental</h3>
+        <p>A contact page that turns visitors into enquiries: clear details, opening hours and a form people actually finish.</p>
+        <span class="open">View live demo →</span>
+      </div>
+    </a>
+
+    <a class="card" href="demos/login.html" data-category="web">
+      <div class="thumb" style="background:linear-gradient(135deg,#312e81,#7c3aed)"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=70" alt="Analytics dashboard on a screen" loading="lazy"><span class="cat">Login · Glass</span></div>
+      <div class="body">
+        <div class="where">Web App UI · Sign In</div>
+        <h3>TaskFlow</h3>
+        <p>A modern glassmorphism login page for apps and dashboards — proof your product UI can look premium too.</p>
+        <span class="open">View live demo →</span>
+      </div>
+    </a>
+
+    <a class="card" href="demos/login-split.html" data-category="web">
+      <div class="thumb" style="background:linear-gradient(135deg,#0284c7,#38bdf8)"><span class="mono">C</span><span class="cat">Login · Split</span></div>
+      <div class="body">
+        <div class="where">Web App UI · Sign In</div>
+        <h3>CloudDesk</h3>
+        <p>A clean split-screen sign-in page — brand panel on one side, simple form on the other. Calm and professional.</p>
+        <span class="open">View live demo →</span>
+      </div>
+    </a>
+
+    <a class="card" href="demos/login-dark.html" data-category="web">
+      <div class="thumb" style="background:linear-gradient(135deg,#0f172a,#155e75)"><span class="mono">N</span><span class="cat">Login · Dark Neon</span></div>
+      <div class="body">
+        <div class="where">Web App UI · Sign In</div>
+        <h3>NeonVault</h3>
+        <p>A dark neon sign-in page for apps that want a bold, techy first impression.</p>
+        <span class="open">View live demo →</span>
+      </div>
+    </a>
+
+    <a class="card" href="demos/login-3d.html" data-category="web">
+      <div class="thumb" style="background:linear-gradient(135deg,#f59e0b,#ef4444)"><span class="mono">O</span><span class="cat">Login · 3D Card</span></div>
+      <div class="body">
+        <div class="where">Web App UI · Sign In</div>
+        <h3>OrbitPay</h3>
+        <p>A playful 3D-card sign-in page with depth and soft shadows — a login users actually enjoy.</p>
+        <span class="open">View live demo →</span>
+      </div>
+    </a>
+
+    <a class="card" href="demos/gym.html" data-category="services">
+      <div class="thumb" style="background:linear-gradient(135deg,#111827,#ea580c)"><img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=900&q=70" alt="Gym with rows of dumbbells" loading="lazy"><span class="cat">Gym &amp; Fitness</span></div>
+      <div class="body">
+        <div class="where">Chicago · Gym &amp; Classes</div>
+        <h3>IronCore Fitness</h3>
+        <p>High-energy gym site with membership plans, a weekly class timetable and a free-trial offer.</p>
+        <span class="open">View live demo →</span>
+      </div>
+    </a>
+
+    <a class="card" href="demos/realestate.html" data-category="services">
+      <div class="thumb" style="background:linear-gradient(135deg,#1e3a5f,#b45309)"><img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=900&q=70" alt="Suburban home for sale" loading="lazy"><span class="cat">Real Estate</span></div>
+      <div class="body">
+        <div class="where">London · Homes for Sale</div>
+        <h3>HarborView Estates</h3>
+        <p>Smart estate-agent site with featured homes for sale, agent profiles and a free valuation offer.</p>
+        <span class="open">View live demo →</span>
+      </div>
+    </a>
+
+    <a class="card" href="demos/autoshop.html" data-category="services">
+      <div class="thumb" style="background:linear-gradient(135deg,#1f2937,#64748b)"><img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=900&q=70" alt="Car engine bay" loading="lazy"><span class="cat">Auto Repair</span></div>
+      <div class="body">
+        <div class="where">Houston · Car Workshop</div>
+        <h3>Precision Auto Repair</h3>
+        <p>No-nonsense car workshop site: repair prices up front, a warranty promise and online booking.</p>
+        <span class="open">View live demo →</span>
+      </div>
+    </a>
+
+    <a class="card" href="demos/lawfirm.html" data-category="services">
+      <div class="thumb" style="background:linear-gradient(135deg,#172554,#475569)"><img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=900&q=70" alt="Law office pillars" loading="lazy"><span class="cat">Law Firm</span></div>
+      <div class="body">
+        <div class="where">London · Solicitors</div>
+        <h3>Sterling &amp; Co. Solicitors</h3>
+        <p>Calm, credible solicitors' site with practice areas, fixed-fee notes and a free consultation offer.</p>
+        <span class="open">View live demo →</span>
+      </div>
+    </a>
+
+    <a class="card" href="demos/photography.html" data-category="services">
+      <div class="thumb" style="background:linear-gradient(135deg,#78350f,#f59e0b)"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=70" alt="Wedding couple at golden hour" loading="lazy"><span class="cat">Photography</span></div>
+      <div class="body">
+        <div class="where">New York · Weddings &amp; Family</div>
+        <h3>Golden Hour Studio</h3>
+        <p>Gallery-first photography studio site with wedding packages, prices and booking enquiries.</p>
+        <span class="open">View live demo →</span>
+      </div>
+    </a>
+
+    <a class="card" href="demos/hotel.html" data-category="services">
+      <div class="thumb" style="background:linear-gradient(135deg,#14532d,#84cc16)"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=900&q=70" alt="Boutique hotel with pool" loading="lazy"><span class="cat">Hotel &amp; B&amp;B</span></div>
+      <div class="body">
+        <div class="where">Niagara-on-the-Lake · Boutique Inn</div>
+        <h3>The Maple Leaf Inn</h3>
+        <p>Cosy inn website with rooms, nightly rates and direct booking — no commission-hungry platforms in between.</p>
+        <span class="open">View live demo →</span>
+      </div>
+    </a>
+
+    <a class="card" href="demos/pets.html" data-category="services">
+      <div class="thumb" style="background:linear-gradient(135deg,#9a3412,#fbbf24)"><img src="https://images.unsplash.com/photo-1450778869180-41d0601e046e?auto=format&fit=crop&w=900&q=70" alt="Happy dog with its owner" loading="lazy"><span class="cat">Pet Care</span></div>
+      <div class="body">
+        <div class="where">Chicago · Grooming &amp; Vet Care</div>
+        <h3>Paws &amp; Claws</h3>
+        <p>Pet grooming, boarding and vet-care site with a clear price list and appointment booking.</p>
+        <span class="open">View live demo →</span>
+      </div>
+    </a>
+
+    <a class="card" href="demos/academy.html" data-category="services">
+      <div class="thumb" style="background:linear-gradient(135deg,#1e40af,#60a5fa)"><img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=900&q=70" alt="Students learning in a classroom" loading="lazy"><span class="cat">Academy</span></div>
+      <div class="body">
+        <div class="where">London · Tuition &amp; Coaching</div>
+        <h3>BrightFuture Academy</h3>
+        <p>Tuition centre site with courses, monthly fees, student results and a free demo-class signup.</p>
+        <span class="open">View live demo →</span>
+      </div>
+    </a>
+
+    <a class="card" href="demos/homeservices.html" data-category="services">
+      <div class="thumb" style="background:linear-gradient(135deg,#134e4a,#0f766e)"><img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=900&q=70" alt="Electrician fixing wiring" loading="lazy"><span class="cat">Home Services</span></div>
+      <div class="body">
+        <div class="where">Toronto · Plumber &amp; Electrician</div>
+        <h3>FixIt Fast</h3>
+        <p>A 24/7 plumber &amp; electrician site built for emergencies: clear call-out prices and one-tap calling.</p>
+        <span class="open">View live demo →</span>
+      </div>
+    </a>
+
+    <a class="card" href="demos/wedding.html" data-category="services">
+      <div class="thumb" style="background:linear-gradient(135deg,#881337,#fda4af)"><img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=900&q=70" alt="Wedding venue set for a ceremony" loading="lazy"><span class="cat">Wedding Venue</span></div>
+      <div class="body">
+        <div class="where">Napa Valley · Weddings &amp; Events</div>
+        <h3>The Rosewood Gardens</h3>
+        <p>Romantic venue site with photo galleries, wedding packages and date enquiries.</p>
+        <span class="open">View live demo →</span>
+      </div>
+    </a>
+  </div>
+
+  <h2 class="section-title" id="prices">Prices</h2>
+  <p class="section-sub">Direct prices — no platform fees. You deal with me personally, approve the finished website first, and only then pay.</p>
+  <div class="prices">
+    <div class="price">
+      <h4>Clean</h4>
+      <div class="amt">$60</div>
+      <p style="color:var(--muted);font-size:.93rem">A simple, neat design with all the essentials — clean, clear and professional.</p>
+      <ul>
+        <li><b>Essential pages</b> — Home, Menu / Services, Contact</li>
+        <li>Your menu / services &amp; prices</li>
+        <li>Photos, hours &amp; click-to-call</li>
+        <li>Google Maps link</li>
+      </ul>
+    </div>
+    <div class="price hot">
+      <div class="pop">Most popular</div>
+      <h4>Modern Pro</h4>
+      <div class="amt">$199</div>
+      <p style="color:var(--muted);font-size:.93rem">A richer, more modern design that makes your business look established.</p>
+      <ul>
+        <li><b>Everything</b> in Clean</li>
+        <li>Photo cards, gallery &amp; star ratings</li>
+        <li>Customer reviews section</li>
+        <li>Enquiry form &amp; WhatsApp chat button</li>
+      </ul>
+    </div>
+    <div class="price">
+      <h4>Premium</h4>
+      <div class="amt">$299</div>
+      <p style="color:var(--muted);font-size:.93rem">Our top-tier cinematic design — everything included, nothing held back.</p>
+      <ul>
+        <li><b>Everything</b> in Modern Pro</li>
+        <li>Cinematic animated hero &amp; gallery</li>
+        <li>Testimonials &amp; booking form</li>
+        <li>Premium animations &amp; priority delivery</li>
+      </ul>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:20px">
+    <p class="pricenote" style="margin:0 0 12px">Same business, three design levels — try them live:</p>
+    <a class="btn" style="background:var(--ink);color:#fff" href="customize.html">See the 3 design levels on your business →</a>
+  </div>
+  <p class="pricenote">Every package starts with a <b>free homepage preview</b> — you see your design before you spend a dollar. Need something different? Ask — the price follows the work, not the other way round.</p>
+
+  <h2 class="section-title" id="how">How it works</h2>
+  <div class="steps">
+    <div class="step"><div class="n">1</div><h4>Free preview first</h4><p>Send your business name and a few details — you get a free homepage preview before you pay anything.</p></div>
+    <div class="step"><div class="n">2</div><h4>Talk directly — WhatsApp or email</h4><p>Packages from $60, agreed directly with me — no platform fees in between. You approve the finished website first, then pay.</p></div>
+    <div class="step"><div class="n">3</div><h4>Live in a few days</h4><p>Your site goes live mobile-friendly, with your menu, photos, hours and click-to-call — ready for Google.</p></div>
+  </div>
+
+  <section class="contact" id="contact">
+    <h2>Like what you see? Yours could be next.</h2>
+    <p>Every demo above started as a blank page. Tell me about your business and I'll mock up your homepage preview — free, no obligation.</p>
+    <a class="btn" href="https://wa.me/923338739929?text=Hi%20Waseem%2C%20I%20saw%20your%20website%20demos%20and%20I%27m%20interested%20in%20a%20website%20for%20my%20business." target="_blank" rel="noopener">WhatsApp me — from $60</a>
+    <a class="btn btn-mail" href="mailto:muhammadwaseem2559@gmail.com?subject=Website%20for%20my%20business">Email me</a>
+    <p class="fiverr">Prefer a platform? I'm also on <a href="https://www.fiverr.com/mrblack025/design-a-modern-responsive-website-or-landing-page-for-your-business" target="_blank" rel="noopener">Fiverr</a>.</p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">MintNest Studio — website design by Muhammad Waseem · WhatsApp: +92 333 8739929 · muhammadwaseem2559@gmail.com · All demo businesses are fictional examples.</div>
+</footer>
+
+<script>
+  document.documentElement.classList.add('js');
+  // Demos dropdown — click/tap toggle (hover handled in CSS on desktop)
+  (function(){
+    var drop = document.getElementById('demoDrop'), btn = document.getElementById('dropBtn');
+    if(!drop || !btn) return;
+    btn.addEventListener('click', function(e){
+      e.stopPropagation();
+      var open = drop.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    document.addEventListener('click', function(e){
+      if(!drop.contains(e.target)){ drop.classList.remove('open'); btn.setAttribute('aria-expanded','false'); }
+    });
+  })();
+  // Category filter + swipe carousel
+  (function(){
+    var track = document.getElementById('grid');
+    var chips = Array.prototype.slice.call(document.querySelectorAll('#chips .chip'));
+    var cards = Array.prototype.slice.call(document.querySelectorAll('#grid .card'));
+    var prev = document.getElementById('carPrev'), next = document.getElementById('carNext');
+    if(!track || !cards.length) return;
+    function setFilter(f){
+      chips.forEach(function(c){ c.classList.toggle('active', c.getAttribute('data-filter') === f); });
+      cards.forEach(function(card){
+        card.hidden = !(f === 'all' || card.getAttribute('data-category') === f);
+      });
+      track.scrollTo({left:0, behavior:'smooth'});
+      updateArrows();
+    }
+    chips.forEach(function(chip){
+      chip.addEventListener('click', function(){ setFilter(chip.getAttribute('data-filter')); });
+    });
+    // Mobile category pills drive the same filter
+    document.querySelectorAll('[data-mfilter]').forEach(function(pill){
+      pill.addEventListener('click', function(){ setFilter(pill.getAttribute('data-mfilter')); });
+    });
+    function step(){
+      var vis = cards.filter(function(c){ return !c.hidden; });
+      return vis.length ? vis[0].offsetWidth + 18 : 320;
+    }
+    function updateArrows(){
+      if(!prev || !next) return;
+      var max = track.scrollWidth - track.clientWidth - 4;
+      prev.disabled = track.scrollLeft <= 4;
+      next.disabled = track.scrollLeft >= max;
+    }
+    if(prev && next){
+      prev.addEventListener('click', function(){ track.scrollBy({left:-step(), behavior:'smooth'}); });
+      next.addEventListener('click', function(){ track.scrollBy({left: step(), behavior:'smooth'}); });
+      track.addEventListener('scroll', updateArrows, {passive:true});
+      window.addEventListener('resize', updateArrows);
+      updateArrows();
+    }
+  })();
+</script>
+
+</body>
+</html>
