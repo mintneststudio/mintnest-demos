@@ -227,5 +227,27 @@
     document.getElementById('mobileMenu').classList.toggle('open');
   });
 </script>
+
+<!-- mintnest-branding -->
+<script>
+(function(){try{
+var CFG={"names": ["Luigi's Trattoria"], "city": "Chicago", "phones": ["(312) 555-0142", "+13125550142"]};
+var q=new URLSearchParams(location.search);
+var name=q.get('name'),tag=q.get('tagline'),city=q.get('city'),phone=q.get('phone'),email=q.get('email'),th=q.get('th'),lvl=q.get('lvl');
+if(!name&&!tag&&!city&&!phone&&!email&&!th&&!lvl)return;
+function walk(fn){var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);var n,list=[];while(n=w.nextNode())list.push(n);list.forEach(fn);}
+if(name){CFG.names.forEach(function(dn){walk(function(node){if(node.nodeValue.indexOf(dn)>-1)node.nodeValue=node.nodeValue.split(dn).join(name);});});document.title=name+(city?" \u00b7 "+city:"");}
+if(city&&CFG.city){walk(function(node){if(node.nodeValue.indexOf(CFG.city)>-1)node.nodeValue=node.nodeValue.split(CFG.city).join(city);});}
+if(phone){var tel='tel:+'+phone.replace(/[^\d]/g,'');(CFG.phones||[]).forEach(function(dp){walk(function(node){if(node.nodeValue.indexOf(dp)>-1)node.nodeValue=node.nodeValue.split(dp).join(phone);});});document.querySelectorAll('a[href^="tel:"]').forEach(function(a){a.setAttribute('href',tel);});}
+if(email){document.querySelectorAll('a[href^="mailto:"]').forEach(function(a){a.setAttribute('href','mailto:'+email);if(a.textContent.indexOf('@')>-1)a.textContent=email;});}
+if(tag){var hp=document.querySelector('.hero p')||document.querySelector('h1 ~ p')||document.querySelector('h1 + p');if(hp)hp.textContent=tag;}
+var css='';
+if(th&&/^#[0-9a-fA-F]{6}$/.test(th)){css+=':root{--gold:'+th+'!important;--accent:'+th+'!important;--burgundy:'+th+'!important;--brand:'+th+'!important;--rose:'+th+'!important;--teal:'+th+'!important;}';}
+if(lvl==='60'){css+='.hero{background-image:none!important;}*{box-shadow:none!important;}';}
+if(lvl==='299'){css+='.btn{box-shadow:0 10px 24px rgba(0,0,0,.28)!important;}.hero h1{letter-spacing:.01em;}';}
+if(css){var s=document.createElement('style');s.textContent=css;document.head.appendChild(s);}
+if(lvl)document.documentElement.setAttribute('data-lvl',lvl);
+}catch(e){}})();
+</script>
 </body>
 </html>
