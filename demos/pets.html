@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paws &amp; Claws — Pet Grooming, Boarding &amp; Vet Care · Chicago</title>
+<meta name="description" content="Paws & Claws, Chicago — grooming, daycare, boarding and a caring in-house vet team under one woof. Prices, team and appointments.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--cream:#fffaf2;--ink:#33302a;--teal:#0f766e;--coral:#f2764f;--sun:#f5b942;--line:#f0e3cf;--card:#ffffff}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Nunito',system-ui,sans-serif;background:var(--cream);color:var(--ink);line-height:1.6}
+  img{display:block;max-width:100%}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 20px}
+  h1,h2,h3{font-weight:800;letter-spacing:-.01em}
+  header{position:sticky;top:0;z-index:60;background:rgba(255,250,242,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+  .brand{font-size:1.4rem;font-weight:800;color:var(--teal);text-decoration:none}
+  .brand small{display:block;font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--coral);font-weight:700}
+  .links{display:none;gap:26px}
+  .links a{text-decoration:none;font-weight:700;font-size:.95rem;color:var(--ink)}
+  .links a:hover{color:var(--teal)}
+  .callbtn{background:var(--coral);color:#fff;text-decoration:none;font-weight:800;padding:10px 18px;border-radius:999px;font-size:.92rem}
+  .burger{background:none;border:0;font-size:1.5rem;cursor:pointer;color:var(--ink);padding:6px 10px}
+  .mobile{display:none;border-top:1px solid var(--line);padding:10px 0 14px}
+  .mobile a{display:block;padding:9px 2px;text-decoration:none;font-weight:700;color:var(--ink)}
+  .mobile.open{display:block}
+  @media(min-width:820px){.links{display:flex}.burger{display:none}}
+  .hero{background:linear-gradient(rgba(16,60,54,.55),rgba(16,60,54,.62)),url('https://images.unsplash.com/photo-1450778869180-41d0601e046e?auto=format&fit=crop&w=1600&q=70') center/cover,#174f47;color:#fff;text-align:center;padding:96px 20px 84px}
+  .hero .since{letter-spacing:.28em;text-transform:uppercase;font-size:.78rem;color:#ffd9a8;font-weight:800}
+  .hero h1{font-size:clamp(2.3rem,6.5vw,3.7rem);margin:12px 0 10px;line-height:1.1}
+  .hero p{max-width:560px;margin:0 auto 26px;color:#fdf3e2;font-size:1.05rem}
+  .hero .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .btn{display:inline-block;text-decoration:none;font-weight:800;padding:13px 26px;border-radius:999px}
+  .btn-coral{background:var(--coral);color:#fff}.btn-coral:hover{background:#dd5f3a}
+  .btn-ghost{border:2px solid #fff;color:#fff}.btn-ghost:hover{background:rgba(255,255,255,.14)}
+  .rating{margin-top:26px;font-size:.95rem;color:#ffe1a8}
+  section{padding:56px 0}
+  .kicker{text-align:center;letter-spacing:.26em;text-transform:uppercase;font-size:.74rem;color:var(--coral);font-weight:800}
+  h2.title{text-align:center;font-size:clamp(1.7rem,4.5vw,2.3rem);margin:8px 0 8px;color:var(--teal)}
+  .sub{text-align:center;color:#7a6f5d;max-width:620px;margin:0 auto 34px}
+  .svc-sec{background:#fdf1dc;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .svc-grid{display:grid;gap:30px}
+  @media(min-width:820px){.svc-grid{grid-template-columns:repeat(3,1fr)}}
+  .svc-cat h3{font-size:1.25rem;color:var(--teal);border-bottom:3px solid var(--sun);display:inline-block;padding-bottom:4px;margin-bottom:14px}
+  .item{display:flex;gap:10px;margin-bottom:14px}
+  .item .dots{flex:1;border-bottom:2px dotted #d9c39a;transform:translateY(-5px)}
+  .item h4{font-size:1rem;font-weight:800}
+  .item p{font-size:.87rem;color:#7a6f5d}
+  .item .price{font-weight:800;color:var(--coral);white-space:nowrap}
+  .team{display:grid;gap:18px}
+  @media(min-width:820px){.team{grid-template-columns:repeat(3,1fr)}}
+  .member{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;text-align:center}
+  .member .ph{aspect-ratio:4/3;background:linear-gradient(135deg,#0f766e,#f5b942)}
+  .member .ph img{width:100%;height:100%;object-fit:cover}
+  .member .body{padding:18px}
+  .member h3{font-size:1.15rem}
+  .member .role{color:var(--coral);font-weight:800;font-size:.85rem;text-transform:uppercase;letter-spacing:.08em}
+  .member p{font-size:.9rem;color:#7a6f5d;margin-top:6px}
+  .reviews{display:grid;gap:16px}
+  @media(min-width:820px){.reviews{grid-template-columns:repeat(3,1fr)}}
+  .review{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .review .stars{color:var(--sun);letter-spacing:2px}
+  .review p{font-size:.94rem;color:#5d5546;margin:8px 0}
+  .review b{font-size:.9rem}
+  .visit{display:grid;gap:26px}
+  @media(min-width:820px){.visit{grid-template-columns:1fr 1fr}}
+  .hours{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px}
+  .hours table{width:100%;border-collapse:collapse}
+  .hours td{padding:7px 0;border-bottom:1px solid var(--line);font-size:.95rem}
+  .hours td:last-child{text-align:right;font-weight:800}
+  .hours tr:last-child td{border-bottom:0}
+  .reserve{background:var(--teal);color:#fff;border-radius:14px;padding:28px;text-align:center;display:flex;flex-direction:column;justify-content:center;gap:10px}
+  .reserve h3{font-size:1.5rem}
+  .reserve p{color:#d7efec;font-size:.95rem}
+  .reserve .btn{align-self:center;margin-top:6px}
+  footer{border-top:1px solid var(--line);padding:26px 0 34px;text-align:center;color:#8a7c66;font-size:.88rem}
+  footer a{color:var(--teal);font-weight:800;text-decoration:none}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#">🐾 Paws &amp; Claws<small>Chicago · Groom · Stay · Vet</small></a>
+    <nav class="links">
+      <a href="#services">Services</a><a href="#team">Our team</a><a href="#reviews">Reviews</a><a href="#visit">Visit</a>
+    </nav>
+    <a class="callbtn" href="tel:+13125550177">📞 Book now</a>
+    <button class="burger" id="burger" aria-label="Menu">☰</button>
+  </div>
+  <div class="wrap mobile" id="mobileMenu">
+    <a href="#services">Services &amp; Prices</a><a href="#team">Our team</a><a href="#reviews">Reviews</a><a href="#visit">Hours &amp; Appointments</a>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="since">Grooming · Daycare · Boarding · Vet care</div>
+  <h1>One happy place for<br>everything your pet needs</h1>
+  <p>A bath, a haircut, a play day, or a check-up with a vet who knows their name — all under one woof in Logan Square.</p>
+  <div class="btns">
+    <a class="btn btn-coral" href="tel:+13125550177">📞 Book an appointment</a>
+    <a class="btn btn-ghost" href="#services">See prices</a>
+  </div>
+  <div class="rating">★★★★★ 4.9 — from 890 Google reviews</div>
+</div>
+
+<section class="svc-sec" id="services">
+  <div class="wrap">
+    <div class="kicker">Services &amp; prices</div>
+    <h2 class="title">Everything under one woof</h2>
+    <p class="sub">Transparent prices, gentle hands, and a report card (with photos!) after every visit. Prices for medium dogs — we'll confirm your pet's exact price when you book.</p>
+    <div class="svc-grid">
+      <div class="svc-cat">
+        <h3>🛁 Grooming</h3>
+        <div class="item"><div><h4>Bath &amp; Brush</h4><p>Shampoo, blow-dry, brush-out, nails &amp; ears</p></div><div class="dots"></div><div class="price">$45</div></div>
+        <div class="item"><div><h4>Full Groom &amp; Cut</h4><p>Everything in Bath &amp; Brush plus a breed-standard cut</p></div><div class="dots"></div><div class="price">$75</div></div>
+        <div class="item"><div><h4>Puppy's First Groom</h4><p>A short, gentle intro session for pups under 6 months</p></div><div class="dots"></div><div class="price">$40</div></div>
+        <div class="item"><div><h4>De-shedding Treatment</h4><p>For double coats — take the fur home on the dog, not the sofa</p></div><div class="dots"></div><div class="price">$60</div></div>
+        <div class="item"><div><h4>Cat Grooming</h4><p>Lion cut or bath &amp; comb-out, feline-only mornings</p></div><div class="dots"></div><div class="price">$70</div></div>
+      </div>
+      <div class="svc-cat">
+        <h3>🏠 Daycare &amp; Boarding</h3>
+        <div class="item"><div><h4>Doggy Daycare</h4><p>Full day of supervised play, grouped by size &amp; energy</p></div><div class="dots"></div><div class="price">$38/day</div></div>
+        <div class="item"><div><h4>Half-Day Play</h4><p>Up to 5 hours — perfect for errands day</p></div><div class="dots"></div><div class="price">$24</div></div>
+        <div class="item"><div><h4>Overnight Boarding</h4><p>Cozy suite, evening walk, daycare included</p></div><div class="dots"></div><div class="price">$65/night</div></div>
+        <div class="item"><div><h4>Cat Condos</h4><p>Quiet, dog-free floor with window perches</p></div><div class="dots"></div><div class="price">$45/night</div></div>
+        <div class="item"><div><h4>Live Webcams</h4><p>Watch playtime from your phone, free with any stay</p></div><div class="dots"></div><div class="price">Free</div></div>
+      </div>
+      <div class="svc-cat">
+        <h3>🩺 Vet Care</h3>
+        <div class="item"><div><h4>Wellness Exam</h4><p>Full nose-to-tail check with our in-house vets</p></div><div class="dots"></div><div class="price">$65</div></div>
+        <div class="item"><div><h4>Vaccinations</h4><p>Rabies, distemper, bordetella &amp; more, walk-ins welcome</p></div><div class="dots"></div><div class="price">from $25</div></div>
+        <div class="item"><div><h4>Dental Cleaning</h4><p>Scale &amp; polish under gentle sedation, with before/after photos</p></div><div class="dots"></div><div class="price">$290</div></div>
+        <div class="item"><div><h4>Microchipping</h4><p>Includes lifetime registration</p></div><div class="dots"></div><div class="price">$45</div></div>
+        <div class="item"><div><h4>Senior Pet Check</h4><p>Blood panel + joint &amp; weight review for pets 7+</p></div><div class="dots"></div><div class="price">$120</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="team">
+  <div class="wrap">
+    <div class="kicker">The humans</div>
+    <h2 class="title">Meet the team</h2>
+    <p class="sub">Certified groomers, licensed vets, and professional belly-rubbers.</p>
+    <div class="team">
+      <div class="member">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=800&q=70" alt="Dr. Sarah Lindqvist" loading="lazy"></div>
+        <div class="body"><h3>Dr. Sarah Lindqvist</h3><div class="role">Lead Veterinarian</div><p>12 years in small-animal care, fear-free certified. Her own rescue cat, Miso, supervises from the office.</p></div>
+      </div>
+      <div class="member">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=800&q=70" alt="Dr. James Okafor" loading="lazy"></div>
+        <div class="body"><h3>Dr. James Okafor</h3><div class="role">Veterinarian · Dentistry</div><p>Leads our dental and senior-pet programs. Famous among clients for explaining everything twice — once for you, once for the dog.</p></div>
+      </div>
+      <div class="member">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&w=800&q=70" alt="Maya Torres grooming a dog" loading="lazy"></div>
+        <div class="body"><h3>Maya Torres</h3><div class="role">Head Groomer</div><p>Certified master groomer, specialist in doodles, double coats and nervous first-timers. No rushed appointments, ever.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews" style="padding-top:0">
+  <div class="wrap">
+    <div class="kicker">Reviews</div>
+    <h2 class="title">Happy pets, happier humans</h2>
+    <p class="sub">★★★★★ 4.9 average across 890 Google reviews.</p>
+    <div class="reviews">
+      <div class="review"><div class="stars">★★★★★</div><p>"Our anxious rescue used to shake at groomers. Maya got her tail wagging in one visit — the photo report card made my day."</p><b>— Jess P., Logan Square</b></div>
+      <div class="review"><div class="stars">★★★★★</div><p>"Boarded our cat for two weeks and watched her nap on the webcam every night. Came home calmer than we did."</p><b>— The Herrera Family</b></div>
+      <div class="review"><div class="stars">★★★★★</div><p>"Dr. Sarah caught a dental issue two other vets missed. Fair price, zero upsell, and they called the next day to check in."</p><b>— Tom W., Humboldt Park</b></div>
+    </div>
+  </div>
+</section>
+
+<section id="visit" style="padding-top:0">
+  <div class="wrap">
+    <div class="kicker">Visit us</div>
+    <h2 class="title">Hours &amp; appointments</h2>
+    <p class="sub">2314 N Milwaukee Avenue, Logan Square, Chicago, IL 60647 · Free parking behind the building</p>
+    <div class="visit">
+      <div class="hours">
+        <table>
+          <tr><td>Monday – Friday</td><td>7:00 am – 7:00 pm</td></tr>
+          <tr><td>Saturday</td><td>8:00 am – 6:00 pm</td></tr>
+          <tr><td>Sunday</td><td>9:00 am – 5:00 pm</td></tr>
+          <tr><td>Vet clinic</td><td>Mon – Sat, from 8:00 am</td></tr>
+        </table>
+      </div>
+      <div class="reserve">
+        <h3>First groom? 20% off</h3>
+        <p>New clients get 20% off a first Full Groom and a free wellness check for their pet. Call and mention this page.</p>
+        <a class="btn btn-coral" href="tel:+13125550177">📞 (312) 555-0177</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><a href="../index.html">← All demos</a></p>
+    <p style="margin-top:8px">Demo website by MintNest Studio — your business could look like this.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('burger').addEventListener('click', function(){
+    document.getElementById('mobileMenu').classList.toggle('open');
+  });
+</script>
+</body>
+</html>

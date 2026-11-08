@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Golden Catch — Fish &amp; Chips · London</title>
+<meta name="description" content="The Golden Catch, London — proper fish & chips since 1974. Hand-battered cod, twice-cooked chips, full menu, opening hours and click-to-call.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Archivo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--red:#c8102e;--navy:#12284b;--cream:#fff6e3;--yellow:#ffb81c;--ink:#1d2430;--line:#ecd9ae}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Archivo',system-ui,sans-serif;background:var(--cream);color:var(--ink);line-height:1.6}
+  img{display:block;max-width:100%}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+  h1,h2{font-family:'Alfa Slab One',serif;font-weight:400;letter-spacing:.5px}
+  header{position:sticky;top:0;z-index:60;background:var(--navy);color:#fff;border-bottom:4px solid var(--yellow)}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+  .brand{font-family:'Alfa Slab One',serif;font-size:1.25rem;color:#fff;text-decoration:none;line-height:1.15}
+  .brand small{display:block;font-family:'Archivo',sans-serif;font-size:.64rem;letter-spacing:.26em;text-transform:uppercase;color:var(--yellow);font-weight:700}
+  .links{display:none;gap:24px}
+  .links a{text-decoration:none;font-weight:700;font-size:.93rem;color:#fff}
+  .links a:hover{color:var(--yellow)}
+  .callbtn{background:var(--red);color:#fff;text-decoration:none;font-weight:800;padding:10px 18px;border-radius:8px;font-size:.92rem}
+  .callbtn:hover{background:#a50d26}
+  .burger{background:none;border:0;font-size:1.5rem;cursor:pointer;color:#fff;padding:6px 10px}
+  .mobile{display:none;padding:8px 0 14px}
+  .mobile a{display:block;padding:9px 2px;text-decoration:none;font-weight:700;color:#fff}
+  .mobile.open{display:block}
+  @media(min-width:820px){.links{display:flex}.burger{display:none}}
+  .hero{background:linear-gradient(rgba(18,40,75,.72),rgba(18,40,75,.78)),url('https://images.unsplash.com/photo-1579208030886-b937da0925dc?auto=format&fit=crop&w=1600&q=70') center/cover,#12284b;color:#fff;text-align:center;padding:88px 20px 78px}
+  .hero .est{display:inline-block;background:var(--yellow);color:var(--navy);font-weight:800;font-size:.8rem;padding:6px 14px;border-radius:6px;letter-spacing:.06em;margin-bottom:16px}
+  .hero h1{font-size:clamp(2.3rem,7vw,3.9rem);line-height:1.1;margin-bottom:12px;text-shadow:2px 3px 0 rgba(0,0,0,.25)}
+  .hero h1 span{color:var(--yellow)}
+  .hero p{max-width:540px;margin:0 auto 26px;color:#e8edf5;font-size:1.05rem}
+  .btn{display:inline-block;text-decoration:none;font-weight:800;padding:13px 26px;border-radius:8px}
+  .btn-red{background:var(--red);color:#fff}.btn-red:hover{background:#a50d26}
+  .btn-line{border:2px solid #fff;color:#fff}.btn-line:hover{background:rgba(255,255,255,.14)}
+  .hero .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .rating{margin-top:24px;color:var(--yellow);font-weight:700}
+  .ticker{background:var(--red);color:#fff;text-align:center;font-weight:800;padding:10px 14px;font-size:.95rem;letter-spacing:.02em}
+  section{padding:54px 0}
+  .kicker{text-align:center;letter-spacing:.22em;text-transform:uppercase;font-size:.72rem;color:var(--red);font-weight:800}
+  h2.title{text-align:center;font-size:clamp(1.5rem,4.5vw,2.1rem);margin:8px 0 8px;color:var(--navy)}
+  .sub{text-align:center;color:#5b6070;max-width:580px;margin:0 auto 32px}
+  .menu-grid{display:grid;gap:22px}
+  @media(min-width:820px){.menu-grid{grid-template-columns:1fr 1fr}}
+  .menu-cat{background:#fff;border:2px solid var(--navy);border-radius:14px;padding:24px;box-shadow:5px 5px 0 var(--yellow)}
+  .menu-cat h3{font-family:'Archivo',sans-serif;font-weight:800;font-size:1.15rem;color:var(--red);text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px}
+  .item{display:flex;gap:10px;margin-bottom:13px}
+  .item .dots{flex:1;border-bottom:2px dotted #cbbd90;transform:translateY(-5px)}
+  .item h4{font-size:.97rem;font-weight:800}
+  .item p{font-size:.85rem;color:#5b6070}
+  .item .price{font-weight:800;color:var(--navy);white-space:nowrap}
+  .story{display:grid;gap:26px;align-items:center}
+  @media(min-width:820px){.story{grid-template-columns:1fr 1fr}}
+  .story .ph{border-radius:14px;overflow:hidden;aspect-ratio:4/3;background:linear-gradient(135deg,#12284b,#c8102e)}
+  .story .ph img{width:100%;height:100%;object-fit:cover}
+  .story p{color:#434a59;margin-bottom:12px}
+  .visit{display:grid;gap:26px}
+  @media(min-width:820px){.visit{grid-template-columns:1fr 1fr}}
+  .hours{background:#fff;border:2px solid var(--navy);border-radius:14px;padding:24px}
+  .hours table{width:100%;border-collapse:collapse}
+  .hours td{padding:7px 0;border-bottom:1px solid var(--line);font-size:.95rem}
+  .hours td:last-child{text-align:right;font-weight:800}
+  .hours tr:last-child td{border-bottom:0}
+  .order{background:var(--navy);color:#fff;border-radius:14px;padding:28px;text-align:center;display:flex;flex-direction:column;justify-content:center;gap:10px}
+  .order h3{font-family:'Alfa Slab One',serif;font-weight:400;font-size:1.4rem}
+  .order p{color:#ccd6e6;font-size:.95rem}
+  .order .btn{align-self:center;background:var(--yellow);color:var(--navy);margin-top:6px}
+  footer{border-top:1px solid var(--line);padding:26px 0 34px;text-align:center;color:#7a7466;font-size:.88rem}
+  footer a{color:var(--red);font-weight:800;text-decoration:none}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#">THE GOLDEN CATCH<small>Fish &amp; Chips · London · Est. 1974</small></a>
+    <nav class="links">
+      <a href="#menu">Menu</a><a href="#story">Our Story</a><a href="#visit">Opening Hours</a>
+    </nav>
+    <a class="callbtn" href="tel:+442070123456">📞 Order ahead</a>
+    <button class="burger" id="burger" aria-label="Menu">☰</button>
+  </div>
+  <div class="wrap mobile" id="mobileMenu">
+    <a href="#menu">Menu</a><a href="#story">Our Story</a><a href="#visit">Opening Hours</a>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="est">★ PROPER CHIPPY SINCE 1974 ★</div>
+  <h1>Crispy. Golden.<br><span>Proper</span> fish &amp; chips.</h1>
+  <p>Hand-battered cod fried to order, chips cut fresh every morning and cooked twice — the way it's been done on this corner for fifty years.</p>
+  <div class="btns">
+    <a class="btn btn-red" href="tel:+442070123456">📞 Order for pickup</a>
+    <a class="btn btn-line" href="#menu">See the menu</a>
+  </div>
+  <div class="rating">★★★★★ 4.7 — 2,300+ Google reviews</div>
+</div>
+
+<div class="ticker">FRIDAY DEAL: Large cod &amp; chips + mushy peas — £11.95 · Order ahead and skip the queue ☎ 020 7012 3456</div>
+
+<section id="menu">
+  <div class="wrap">
+    <div class="kicker">Menu</div>
+    <h2 class="title">Fried fresh, all day</h2>
+    <p class="sub">Everything fried to order — never sitting under a lamp. Regular or large; salt &amp; vinegar always free, obviously.</p>
+    <div class="menu-grid">
+      <div class="menu-cat">
+        <h3>🐟 Fish — battered to order</h3>
+        <div class="item"><div><h4>Cod &amp; Chips</h4><p>The classic. Regular £9.95 · Large £12.95</p></div><div class="dots"></div><div class="price">from £9.95</div></div>
+        <div class="item"><div><h4>Haddock &amp; Chips</h4><p>Sweeter, flakier — the Yorkshire favourite</p></div><div class="dots"></div><div class="price">from £10.50</div></div>
+        <div class="item"><div><h4>Plaice &amp; Chips</h4><p>Delicate and light, Friday special when the boats come in</p></div><div class="dots"></div><div class="price">from £10.25</div></div>
+        <div class="item"><div><h4>Scampi &amp; Chips</h4><p>Wholetail breaded scampi, tartare sauce, lemon</p></div><div class="dots"></div><div class="price">£11.50</div></div>
+        <div class="item"><div><h4>Fish Cake &amp; Chips</h4><p>House-made cod &amp; potato cakes (2)</p></div><div class="dots"></div><div class="price">£7.95</div></div>
+      </div>
+      <div class="menu-cat">
+        <h3>🍟 Chip shop classics</h3>
+        <div class="item"><div><h4>Chips (just chips)</h4><p>Twice-cooked, fluffy inside. Regular £3.50 · Large £4.75</p></div><div class="dots"></div><div class="price">from £3.50</div></div>
+        <div class="item"><div><h4>Battered Sausage &amp; Chips</h4><p>Jumbo sausage in our signature batter</p></div><div class="dots"></div><div class="price">£7.50</div></div>
+        <div class="item"><div><h4>Pukka Pie &amp; Chips</h4><p>Steak &amp; kidney or chicken &amp; mushroom</p></div><div class="dots"></div><div class="price">£8.95</div></div>
+        <div class="item"><div><h4>Saveloy &amp; Chips</h4><p>An East End institution</p></div><div class="dots"></div><div class="price">£6.95</div></div>
+        <div class="item"><div><h4>Kids' Meal</h4><p>Small fish or 4 nuggets, small chips + a drink</p></div><div class="dots"></div><div class="price">£5.95</div></div>
+      </div>
+      <div class="menu-cat">
+        <h3>🥫 Sides &amp; extras</h3>
+        <div class="item"><div><h4>Mushy Peas</h4><p>Proper overnight-soaked marrowfat peas</p></div><div class="dots"></div><div class="price">£1.95</div></div>
+        <div class="item"><div><h4>Curry Sauce</h4><p>Chip-shop style, accept no imitations</p></div><div class="dots"></div><div class="price">£1.95</div></div>
+        <div class="item"><div><h4>Gravy</h4><p>Rich and thick, Northern-approved</p></div><div class="dots"></div><div class="price">£1.95</div></div>
+        <div class="item"><div><h4>Pickled Egg / Onion / Gherkin</h4><p>The holy trinity, 95p each</p></div><div class="dots"></div><div class="price">£0.95</div></div>
+        <div class="item"><div><h4>Bread &amp; Butter</h4><p>For the essential chip butty</p></div><div class="dots"></div><div class="price">£1.25</div></div>
+      </div>
+      <div class="menu-cat">
+        <h3>🥤 Drinks</h3>
+        <div class="item"><div><h4>Cans — Coke, Diet Coke, Fanta, Sprite</h4><p>Proper cold, from the fridge</p></div><div class="dots"></div><div class="price">£1.50</div></div>
+        <div class="item"><div><h4>Dandelion &amp; Burdock / Shandy Bass</h4><p>Old-school bottles</p></div><div class="dots"></div><div class="price">£1.75</div></div>
+        <div class="item"><div><h4>Tea / Coffee</h4><p>Builder's tea, strong and hot</p></div><div class="dots"></div><div class="price">£1.80</div></div>
+        <div class="item"><div><h4>Bottled Water</h4><p>Still, 500ml</p></div><div class="dots"></div><div class="price">£1.20</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="story" style="padding-top:0">
+  <div class="wrap">
+    <div class="kicker">Our story</div>
+    <h2 class="title">Fifty years on the same corner</h2>
+    <p class="sub">Three generations of the Papas family. Same batter recipe, same beef-dripping know-how, same Friday-night queue.</p>
+    <div class="story">
+      <div class="ph"><img src="https://images.unsplash.com/photo-1579208030886-b937da0925dc?auto=format&fit=crop&w=1000&q=70" alt="Golden fish and chips with lemon and peas" loading="lazy"></div>
+      <div>
+        <p>George Papas opened The Golden Catch in 1974 with a single range, a sack of Maris Pipers and a batter recipe he refused to write down. His son learned it by eye; his granddaughter runs the shop today — and the recipe is still only in their heads.</p>
+        <p>Our fish comes in fresh from Billingsgate every morning, our potatoes are cut (never frozen) in the shop, and everything is fried to order. It takes a few minutes longer. Regulars will tell you it's worth it.</p>
+        <p><b>Eat in:</b> 28 seats · <b>Takeaway:</b> order ahead by phone · <b>Cards &amp; cash</b> both welcome</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="visit" style="padding-top:0">
+  <div class="wrap">
+    <div class="kicker">Find us</div>
+    <h2 class="title">Opening hours</h2>
+    <p class="sub">238 Roman Road, Bow, London E3 5QR · Two minutes from Bow Road station</p>
+    <div class="visit">
+      <div class="hours">
+        <table>
+          <tr><td>Monday – Thursday</td><td>11:30 am – 10:00 pm</td></tr>
+          <tr><td>Friday</td><td>11:30 am – 11:00 pm</td></tr>
+          <tr><td>Saturday</td><td>12:00 pm – 11:00 pm</td></tr>
+          <tr><td>Sunday</td><td>Closed</td></tr>
+        </table>
+      </div>
+      <div class="order">
+        <h3>Skip the Friday queue</h3>
+        <p>Phone your order in and it'll be wrapped and waiting when you arrive. Large orders for offices &amp; parties welcome.</p>
+        <a class="btn" href="tel:+442070123456">📞 020 7012 3456</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><a href="../index.html">← All demos</a></p>
+    <p style="margin-top:8px">Demo website by MintNest Studio — your business could look like this.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('burger').addEventListener('click', function(){
+    document.getElementById('mobileMenu').classList.toggle('open');
+  });
+</script>
+</body>
+</html>

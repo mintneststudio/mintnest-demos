@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TaskFlow — Sign in</title>
+<meta name="description" content="TaskFlow demo login — a modern glassmorphism sign-in page design by MintNest Studio.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;min-height:100vh;color:#fff;
+    background:linear-gradient(130deg,#0f0c29 0%,#302b63 48%,#6d28d9 100%);
+    display:flex;flex-direction:column;overflow-x:hidden;position:relative}
+  /* ambient blobs */
+  .blob{position:absolute;border-radius:50%;filter:blur(70px);opacity:.55;pointer-events:none}
+  .b1{width:340px;height:340px;background:#7c3aed;top:-90px;left:-70px}
+  .b2{width:300px;height:300px;background:#0ea5e9;bottom:-80px;right:-40px}
+  .b3{width:180px;height:180px;background:#ec4899;bottom:12%;left:8%;opacity:.35}
+  .topbar{position:relative;z-index:3;display:flex;justify-content:space-between;align-items:center;padding:18px 22px;max-width:1120px;width:100%;margin:0 auto}
+  .topbar a{color:#d6d3f5;text-decoration:none;font-size:.9rem;font-weight:600}
+  .topbar a:hover{color:#fff}
+  .stage{position:relative;z-index:2;flex:1;display:flex;align-items:center;justify-content:center;padding:20px 18px 40px;perspective:1100px}
+  .layout{display:grid;gap:34px;align-items:center;width:100%;max-width:980px}
+  @media(min-width:880px){.layout{grid-template-columns:1.05fr .95fr}}
+  .pitch h1{font-size:clamp(2rem,6vw,3.1rem);line-height:1.08;font-weight:800;letter-spacing:-.02em}
+  .pitch h1 .grad{background:linear-gradient(90deg,#a5b4fc,#f0abfc);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .pitch p{color:#c9c6ee;margin:16px 0 22px;max-width:440px;font-size:1.03rem;line-height:1.6}
+  .pitch ul{list-style:none;display:grid;gap:10px;color:#dddaf5;font-size:.95rem}
+  .pitch li::before{content:"✔";color:#34d399;font-weight:800;margin-right:10px}
+  @media(max-width:879px){.pitch{text-align:center}.pitch p{margin-left:auto;margin-right:auto}.pitch ul{justify-items:center}}
+  /* glass card */
+  .card{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.22);border-radius:22px;
+    backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+    box-shadow:0 30px 60px rgba(2,0,20,.45);padding:30px 26px;max-width:420px;width:100%;margin:0 auto;
+    transform-style:preserve-3d;transition:transform .25s ease;will-change:transform}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.2rem;margin-bottom:6px}
+  .logo .mark{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,#7c3aed,#06b6d4);display:flex;align-items:center;justify-content:center;font-size:1rem;box-shadow:0 8px 18px rgba(124,58,237,.5)}
+  .card h2{font-size:1.35rem;margin:10px 0 4px}
+  .card .sub{color:#c9c6ee;font-size:.92rem;margin-bottom:20px}
+  .tabs{display:flex;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:4px;margin-bottom:22px}
+  .tabs button{flex:1;border:0;background:transparent;color:#d6d3f5;font:inherit;font-weight:600;font-size:.92rem;padding:9px 0;border-radius:999px;cursor:pointer}
+  .tabs button.active{background:#fff;color:#2b2160}
+  label{display:block;font-size:.82rem;font-weight:600;color:#e6e4fb;margin:14px 0 6px}
+  input{width:100%;padding:13px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.25);
+    background:rgba(255,255,255,.10);color:#fff;font:inherit;font-size:.97rem;outline:none}
+  input::placeholder{color:#a5a1cf}
+  input:focus{border-color:#a5b4fc;background:rgba(255,255,255,.16);box-shadow:0 0 0 3px rgba(165,180,252,.25)}
+  .row{display:flex;justify-content:space-between;align-items:center;margin:14px 0 4px;font-size:.86rem}
+  .row label{display:flex;align-items:center;gap:7px;margin:0;font-weight:500;color:#d6d3f5;cursor:pointer}
+  .row input{width:auto;accent-color:#7c3aed}
+  .row a{color:#a5b4fc;text-decoration:none;font-weight:600}
+  .row a:hover{text-decoration:underline}
+  .submit{width:100%;margin-top:16px;padding:14px;border:0;border-radius:12px;cursor:pointer;
+    background:linear-gradient(90deg,#7c3aed,#4f46e5);color:#fff;font:inherit;font-weight:700;font-size:1rem;
+    box-shadow:0 12px 26px rgba(79,70,229,.45);transition:transform .15s ease,box-shadow .15s ease}
+  .submit:hover{transform:translateY(-1px);box-shadow:0 16px 30px rgba(79,70,229,.55)}
+  .divider{display:flex;align-items:center;gap:12px;color:#a5a1cf;font-size:.8rem;margin:20px 0 14px}
+  .divider::before,.divider::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.18)}
+  .social{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .social button{padding:11px;border-radius:12px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);
+    color:#fff;font:inherit;font-weight:600;font-size:.9rem;cursor:pointer}
+  .social button:hover{background:rgba(255,255,255,.16)}
+  .notice{display:none;margin-top:16px;background:rgba(52,211,153,.16);border:1px solid rgba(52,211,153,.5);
+    color:#a7f3d0;border-radius:12px;padding:11px 13px;font-size:.88rem;text-align:center}
+  .fineprint{margin-top:18px;text-align:center;font-size:.78rem;color:#a5a1cf}
+  footer{position:relative;z-index:2;text-align:center;padding:0 18px 26px;color:#b9b5e6;font-size:.85rem}
+  footer a{color:#fff;font-weight:600;text-decoration:none}
+</style>
+</head>
+<body>
+
+<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+
+<div class="topbar">
+  <a href="../index.html">← All demos</a>
+  <a href="../index.html">MintNest Studio</a>
+</div>
+
+<div class="stage">
+  <div class="layout">
+    <div class="pitch">
+      <h1>Work that flows,<br><span class="grad">teams that fly.</span></h1>
+      <p>TaskFlow keeps your projects, deadlines and teammates in one calm place — no spreadsheet chaos, no 47 open tabs.</p>
+      <ul>
+        <li>Boards, timelines and automations in one workspace</li>
+        <li>Free for teams up to 5 people, forever</li>
+        <li>Set up in under two minutes — no card required</li>
+      </ul>
+    </div>
+
+    <form class="card" id="tiltCard" onsubmit="return demoSubmit(event)">
+      <div class="logo"><div class="mark">✓</div>TaskFlow</div>
+      <h2 id="formTitle">Welcome back</h2>
+      <p class="sub" id="formSub">Sign in to your workspace to pick up where you left off.</p>
+
+      <div class="tabs">
+        <button type="button" id="tabIn" class="active" onclick="switchTab('in')">Sign in</button>
+        <button type="button" id="tabUp" onclick="switchTab('up')">Create account</button>
+      </div>
+
+      <div id="nameField" style="display:none">
+        <label for="name">Full name</label>
+        <input id="name" type="text" placeholder="Alex Morgan" autocomplete="name">
+      </div>
+
+      <label for="email">Work email</label>
+      <input id="email" type="email" placeholder="you@company.com" autocomplete="email" required>
+
+      <label for="password">Password</label>
+      <input id="password" type="password" placeholder="••••••••••" autocomplete="current-password" required>
+
+      <div class="row" id="rememberRow">
+        <label><input type="checkbox" checked> Remember me</label>
+        <a href="#" onclick="return false">Forgot password?</a>
+      </div>
+
+      <button class="submit" type="submit" id="submitBtn">Sign in →</button>
+
+      <div class="notice" id="notice">✅ This is a design demo by MintNest Studio — no data is sent anywhere. Your app could look exactly like this.</div>
+
+      <div class="divider">or continue with</div>
+      <div class="social">
+        <button type="button" onclick="showNotice()">G&nbsp; Google</button>
+        <button type="button" onclick="showNotice()">⌘&nbsp; Microsoft</button>
+      </div>
+
+      <p class="fineprint">Protected by industry-standard encryption.<br>By continuing you agree to the Terms &amp; Privacy Policy.</p>
+    </form>
+  </div>
+</div>
+
+<footer>
+  Demo website by MintNest Studio — your business could look like this · <a href="../index.html">← All demos</a>
+</footer>
+
+<script>
+  /* subtle 3D tilt on the glass card */
+  (function(){
+    var card = document.getElementById('tiltCard');
+    if (!window.matchMedia || !matchMedia('(pointer:fine)').matches) return;
+    document.querySelector('.stage').addEventListener('mousemove', function(e){
+      var r = card.getBoundingClientRect();
+      var x = (e.clientX - r.left - r.width/2) / r.width;
+      var y = (e.clientY - r.top - r.height/2) / r.height;
+      card.style.transform = 'rotateY(' + (x*7).toFixed(2) + 'deg) rotateX(' + (-y*7).toFixed(2) + 'deg)';
+    });
+    document.querySelector('.stage').addEventListener('mouseleave', function(){
+      card.style.transform = 'rotateY(0deg) rotateX(0deg)';
+    });
+  })();
+
+  function switchTab(which){
+    var up = which === 'up';
+    document.getElementById('tabIn').classList.toggle('active', !up);
+    document.getElementById('tabUp').classList.toggle('active', up);
+    document.getElementById('nameField').style.display = up ? 'block' : 'none';
+    document.getElementById('rememberRow').style.display = up ? 'none' : 'flex';
+    document.getElementById('formTitle').textContent = up ? 'Create your account' : 'Welcome back';
+    document.getElementById('formSub').textContent = up ? 'Start free — set up your first workspace in minutes.' : 'Sign in to your workspace to pick up where you left off.';
+    document.getElementById('submitBtn').textContent = up ? 'Create free account →' : 'Sign in →';
+  }
+  function showNotice(){
+    document.getElementById('notice').style.display = 'block';
+  }
+  function demoSubmit(e){
+    e.preventDefault();
+    showNotice();
+    return false;
+  }
+</script>
+</body>
+</html>

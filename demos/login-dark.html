@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NeonVault — Sign in</title>
+<meta name="description" content="NeonVault demo login — a dark neon sign-in page design by MintNest Studio.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;min-height:100vh;color:#e2e8f0;position:relative;overflow-x:hidden;
+    background:#05060a;
+    background-image:
+      radial-gradient(600px 340px at 15% -5%,rgba(34,211,238,.14),transparent 60%),
+      radial-gradient(560px 320px at 90% 105%,rgba(232,121,249,.11),transparent 60%),
+      linear-gradient(rgba(148,163,184,.05) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(148,163,184,.05) 1px,transparent 1px);
+    background-size:auto,auto,44px 44px,44px 44px;
+    display:flex;flex-direction:column}
+  .topbar{position:relative;z-index:3;display:flex;justify-content:space-between;align-items:center;padding:18px 22px;max-width:1120px;width:100%;margin:0 auto}
+  .topbar a{color:#7d8aa5;text-decoration:none;font-size:.9rem;font-weight:600}
+  .topbar a:hover{color:#22d3ee}
+  .stage{position:relative;z-index:2;flex:1;display:flex;align-items:center;justify-content:center;padding:16px 18px 40px}
+  .card{background:#0b0e17;border:1px solid #22304d;border-radius:18px;width:100%;max-width:420px;padding:32px 28px;
+    box-shadow:0 0 0 1px rgba(34,211,238,.12),0 0 46px rgba(34,211,238,.13),0 30px 60px rgba(0,0,0,.6)}
+  .logo{display:flex;align-items:center;gap:11px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.3rem;letter-spacing:.01em}
+  .logo .mark{width:36px;height:36px;border-radius:10px;background:#0f172a;border:1px solid #22d3ee;color:#22d3ee;display:flex;align-items:center;justify-content:center;font-size:1.05rem;box-shadow:0 0 16px rgba(34,211,238,.45)}
+  .status{margin-left:auto;font-size:.72rem;font-weight:600;color:#34d399;background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.35);padding:5px 10px;border-radius:999px;white-space:nowrap}
+  .card h2{font-family:'Space Grotesk',sans-serif;font-size:1.45rem;margin:18px 0 4px}
+  .card h2 .neon{color:#22d3ee;text-shadow:0 0 14px rgba(34,211,238,.55)}
+  .card .sub{color:#8b98b4;font-size:.92rem;margin-bottom:20px}
+  .tabs{display:flex;background:#0f1420;border:1px solid #22304d;border-radius:10px;padding:4px;margin-bottom:20px}
+  .tabs button{flex:1;border:0;background:transparent;color:#8b98b4;font:inherit;font-weight:600;font-size:.92rem;padding:9px 0;border-radius:7px;cursor:pointer}
+  .tabs button.active{background:#16233c;color:#22d3ee;box-shadow:inset 0 0 0 1px rgba(34,211,238,.35)}
+  label{display:block;font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#7d8aa5;margin:14px 0 6px}
+  input{width:100%;padding:13px 14px;border-radius:10px;border:1px solid #24304a;background:#0f1420;color:#e2e8f0;font:inherit;font-size:.97rem;outline:none}
+  input::placeholder{color:#54637e}
+  input:focus{border-color:#22d3ee;box-shadow:0 0 0 3px rgba(34,211,238,.18),0 0 18px rgba(34,211,238,.12)}
+  .row{display:flex;justify-content:space-between;align-items:center;margin:14px 0 4px;font-size:.86rem}
+  .row label{display:flex;align-items:center;gap:7px;margin:0;font-weight:500;color:#8b98b4;text-transform:none;letter-spacing:0;cursor:pointer}
+  .row input{width:auto;accent-color:#22d3ee}
+  .row a{color:#22d3ee;text-decoration:none;font-weight:600}
+  .row a:hover{text-decoration:underline}
+  .submit{width:100%;margin-top:16px;padding:14px;border:0;border-radius:10px;cursor:pointer;
+    background:linear-gradient(90deg,#22d3ee,#818cf8);color:#04121a;font:inherit;font-weight:700;font-size:1rem;
+    box-shadow:0 0 24px rgba(34,211,238,.35);transition:transform .15s ease,box-shadow .15s ease}
+  .submit:hover{transform:translateY(-1px);box-shadow:0 0 32px rgba(34,211,238,.5)}
+  .divider{display:flex;align-items:center;gap:12px;color:#54637e;font-size:.8rem;margin:20px 0 14px}
+  .divider::before,.divider::after{content:"";flex:1;height:1px;background:#1e293b}
+  .social{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .social button{padding:11px;border-radius:10px;border:1px solid #24304a;background:#0f1420;color:#cbd5e1;font:inherit;font-weight:600;font-size:.9rem;cursor:pointer}
+  .social button:hover{border-color:#22d3ee;color:#fff}
+  .notice{display:none;margin-top:16px;background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.45);color:#6ee7b7;border-radius:10px;padding:11px 13px;font-size:.88rem;text-align:center}
+  .fineprint{margin-top:18px;text-align:center;font-size:.78rem;color:#54637e}
+  footer{position:relative;z-index:2;text-align:center;padding:0 18px 26px;color:#7d8aa5;font-size:.85rem}
+  footer a{color:#22d3ee;font-weight:600;text-decoration:none}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a href="../index.html">← All demos</a>
+  <a href="../index.html">MintNest Studio</a>
+</div>
+
+<div class="stage">
+  <form class="card" onsubmit="return demoSubmit(event)">
+    <div class="logo"><div class="mark">◈</div>NeonVault<span class="status">🟢 Systems secure</span></div>
+    <h2 id="formTitle">Access your <span class="neon">vault</span></h2>
+    <p class="sub" id="formSub">End-to-end encrypted storage for teams who can't afford leaks.</p>
+
+    <div class="tabs">
+      <button type="button" id="tabIn" class="active" onclick="switchTab('in')">Sign in</button>
+      <button type="button" id="tabUp" onclick="switchTab('up')">Create account</button>
+    </div>
+
+    <div id="nameField" style="display:none">
+      <label for="name">Full name</label>
+      <input id="name" type="text" placeholder="Alex Morgan" autocomplete="name">
+    </div>
+
+    <label for="email">Email address</label>
+    <input id="email" type="email" placeholder="you@company.com" autocomplete="email" required>
+
+    <label for="password">Password</label>
+    <input id="password" type="password" placeholder="••••••••••" autocomplete="current-password" required>
+
+    <div class="row" id="rememberRow">
+      <label><input type="checkbox" checked> Trust this device</label>
+      <a href="#" onclick="return false">Forgot password?</a>
+    </div>
+
+    <button class="submit" type="submit" id="submitBtn">Unlock vault →</button>
+
+    <div class="notice" id="notice">✅ This is a design demo by MintNest Studio — no data is sent anywhere. Your app could look exactly like this.</div>
+
+    <div class="divider">or continue with</div>
+    <div class="social">
+      <button type="button" onclick="showNotice()">G&nbsp; Google</button>
+      <button type="button" onclick="showNotice()">⌥&nbsp; GitHub</button>
+    </div>
+
+    <p class="fineprint">AES-256 encryption · Hardware-key 2FA · SOC 2 audited<br>Last independent security audit: November 2026.</p>
+  </form>
+</div>
+
+<footer>
+  Demo website by MintNest Studio — your business could look like this · <a href="../index.html">← All demos</a>
+</footer>
+
+<script>
+  function switchTab(which){
+    var up = which === 'up';
+    document.getElementById('tabIn').classList.toggle('active', !up);
+    document.getElementById('tabUp').classList.toggle('active', up);
+    document.getElementById('nameField').style.display = up ? 'block' : 'none';
+    document.getElementById('rememberRow').style.display = up ? 'none' : 'flex';
+    document.getElementById('formTitle').innerHTML = up ? 'Create your <span class="neon">vault</span>' : 'Access your <span class="neon">vault</span>';
+    document.getElementById('formSub').textContent = up ? 'Open a vault in minutes — 2 GB encrypted storage free, forever.' : "End-to-end encrypted storage for teams who can't afford leaks.";
+    document.getElementById('submitBtn').textContent = up ? 'Create vault →' : 'Unlock vault →';
+  }
+  function showNotice(){
+    document.getElementById('notice').style.display = 'block';
+  }
+  function demoSubmit(e){
+    e.preventDefault();
+    showNotice();
+    return false;
+  }
+</script>
+</body>
+</html>

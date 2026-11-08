@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CloudDesk — Sign in</title>
+<meta name="description" content="CloudDesk demo login — a minimal split-screen sign-in page design by MintNest Studio.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;color:#111827;background:#fff}
+  .split{display:grid;min-height:100vh}
+  @media(min-width:900px){.split{grid-template-columns:1.02fr .98fr}}
+  /* left brand panel */
+  .brand-panel{background:#1e3a8a;color:#fff;padding:34px 30px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+  .brand-panel::after{content:"";position:absolute;width:520px;height:520px;border-radius:50%;border:70px solid rgba(255,255,255,.06);right:-180px;bottom:-220px;pointer-events:none}
+  .brand-panel::before{content:"";position:absolute;width:300px;height:300px;border-radius:50%;border:50px solid rgba(255,255,255,.05);left:-110px;top:-120px;pointer-events:none}
+  .bp-top{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:center}
+  .bp-logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.2rem}
+  .bp-logo .mark{width:34px;height:34px;border-radius:9px;background:#fff;color:#1e3a8a;display:flex;align-items:center;justify-content:center;font-size:1rem}
+  .bp-top a{color:#bfcdf5;text-decoration:none;font-size:.88rem;font-weight:600}
+  .bp-top a:hover{color:#fff}
+  .bp-mid{position:relative;z-index:1;padding:38px 0}
+  .bp-mid h1{font-size:clamp(1.9rem,4.2vw,2.9rem);line-height:1.12;font-weight:800;letter-spacing:-.02em;max-width:460px}
+  .bp-mid p{color:#c3cffb;margin:16px 0 24px;max-width:430px;font-size:1.02rem;line-height:1.6}
+  .bp-mid ul{list-style:none;display:grid;gap:11px;color:#e3e9fd;font-size:.96rem}
+  .bp-mid li::before{content:"✔";color:#7dd3fc;font-weight:800;margin-right:10px}
+  .bp-quote{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.22);padding-top:22px;max-width:460px}
+  .bp-quote p{font-size:1rem;line-height:1.6;color:#eef2ff}
+  .bp-quote b{display:block;margin-top:10px;font-size:.9rem}
+  .bp-quote span{color:#a9bcf2;font-size:.86rem;font-weight:500}
+  @media(max-width:899px){.bp-mid{padding:26px 0 6px}.bp-quote{display:none}}
+  /* right form panel */
+  .form-panel{display:flex;flex-direction:column;padding:26px 22px 30px;background:#fff}
+  .fp-top{display:flex;justify-content:space-between;align-items:center;max-width:420px;width:100%;margin:0 auto}
+  .fp-top a{color:#4b5563;text-decoration:none;font-size:.9rem;font-weight:600}
+  .fp-top a:hover{color:#1e3a8a}
+  .fp-main{flex:1;display:flex;align-items:center;justify-content:center;padding:26px 0}
+  form{width:100%;max-width:420px}
+  form h2{font-size:1.6rem;font-weight:800;letter-spacing:-.01em}
+  form .sub{color:#6b7280;font-size:.95rem;margin:6px 0 22px}
+  .tabs{display:flex;background:#f3f4f6;border-radius:10px;padding:4px;margin-bottom:22px}
+  .tabs button{flex:1;border:0;background:transparent;color:#4b5563;font:inherit;font-weight:600;font-size:.92rem;padding:9px 0;border-radius:7px;cursor:pointer}
+  .tabs button.active{background:#fff;color:#111827;box-shadow:0 1px 4px rgba(16,24,40,.12)}
+  label{display:block;font-size:.85rem;font-weight:600;color:#1f2937;margin:14px 0 6px}
+  input{width:100%;padding:12px 14px;border-radius:10px;border:1.5px solid #d1d5db;background:#fff;color:#111827;font:inherit;font-size:.97rem;outline:none}
+  input::placeholder{color:#9ca3af}
+  input:focus{border-color:#1e3a8a;box-shadow:0 0 0 3px rgba(30,58,138,.15)}
+  .row{display:flex;justify-content:space-between;align-items:center;margin:14px 0 4px;font-size:.87rem}
+  .row label{display:flex;align-items:center;gap:7px;margin:0;font-weight:500;color:#4b5563;cursor:pointer}
+  .row input{width:auto;accent-color:#1e3a8a}
+  .row a{color:#1e3a8a;text-decoration:none;font-weight:600}
+  .row a:hover{text-decoration:underline}
+  .submit{width:100%;margin-top:18px;padding:13px;border:0;border-radius:10px;cursor:pointer;background:#1e3a8a;color:#fff;font:inherit;font-weight:700;font-size:1rem;transition:background .15s ease}
+  .submit:hover{background:#1b3379}
+  .divider{display:flex;align-items:center;gap:12px;color:#9ca3af;font-size:.8rem;margin:20px 0 14px}
+  .divider::before,.divider::after{content:"";flex:1;height:1px;background:#e5e7eb}
+  .social{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .social button{padding:11px;border-radius:10px;border:1.5px solid #d1d5db;background:#fff;color:#1f2937;font:inherit;font-weight:600;font-size:.9rem;cursor:pointer}
+  .social button:hover{border-color:#9ca3af;background:#f9fafb}
+  .notice{display:none;margin-top:16px;background:#ecfdf5;border:1px solid #6ee7b7;color:#065f46;border-radius:10px;padding:11px 13px;font-size:.88rem;text-align:center}
+  .fineprint{margin-top:18px;text-align:center;font-size:.78rem;color:#9ca3af}
+  .fp-foot{max-width:420px;width:100%;margin:0 auto;text-align:center;color:#9ca3af;font-size:.82rem;padding-top:16px;border-top:1px solid #f3f4f6}
+  .fp-foot a{color:#1e3a8a;font-weight:600;text-decoration:none}
+</style>
+</head>
+<body>
+
+<div class="split">
+  <div class="brand-panel">
+    <div class="bp-top">
+      <div class="bp-logo"><div class="mark">☁</div>CloudDesk</div>
+      <a href="../index.html">MintNest Studio</a>
+    </div>
+    <div class="bp-mid">
+      <h1>Run your whole office from one desk.</h1>
+      <p>Files, projects, chat and calendars for small teams — without the enterprise price tag or the six-week setup.</p>
+      <ul>
+        <li>Unlimited projects on every plan</li>
+        <li>Your data stays in your region, encrypted</li>
+        <li>Real human support, 7 days a week</li>
+      </ul>
+    </div>
+    <div class="bp-quote">
+      <p>"We moved a 14-person agency onto CloudDesk in one afternoon. It's the first tool the whole team actually opens every morning."</p>
+      <b>Renata Costa <span>— Operations Manager, Studio North</span></b>
+    </div>
+  </div>
+
+  <div class="form-panel">
+    <div class="fp-top">
+      <a href="../index.html">← All demos</a>
+      <a href="#" onclick="return false">Help</a>
+    </div>
+    <div class="fp-main">
+      <form onsubmit="return demoSubmit(event)">
+        <h2 id="formTitle">Welcome back</h2>
+        <p class="sub" id="formSub">Sign in to CloudDesk to continue to your workspace.</p>
+
+        <div class="tabs">
+          <button type="button" id="tabIn" class="active" onclick="switchTab('in')">Sign in</button>
+          <button type="button" id="tabUp" onclick="switchTab('up')">Create account</button>
+        </div>
+
+        <div id="nameField" style="display:none">
+          <label for="name">Full name</label>
+          <input id="name" type="text" placeholder="Alex Morgan" autocomplete="name">
+        </div>
+
+        <label for="email">Work email</label>
+        <input id="email" type="email" placeholder="you@company.com" autocomplete="email" required>
+
+        <label for="password">Password</label>
+        <input id="password" type="password" placeholder="••••••••••" autocomplete="current-password" required>
+
+        <div class="row" id="rememberRow">
+          <label><input type="checkbox" checked> Remember me</label>
+          <a href="#" onclick="return false">Forgot password?</a>
+        </div>
+
+        <button class="submit" type="submit" id="submitBtn">Sign in →</button>
+
+        <div class="notice" id="notice">✅ This is a design demo by MintNest Studio — no data is sent anywhere. Your app could look exactly like this.</div>
+
+        <div class="divider">or continue with</div>
+        <div class="social">
+          <button type="button" onclick="showNotice()">G&nbsp; Google</button>
+          <button type="button" onclick="showNotice()">⊞&nbsp; Microsoft</button>
+        </div>
+
+        <p class="fineprint">Protected by industry-standard encryption.<br>By continuing you agree to the Terms &amp; Privacy Policy.</p>
+      </form>
+    </div>
+    <div class="fp-foot">Demo website by MintNest Studio — your business could look like this.</div>
+  </div>
+</div>
+
+<script>
+  function switchTab(which){
+    var up = which === 'up';
+    document.getElementById('tabIn').classList.toggle('active', !up);
+    document.getElementById('tabUp').classList.toggle('active', up);
+    document.getElementById('nameField').style.display = up ? 'block' : 'none';
+    document.getElementById('rememberRow').style.display = up ? 'none' : 'flex';
+    document.getElementById('formTitle').textContent = up ? 'Create your account' : 'Welcome back';
+    document.getElementById('formSub').textContent = up ? 'Start your 14-day free trial — no card required.' : 'Sign in to CloudDesk to continue to your workspace.';
+    document.getElementById('submitBtn').textContent = up ? 'Create free account →' : 'Sign in →';
+  }
+  function showNotice(){
+    document.getElementById('notice').style.display = 'block';
+  }
+  function demoSubmit(e){
+    e.preventDefault();
+    showNotice();
+    return false;
+  }
+</script>
+</body>
+</html>

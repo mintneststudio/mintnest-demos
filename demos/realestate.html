@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HarborView Estates — Estate Agents in London · Homes for Sale, Free Valuation</title>
+<meta name="description" content="HarborView Estates, London — independent estate agents since 1998. Featured homes for sale, local agents who know every street, free no-obligation valuations.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--cream:#faf9f6;--ink:#1d2733;--navy:#14263c;--navydeep:#0c1a2b;--gold:#b28c3c;--goldsoft:#e8d9b5;--line:#e3ddcf;--card:#ffffff}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--cream);color:var(--ink);line-height:1.6}
+  img{display:block;max-width:100%}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 20px}
+  h1,h2,h3{font-family:'Playfair Display',Georgia,serif}
+  header{position:sticky;top:0;z-index:60;background:rgba(250,249,246,.97);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+  .brand{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;color:var(--navy);text-decoration:none}
+  .brand small{display:block;font-family:'Inter',sans-serif;font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:600}
+  .links{display:none;gap:26px}
+  .links a{text-decoration:none;font-weight:500;font-size:.95rem;color:var(--ink)}
+  .links a:hover{color:var(--gold)}
+  .callbtn{background:var(--navy);color:#fff;text-decoration:none;font-weight:600;padding:10px 18px;border-radius:999px;font-size:.92rem}
+  .burger{background:none;border:0;font-size:1.5rem;cursor:pointer;color:var(--ink);padding:6px 10px}
+  .mobile{display:none;border-top:1px solid var(--line);padding:10px 0 14px}
+  .mobile a{display:block;padding:9px 2px;text-decoration:none;font-weight:500;color:var(--ink)}
+  .mobile.open{display:block}
+  @media(min-width:820px){.links{display:flex}.burger{display:none}}
+  .hero{background:linear-gradient(rgba(10,22,38,.6),rgba(10,22,38,.68)),url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1600&q=70') center/cover,#14263c;color:#fff;text-align:center;padding:96px 20px 84px}
+  .hero .since{letter-spacing:.3em;text-transform:uppercase;font-size:.78rem;color:var(--goldsoft);font-weight:600}
+  .hero h1{font-size:clamp(2.4rem,7vw,4rem);margin:12px 0 10px}
+  .hero p{max-width:580px;margin:0 auto 26px;color:#e8ecf1;font-size:1.05rem}
+  .hero .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .btn{display:inline-block;text-decoration:none;font-weight:600;padding:13px 26px;border-radius:999px}
+  .btn-gold{background:var(--gold);color:#fff}.btn-gold:hover{background:#9c7830}
+  .btn-ghost{border:2px solid #fff;color:#fff}.btn-ghost:hover{background:rgba(255,255,255,.14)}
+  .rating{margin-top:26px;font-size:.95rem;color:var(--goldsoft)}
+  section{padding:56px 0}
+  .kicker{text-align:center;letter-spacing:.28em;text-transform:uppercase;font-size:.74rem;color:var(--gold);font-weight:700}
+  h2.title{text-align:center;font-size:clamp(1.7rem,4.5vw,2.3rem);margin:8px 0 8px;color:var(--navy)}
+  .sub{text-align:center;color:#66707c;max-width:620px;margin:0 auto 34px}
+  .props-sec{background:#f1ede1;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .props{display:grid;gap:18px}
+  @media(min-width:820px){.props{grid-template-columns:1fr 1fr}}
+  .prop{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .prop .ph{aspect-ratio:16/10;background:linear-gradient(135deg,#14263c,#b28c3c)}
+  .prop img{width:100%;height:100%;object-fit:cover}
+  .prop .body{padding:18px 20px 20px}
+  .prop .price{font-family:'Playfair Display',serif;font-size:1.45rem;font-weight:700;color:var(--navy)}
+  .prop h3{font-size:1.12rem;margin:2px 0 6px}
+  .prop .specs{font-size:.9rem;color:#66707c}
+  .prop .specs b{color:var(--ink)}
+  .prop p{font-size:.9rem;color:#66707c;margin-top:8px}
+  .team{display:grid;gap:16px}
+  @media(min-width:820px){.team{grid-template-columns:repeat(3,1fr)}}
+  .person{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;text-align:center;padding-bottom:18px}
+  .person .ph{aspect-ratio:4/3;background:linear-gradient(135deg,#14263c,#54687f)}
+  .person img{width:100%;height:100%;object-fit:cover}
+  .person h3{margin:14px 0 2px;font-size:1.15rem;color:var(--navy)}
+  .person .role{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:600}
+  .person p{font-size:.9rem;color:#66707c;padding:8px 18px 0}
+  .reviews{display:grid;gap:16px}
+  @media(min-width:820px){.reviews{grid-template-columns:repeat(3,1fr)}}
+  .review{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .review .stars{color:var(--gold);letter-spacing:2px}
+  .review p{font-size:.94rem;color:#4c5764;margin:8px 0}
+  .review b{font-size:.9rem}
+  .visit{display:grid;gap:26px}
+  @media(min-width:820px){.visit{grid-template-columns:1fr 1fr}}
+  .hours{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px}
+  .hours table{width:100%;border-collapse:collapse}
+  .hours td{padding:7px 0;border-bottom:1px solid var(--line);font-size:.95rem}
+  .hours td:last-child{text-align:right;font-weight:600}
+  .hours tr:last-child td{border-bottom:0}
+  .value{background:var(--navy);color:#fff;border-radius:14px;padding:28px;text-align:center;display:flex;flex-direction:column;justify-content:center;gap:10px}
+  .value h3{font-size:1.5rem}
+  .value p{color:#d6dde6;font-size:.95rem}
+  .value .btn{align-self:center;margin-top:6px}
+  footer{border-top:1px solid var(--line);padding:26px 0 34px;text-align:center;color:#8a8474;font-size:.88rem}
+  footer a{color:var(--navy);font-weight:600;text-decoration:none}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#">HarborView Estates<small>London · Est. 1998</small></a>
+    <nav class="links">
+      <a href="#homes">Homes for Sale</a><a href="#team">Agents</a><a href="#reviews">Reviews</a><a href="#visit">Contact</a>
+    </nav>
+    <a class="callbtn" href="tel:+442045771290">📞 Free valuation</a>
+    <button class="burger" id="burger" aria-label="Menu">☰</button>
+  </div>
+  <div class="wrap mobile" id="mobileMenu">
+    <a href="#homes">Homes for Sale</a><a href="#team">Our Agents</a><a href="#reviews">Reviews</a><a href="#visit">Hours &amp; Office</a>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="since">Independent · Greenwich &amp; Docklands</div>
+  <h1>Local homes, sold by<br>people who live here</h1>
+  <p>Twenty-seven years selling on these streets — no call centres, no pressure, just honest pricing and photography that does your home justice.</p>
+  <div class="btns">
+    <a class="btn btn-gold" href="tel:+442045771290">📞 Book a free valuation</a>
+    <a class="btn btn-ghost" href="#homes">Browse homes</a>
+  </div>
+  <div class="rating">★★★★★ 4.9 — from 640 Google reviews · £310m sold to date</div>
+</div>
+
+<section class="props-sec" id="homes" style="border-top:0">
+  <div class="wrap">
+    <div class="kicker">Featured listings</div>
+    <h2 class="title">Homes for sale this week</h2>
+    <p class="sub">A selection from our current register — call us for the full list, including three homes not yet on the portals.</p>
+    <div class="props">
+      <div class="prop"><div class="ph"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1000&q=70" alt="Detached family home" loading="lazy"></div><div class="body"><div class="price">£1,150,000</div><h3>Victorian Family House — Blackheath</h3><div class="specs"><b>4</b> beds · <b>3</b> baths · <b>1,980</b> sq ft · Garden 60ft</div><p>Double-fronted, moments from the heath and station. Original fireplaces, a proper family kitchen and a south-facing garden.</p></div></div>
+      <div class="prop"><div class="ph"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=70" alt="Modern terraced house" loading="lazy"></div><div class="body"><div class="price">£725,000</div><h3>Terraced Cottage — Greenwich</h3><div class="specs"><b>3</b> beds · <b>2</b> baths · <b>1,120</b> sq ft · Courtyard</div><p>On a quiet conservation street, ten minutes from Cutty Sark DLR. Extended kitchen-diner and a much-loved first home.</p></div></div>
+      <div class="prop"><div class="ph"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1000&q=70" alt="Apartment interior" loading="lazy"></div><div class="body"><div class="price">£495,000</div><h3>Riverside Apartment — Deptford Wharf</h3><div class="specs"><b>2</b> beds · <b>2</b> baths · <b>860</b> sq ft · Balcony · Thames view</div><p>Fifth-floor, dual-aspect and flooded with light. Concierge building, residents' gym, ideal first purchase or rental investment.</p></div></div>
+      <div class="prop"><div class="ph"><img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1000&q=70" alt="House with pool at dusk" loading="lazy"></div><div class="body"><div class="price">£1,895,000</div><h3>The Old Rectory Lodge — Charlton</h3><div class="specs"><b>5</b> beds · <b>4</b> baths · <b>3,240</b> sq ft · Annexe · Double garage</div><p>A rare one: gated, private and beautifully kept, with a self-contained annexe for family or staff. Viewings by appointment.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="team">
+  <div class="wrap">
+    <div class="kicker">Meet the team</div>
+    <h2 class="title">Your agents</h2>
+    <p class="sub">When you call, you speak to one of these three — the same people who valued, photographed and sold your neighbour's house.</p>
+    <div class="team">
+      <div class="person"><div class="ph"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=700&q=70" alt="Agent portrait" loading="lazy"></div><h3>Eleanor Whitfield</h3><div class="role">Director · Valuations</div><p>Founded HarborView in 1998. Eleanor has valued more than 3,000 local homes — and lives on the street she sells most.</p></div>
+      <div class="person"><div class="ph"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=700&q=70" alt="Agent portrait" loading="lazy"></div><h3>Daniel Okafor</h3><div class="role">Senior Negotiator</div><p>Daniel runs our sales progression: the unglamorous chasing that gets chains completed on time. Buyers ask for him by name.</p></div>
+      <div class="person"><div class="ph"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=700&q=70" alt="Agent portrait" loading="lazy"></div><h3>Charlotte Reeves</h3><div class="role">New Homes &amp; Investments</div><p>Charlotte looks after first-time buyers and landlords, and knows every new development between Greenwich and Woolwich.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews" style="padding-top:0">
+  <div class="wrap">
+    <div class="kicker">Reviews</div>
+    <h2 class="title">What sellers say</h2>
+    <p class="sub">★★★★★ 4.9 average across 640 Google reviews.</p>
+    <div class="reviews">
+      <div class="review"><div class="stars">★★★★★</div><p>"Eleanor priced our house £15k above the chain agents — and got it, in nine days. Her knowledge of our street is unmatched."</p><b>— The Harrisons, Blackheath</b></div>
+      <div class="review"><div class="stars">★★★★★</div><p>"As first-time buyers we expected to feel lost. Charlotte explained every step and answered every panicked Sunday text."</p><b>— Ben &amp; Alicia M.</b></div>
+      <div class="review"><div class="stars">★★★★★</div><p>"Our chain nearly collapsed twice. Daniel held it together with sheer persistence. We completed last Friday — cannot recommend enough."</p><b>— Mrs. P. Adeyemi, Deptford</b></div>
+    </div>
+  </div>
+</section>
+
+<section id="visit" style="padding-top:0">
+  <div class="wrap">
+    <div class="kicker">Visit us</div>
+    <h2 class="title">Office hours &amp; valuations</h2>
+    <p class="sub">18 Nelson Road, Greenwich, London SE10 9JB · Two minutes from Greenwich station</p>
+    <div class="visit">
+      <div class="hours">
+        <table>
+          <tr><td>Monday – Friday</td><td>9:00 am – 6:00 pm</td></tr>
+          <tr><td>Saturday</td><td>9:30 am – 4:00 pm</td></tr>
+          <tr><td>Sunday</td><td>Viewings by appointment</td></tr>
+          <tr><td>Valuations</td><td>Free, evenings available</td></tr>
+        </table>
+      </div>
+      <div class="value">
+        <h3>Thinking of selling?</h3>
+        <p>Get a free, no-obligation valuation from an agent who knows your street — not an algorithm that doesn't.</p>
+        <a class="btn btn-gold" href="tel:+442045771290">📞 020 4577 1290</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><a href="../index.html">← All demos</a></p>
+    <p style="margin-top:8px">Demo website by MintNest Studio — your business could look like this.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('burger').addEventListener('click', function(){
+    document.getElementById('mobileMenu').classList.toggle('open');
+  });
+</script>
+</body>
+</html>

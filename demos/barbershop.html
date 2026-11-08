@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sharp &amp; Co. Barbers — Barbershop · Williamsburg, Brooklyn</title>
+<meta name="description" content="Sharp & Co. Barbers, Brooklyn — precision cuts, hot-towel shaves and beard work. Services, prices, meet the barbers and book your chair.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0d0f14;--panel:#161a22;--panel2:#1c212c;--ink:#eceef2;--muted:#9aa3b2;--gold:#c9a227;--line:#262c38}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+  img{display:block;max-width:100%}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+  h1,h2,h3{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.04em}
+  header{position:sticky;top:0;z-index:60;background:rgba(13,15,20,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+  .brand{font-family:'Oswald',sans-serif;font-size:1.3rem;font-weight:700;color:#fff;text-decoration:none;letter-spacing:.06em}
+  .brand span{color:var(--gold)}
+  .brand small{display:block;font-family:'Inter',sans-serif;font-size:.62rem;letter-spacing:.3em;color:var(--muted);font-weight:600}
+  .links{display:none;gap:24px}
+  .links a{text-decoration:none;font-weight:600;font-size:.92rem;color:var(--ink)}
+  .links a:hover{color:var(--gold)}
+  .bookbtn{background:var(--gold);color:#141310;text-decoration:none;font-weight:700;padding:11px 20px;border-radius:6px;font-size:.92rem;text-transform:uppercase;letter-spacing:.05em}
+  .bookbtn:hover{background:#dcb435}
+  .burger{background:none;border:0;font-size:1.5rem;cursor:pointer;color:#fff;padding:6px 10px}
+  .mobile{display:none;border-top:1px solid var(--line);padding:10px 0 14px}
+  .mobile a{display:block;padding:9px 2px;text-decoration:none;font-weight:600;color:var(--ink)}
+  .mobile.open{display:block}
+  @media(min-width:820px){.links{display:flex}.burger{display:none}}
+  .hero{background:linear-gradient(rgba(8,9,12,.68),rgba(8,9,12,.78)),url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=1600&q=70') center/cover,#1a1d24;text-align:center;padding:96px 20px 84px}
+  .hero .est{letter-spacing:.34em;font-size:.74rem;color:var(--gold);font-weight:700;text-transform:uppercase}
+  .hero h1{font-size:clamp(2.4rem,7vw,4rem);line-height:1.08;margin:12px 0;color:#fff}
+  .hero h1 span{color:var(--gold)}
+  .hero p{max-width:520px;margin:0 auto 28px;color:#c6ccd8;font-size:1.05rem}
+  .btn{display:inline-block;text-decoration:none;font-weight:700;padding:14px 28px;border-radius:6px;text-transform:uppercase;letter-spacing:.05em;font-size:.94rem}
+  .btn-gold{background:var(--gold);color:#141310}.btn-gold:hover{background:#dcb435}
+  .btn-ghost{border:2px solid #fff;color:#fff}.btn-ghost:hover{background:rgba(255,255,255,.12)}
+  .hero .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .rating{margin-top:26px;color:var(--gold);font-weight:600}
+  section{padding:56px 0}
+  .kicker{text-align:center;letter-spacing:.3em;text-transform:uppercase;font-size:.72rem;color:var(--gold);font-weight:700}
+  h2.title{text-align:center;font-size:clamp(1.6rem,4.5vw,2.2rem);margin:8px 0 8px;color:#fff}
+  .sub{text-align:center;color:var(--muted);max-width:580px;margin:0 auto 34px}
+  .services{display:grid;gap:16px}
+  @media(min-width:760px){.services{grid-template-columns:1fr 1fr}}
+  .svc{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:22px;display:flex;gap:16px;align-items:flex-start}
+  .svc .ico{font-size:1.6rem;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+  .svc h3{font-size:1.05rem;color:#fff}
+  .svc p{color:var(--muted);font-size:.9rem}
+  .svc .meta{margin-left:auto;text-align:right;white-space:nowrap}
+  .svc .price{font-family:'Oswald',sans-serif;font-size:1.3rem;color:var(--gold)}
+  .svc .time{display:block;color:var(--muted);font-size:.8rem}
+  .barbers{display:grid;gap:18px}
+  @media(min-width:760px){.barbers{grid-template-columns:repeat(3,1fr)}}
+  .barber{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;text-align:center}
+  .barber .ph{aspect-ratio:1;background:linear-gradient(135deg,#262c38,#0d0f14)}
+  .barber .ph img{width:100%;height:100%;object-fit:cover}
+  .barber .info{padding:18px}
+  .barber h3{color:#fff;font-size:1.1rem}
+  .barber .role{color:var(--gold);font-size:.8rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+  .barber p{color:var(--muted);font-size:.9rem;margin-top:6px}
+  .visit{display:grid;gap:26px}
+  @media(min-width:820px){.visit{grid-template-columns:1fr 1fr}}
+  .hours{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:24px}
+  .hours table{width:100%;border-collapse:collapse}
+  .hours td{padding:7px 0;border-bottom:1px solid var(--line);font-size:.95rem}
+  .hours td:last-child{text-align:right;font-weight:700;color:var(--gold)}
+  .hours tr:last-child td{border-bottom:0}
+  .book{background:var(--gold);color:#171408;border-radius:12px;padding:28px;text-align:center;display:flex;flex-direction:column;justify-content:center;gap:10px}
+  .book h3{font-size:1.5rem}
+  .book p{color:#4a3f14;font-size:.95rem;font-weight:500}
+  .book .btn{align-self:center;background:#141310;color:#fff;margin-top:6px}
+  footer{border-top:1px solid var(--line);padding:26px 0 34px;text-align:center;color:var(--muted);font-size:.88rem}
+  footer a{color:var(--gold);font-weight:700;text-decoration:none}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#">SHARP <span>&amp;</span> CO.<small>Barbers · Brooklyn NY</small></a>
+    <nav class="links">
+      <a href="#services">Services</a><a href="#barbers">Barbers</a><a href="#visit">Hours</a>
+    </nav>
+    <a class="bookbtn" href="tel:+17185550193">Book now</a>
+    <button class="burger" id="burger" aria-label="Menu">☰</button>
+  </div>
+  <div class="wrap mobile" id="mobileMenu">
+    <a href="#services">Services</a><a href="#barbers">Barbers</a><a href="#visit">Hours &amp; Location</a>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="est">Est. 2012 · Williamsburg</div>
+  <h1>Look sharp.<br><span>Feel sharper.</span></h1>
+  <p>Precision cuts, skin fades and hot-towel shaves by barbers who still take their time. Walk-ins welcome — bookings get the chair first.</p>
+  <div class="btns">
+    <a class="btn btn-gold" href="tel:+17185550193">📞 Book your chair</a>
+    <a class="btn btn-ghost" href="#services">Services &amp; prices</a>
+  </div>
+  <div class="rating">★★★★★ 4.9 — 1,580 Google reviews</div>
+</div>
+
+<section id="services">
+  <div class="wrap">
+    <div class="kicker">Services</div>
+    <h2 class="title">Price list</h2>
+    <p class="sub">Every service finishes with a hot-towel neck shave and styling. Students get 15% off Tuesdays with ID.</p>
+    <div class="services">
+      <div class="svc"><div class="ico">✂️</div><div><h3>Signature Haircut</h3><p>Consultation, precision cut, wash, style and finish.</p></div><div class="meta"><span class="price">$38</span><span class="time">45 min</span></div></div>
+      <div class="svc"><div class="ico">⚡</div><div><h3>Skin Fade</h3><p>Zero/blended fade, razor-sharp lines, hot-towel finish.</p></div><div class="meta"><span class="price">$35</span><span class="time">40 min</span></div></div>
+      <div class="svc"><div class="ico">🪒</div><div><h3>Hot-Towel Shave</h3><p>Traditional straight-razor shave, hot towels, oils and balm.</p></div><div class="meta"><span class="price">$32</span><span class="time">35 min</span></div></div>
+      <div class="svc"><div class="ico">🧔</div><div><h3>Beard Sculpt &amp; Detail</h3><p>Shape, razor detail, beard oil treatment and hot towel.</p></div><div class="meta"><span class="price">$24</span><span class="time">25 min</span></div></div>
+      <div class="svc"><div class="ico">👑</div><div><h3>The Full Works</h3><p>Cut + hot-towel shave + beard sculpt. Leave a new man.</p></div><div class="meta"><span class="price">$79</span><span class="time">1 hr 45</span></div></div>
+      <div class="svc"><div class="ico">👦</div><div><h3>Kids' Cut (under 12)</h3><p>Patient, friendly cuts for young gentlemen.</p></div><div class="meta"><span class="price">$26</span><span class="time">30 min</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="barbers" style="padding-top:0">
+  <div class="wrap">
+    <div class="kicker">The chair crew</div>
+    <h2 class="title">Meet the barbers</h2>
+    <p class="sub">Ask for your barber by name when you book — or trust the next chair free.</p>
+    <div class="barbers">
+      <div class="barber">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=700&q=70" alt="Barber at work" loading="lazy"></div>
+        <div class="info"><div class="role">Master Barber · Founder</div><h3>Marcus "Sharp" Reed</h3><p>18 years behind the chair. Fades so clean they should be illegal. Books out most Saturdays.</p></div>
+      </div>
+      <div class="barber">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=700&q=70" alt="Barber trimming a beard" loading="lazy"></div>
+        <div class="info"><div class="role">Shave Specialist</div><h3>Diego Alvarez</h3><p>Straight-razor traditionalist. If you haven't had his hot-towel shave, you haven't had one.</p></div>
+      </div>
+      <div class="barber">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=700&q=70" alt="Barber tools and styling" loading="lazy"></div>
+        <div class="info"><div class="role">Senior Barber</div><h3>Jay Thompson</h3><p>Classic cuts and beard architecture. Also the shop's unofficial playlist curator.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="visit" style="padding-top:0">
+  <div class="wrap">
+    <div class="kicker">Visit</div>
+    <h2 class="title">Hours &amp; booking</h2>
+    <p class="sub">417 Grand Street, Williamsburg, Brooklyn, NY 11211 · L train to Bedford Ave</p>
+    <div class="visit">
+      <div class="hours">
+        <table>
+          <tr><td>Monday</td><td>Closed</td></tr>
+          <tr><td>Tuesday – Friday</td><td>10:00 am – 8:00 pm</td></tr>
+          <tr><td>Saturday</td><td>9:00 am – 7:00 pm</td></tr>
+          <tr><td>Sunday</td><td>11:00 am – 5:00 pm</td></tr>
+        </table>
+      </div>
+      <div class="book">
+        <h3>Book your chair</h3>
+        <p>Weekend chairs go fast. Call ahead and we'll have the clippers warm when you walk in.</p>
+        <a class="btn" href="tel:+17185550193">📞 (718) 555-0193</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><a href="../index.html">← All demos</a></p>
+    <p style="margin-top:8px">Demo website by MintNest Studio — your business could look like this.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('burger').addEventListener('click', function(){
+    document.getElementById('mobileMenu').classList.toggle('open');
+  });
+</script>
+</body>
+</html>

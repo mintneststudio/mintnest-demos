@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ember &amp; Oak — Handmade Candles &amp; Home Goods | Online Store Demo</title>
+<meta name="description" content="Ember & Oak demo online store: hand-poured candles and home goods with product grid, ratings, working cart and demo checkout.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#241a12;--paper:#faf5ee;--card:#fff;--terra:#b4551f;--terra-d:#93430f;--amber:#d97706;--muted:#7d6a58;--line:#eee0d0;--ok:#15803d}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.55}
+  img{display:block;max-width:100%}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+  h1,h2,h3{font-family:'Fraunces',serif;line-height:1.15}
+  .topbar{background:var(--ink);color:#f3e4cf;text-align:center;font-size:.83rem;font-weight:600;padding:8px 14px;letter-spacing:.02em}
+  header{position:sticky;top:0;z-index:70;background:rgba(250,245,238,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;gap:18px;padding:13px 0}
+  .brand{font-family:'Fraunces',serif;font-size:1.45rem;font-weight:700;text-decoration:none;color:var(--ink)}
+  .brand span{color:var(--terra)}
+  .brand small{display:block;font-family:'Inter',sans-serif;font-size:.6rem;letter-spacing:.3em;color:var(--muted);font-weight:700;text-transform:uppercase}
+  .links{display:none;gap:24px;margin-left:auto}
+  .links a{text-decoration:none;font-weight:600;font-size:.93rem;color:var(--ink)}
+  .links a:hover{color:var(--terra)}
+  @media(min-width:820px){.links{display:flex}}
+  .cartbtn{margin-left:auto;background:var(--ink);color:#fff;border:0;font:inherit;font-weight:700;padding:11px 18px;border-radius:999px;cursor:pointer;display:flex;align-items:center;gap:8px}
+  @media(min-width:820px){.cartbtn{margin-left:0}}
+  .cartbtn:hover{background:var(--terra)}
+  .cartcount{background:var(--terra);color:#fff;min-width:24px;height:24px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;font-size:.82rem;padding:0 6px}
+  .hero{display:grid;gap:30px;align-items:center;padding:50px 0 26px}
+  @media(min-width:860px){.hero{grid-template-columns:1.05fr .95fr}}
+  .hero .kicker{letter-spacing:.22em;font-size:.73rem;font-weight:800;color:var(--terra);text-transform:uppercase}
+  .hero h1{font-size:clamp(2.2rem,6vw,3.4rem);margin:12px 0 14px}
+  .hero h1 em{font-style:normal;color:var(--terra)}
+  .hero p{color:var(--muted);font-size:1.07rem;max-width:470px;margin-bottom:22px}
+  .btn{display:inline-block;background:var(--terra);color:#fff;text-decoration:none;font:inherit;font-weight:700;padding:14px 26px;border-radius:999px;border:0;cursor:pointer}
+  .btn:hover{background:var(--terra-d)}
+  .btn-dark{background:var(--ink)}
+  .btn-dark:hover{background:var(--terra)}
+  .hero .fine{font-size:.85rem;color:var(--muted);margin-top:12px}
+  .heroimg{border-radius:24px;overflow:hidden;background:linear-gradient(135deg,#d97706,#92400e);box-shadow:0 24px 50px rgba(180,85,31,.25)}
+  .heroimg img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/3.4}
+  .cats{display:flex;gap:9px;flex-wrap:wrap;margin:26px 0 6px}
+  .cat{font:inherit;font-weight:600;font-size:.9rem;padding:9px 18px;border-radius:999px;border:1.5px solid var(--line);background:#fff;cursor:pointer;color:var(--ink)}
+  .cat:hover{border-color:var(--terra);color:var(--terra)}
+  .cat.active{background:var(--ink);border-color:var(--ink);color:#fff}
+  .section-title{font-size:clamp(1.55rem,4vw,2.1rem);margin:34px 0 6px}
+  .section-sub{color:var(--muted);margin-bottom:22px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(min-width:760px){.grid{grid-template-columns:repeat(3,1fr)}}
+  @media(min-width:1000px){.grid{grid-template-columns:repeat(4,1fr)}}
+  .prod{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+  .prod[hidden]{display:none}
+  .prod .ph{aspect-ratio:1/1;background:linear-gradient(135deg,#b45309,#78350f);overflow:hidden;position:relative}
+  .prod .ph img{width:100%;height:100%;object-fit:cover}
+  .prod .bs{position:absolute;top:10px;left:10px;background:var(--amber);color:#fff;font-size:.68rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:999px}
+  .prod .pb{padding:14px 15px 16px;display:flex;flex-direction:column;gap:5px;flex:1}
+  .prod h3{font-size:1.02rem;font-family:'Inter',sans-serif;font-weight:700;line-height:1.3}
+  .prod .rate{color:var(--amber);font-size:.85rem}
+  .prod .rate span{color:var(--muted)}
+  .prod .price{font-weight:800;font-size:1.05rem;margin-top:auto;padding-top:4px}
+  .prod .add{margin-top:9px;background:var(--ink);color:#fff;border:0;font:inherit;font-weight:700;font-size:.9rem;padding:11px;border-radius:10px;cursor:pointer}
+  .prod .add:hover{background:var(--terra)}
+  .prod .add.added{background:var(--ok)}
+  .feature{display:grid;gap:0;background:var(--ink);color:#f5ead9;border-radius:22px;overflow:hidden;margin:44px 0 8px}
+  @media(min-width:820px){.feature{grid-template-columns:1fr 1fr}}
+  .feature .ph{background:linear-gradient(135deg,#78350f,#451a03);min-height:250px}
+  .feature .ph img{width:100%;height:100%;object-fit:cover}
+  .feature .tx{padding:34px 30px}
+  .feature .kick{letter-spacing:.2em;font-size:.72rem;font-weight:800;color:var(--amber);text-transform:uppercase}
+  .feature h2{color:#fff;font-size:clamp(1.6rem,4vw,2.2rem);margin:10px 0}
+  .feature p{color:#d8c3a5;font-size:.97rem;margin-bottom:18px}
+  .feature .price{font-size:1.3rem;font-weight:800;color:#fff;margin-bottom:18px}
+  .feature .price s{color:#a98f6f;font-weight:500;font-size:1rem;margin-right:8px}
+  .news{background:#fff;border:1px solid var(--line);border-radius:20px;padding:32px 26px;text-align:center;margin:44px 0 10px}
+  .news h2{font-size:1.55rem;margin-bottom:8px}
+  .news p{color:var(--muted);max-width:480px;margin:0 auto 20px;font-size:.96rem}
+  .news form{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .news input{padding:13px 18px;border:1.5px solid var(--line);border-radius:999px;font:inherit;font-size:.95rem;min-width:230px}
+  .news input:focus{outline:none;border-color:var(--terra)}
+  .news .ok{display:none;color:var(--ok);font-weight:700}
+  footer.site{padding:28px 0 40px;text-align:center;color:var(--muted);font-size:.88rem}
+  footer.site a{color:var(--terra);font-weight:600;text-decoration:none}
+  /* cart drawer */
+  .scrim{position:fixed;inset:0;background:rgba(20,12,6,.5);opacity:0;pointer-events:none;transition:opacity .25s;z-index:90}
+  .scrim.open{opacity:1;pointer-events:auto}
+  .drawer{position:fixed;top:0;right:0;height:100dvh;width:min(400px,92vw);background:#fff;z-index:95;transform:translateX(105%);transition:transform .3s ease;display:flex;flex-direction:column;box-shadow:-16px 0 40px rgba(0,0,0,.2)}
+  .drawer.open{transform:translateX(0)}
+  .drawer header{position:static;background:#fff;border-bottom:1px solid var(--line);padding:18px 20px;display:flex;align-items:center;justify-content:space-between}
+  .drawer header h2{font-size:1.25rem}
+  .drawer .x{background:none;border:0;font-size:1.5rem;cursor:pointer;line-height:1;color:var(--ink)}
+  .items{flex:1;overflow-y:auto;padding:16px 20px;display:flex;flex-direction:column;gap:14px}
+  .empty{color:var(--muted);text-align:center;padding:30px 10px;font-size:.95rem}
+  .item{display:grid;grid-template-columns:1fr auto;gap:4px 12px;border-bottom:1px solid var(--line);padding-bottom:12px}
+  .item b{font-size:.95rem}
+  .item .unit{color:var(--muted);font-size:.85rem}
+  .item .line{font-weight:800}
+  .qty{display:inline-flex;align-items:center;gap:10px;margin-top:4px}
+  .qty button{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--line);background:#fff;font:inherit;font-weight:800;cursor:pointer;line-height:1}
+  .qty button:hover{border-color:var(--terra);color:var(--terra)}
+  .drawer .foot{border-top:1px solid var(--line);padding:18px 20px 22px}
+  .totalrow{display:flex;justify-content:space-between;font-weight:800;font-size:1.1rem;margin-bottom:6px}
+  .shipnote{color:var(--muted);font-size:.85rem;margin-bottom:14px}
+  .checkout{width:100%;background:var(--terra);color:#fff;border:0;font:inherit;font-weight:800;font-size:1rem;padding:15px;border-radius:12px;cursor:pointer}
+  .checkout:hover{background:var(--terra-d)}
+  .demonote{text-align:center;color:var(--muted);font-size:.82rem;margin-top:10px}
+</style>
+</head>
+<body>
+
+<div class="topbar">Free shipping over $50 · Hand-poured in small batches · Burns 45+ hours</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#">Ember <span>&amp;</span> Oak<small>Handmade Home Goods</small></a>
+    <nav class="links">
+      <a href="#shop">Shop</a>
+      <a href="#bestseller">Bestseller</a>
+      <a href="#newsletter">Get 10% off</a>
+    </nav>
+    <button class="cartbtn" id="cartOpen" type="button">🛒 Cart <span class="cartcount" id="cartCount">0</span></button>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <div>
+      <div class="kicker">Small-batch · Soy wax · Cotton wicks</div>
+      <h1>Candles that make a house feel like <em>home</em>.</h1>
+      <p>Every Ember &amp; Oak candle is hand-poured in our Austin studio, cured for ten days, and shipped plastic-free. Scents inspired by woodsmoke, orchards and slow Sunday mornings.</p>
+      <a class="btn" href="#shop">Shop the collection ↓</a>
+      <p class="fine">★★★★★ 4.9 average from 1,100+ reviews · 30-day scent promise</p>
+    </div>
+    <div class="heroimg"><img src="https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&fit=crop&w=1000&q=70" alt="Ember and Oak hand-poured candles" loading="lazy"></div>
+  </section>
+
+  <div class="cats" id="cats">
+    <button class="cat active" type="button" data-shop-filter="all">All products</button>
+    <button class="cat" type="button" data-shop-filter="signature">Signature candles</button>
+    <button class="cat" type="button" data-shop-filter="seasonal">Seasonal</button>
+    <button class="cat" type="button" data-shop-filter="home">Home goods</button>
+  </div>
+
+  <h2 class="section-title" id="shop">The collection</h2>
+  <p class="section-sub">Eight favourites, poured this week. Add to cart and try the demo checkout — it's exactly how your customers would buy.</p>
+
+  <div class="grid" id="grid">
+    <div class="prod" data-cat="signature">
+      <div class="ph" style="background:linear-gradient(135deg,#92400e,#451a03)"><img src="https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&fit=crop&w=700&q=70" alt="Smoked Cedar and Amber candle" loading="lazy"><span class="bs">Bestseller</span></div>
+      <div class="pb"><h3>Smoked Cedar &amp; Amber Candle</h3><div class="rate">★★★★★ <span>4.9 (212)</span></div><div class="price">$28.00</div><button class="add" type="button" data-add="Smoked Cedar &amp; Amber Candle" data-price="28">Add to cart</button></div>
+    </div>
+    <div class="prod" data-cat="signature">
+      <div class="ph" style="background:linear-gradient(135deg,#d97706,#92400e)"><img src="https://images.unsplash.com/photo-1572726729207-a78d6feb18d7?auto=format&fit=crop&w=700&q=70" alt="Vanilla Bean and Oat Milk candle" loading="lazy"></div>
+      <div class="pb"><h3>Vanilla Bean &amp; Oat Milk Candle</h3><div class="rate">★★★★★ <span>4.8 (186)</span></div><div class="price">$26.00</div><button class="add" type="button" data-add="Vanilla Bean &amp; Oat Milk Candle" data-price="26">Add to cart</button></div>
+    </div>
+    <div class="prod" data-cat="signature">
+      <div class="ph" style="background:linear-gradient(135deg,#78350f,#292018)"><img src="https://images.unsplash.com/photo-1608181831718-c9ffd8728e94?auto=format&fit=crop&w=700&q=70" alt="Fig and Vetiver candle" loading="lazy"></div>
+      <div class="pb"><h3>Fig &amp; Vetiver Candle</h3><div class="rate">★★★★★ <span>4.9 (154)</span></div><div class="price">$30.00</div><button class="add" type="button" data-add="Fig &amp; Vetiver Candle" data-price="30">Add to cart</button></div>
+    </div>
+    <div class="prod" data-cat="seasonal">
+      <div class="ph" style="background:linear-gradient(135deg,#b45309,#7c2d12)"><img src="https://images.unsplash.com/photo-1601479604588-68d9e6d386b5?auto=format&fit=crop&w=700&q=70" alt="Pumpkin Clove seasonal candle" loading="lazy"><span class="bs">Limited</span></div>
+      <div class="pb"><h3>Pumpkin Clove — Seasonal Candle</h3><div class="rate">★★★★☆ <span>4.7 (98)</span></div><div class="price">$27.00</div><button class="add" type="button" data-add="Pumpkin Clove Seasonal Candle" data-price="27">Add to cart</button></div>
+    </div>
+    <div class="prod" data-cat="seasonal">
+      <div class="ph" style="background:linear-gradient(135deg,#9a3412,#7f1d1d)"><img src="https://images.unsplash.com/photo-1512413914633-b5043f4041ea?auto=format&fit=crop&w=700&q=70" alt="Mulled Orange and Cinnamon candle" loading="lazy"></div>
+      <div class="pb"><h3>Mulled Orange &amp; Cinnamon Candle</h3><div class="rate">★★★★★ <span>4.8 (121)</span></div><div class="price">$27.00</div><button class="add" type="button" data-add="Mulled Orange &amp; Cinnamon Candle" data-price="27">Add to cart</button></div>
+    </div>
+    <div class="prod" data-cat="home">
+      <div class="ph" style="background:linear-gradient(135deg,#0e5a52,#134e4a)"><img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=700&q=70" alt="Linen and Sea Salt room spray in a styled room" loading="lazy"></div>
+      <div class="pb"><h3>Linen &amp; Sea Salt Room Spray</h3><div class="rate">★★★★☆ <span>4.6 (87)</span></div><div class="price">$18.00</div><button class="add" type="button" data-add="Linen &amp; Sea Salt Room Spray" data-price="18">Add to cart</button></div>
+    </div>
+    <div class="prod" data-cat="home">
+      <div class="ph" style="background:linear-gradient(135deg,#b45309,#57534e)"><img src="https://images.unsplash.com/photo-1596433809252-260c2745dfdd?auto=format&fit=crop&w=700&q=70" alt="Hand-poured soy wax melts" loading="lazy"></div>
+      <div class="pb"><h3>Soy Wax Melts — Pack of 6</h3><div class="rate">★★★★☆ <span>4.7 (203)</span></div><div class="price">$12.00</div><button class="add" type="button" data-add="Soy Wax Melts (Pack of 6)" data-price="12">Add to cart</button></div>
+    </div>
+    <div class="prod" data-cat="home">
+      <div class="ph" style="background:linear-gradient(135deg,#44403c,#1c1917)"><img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=700&q=70" alt="Brass candle tools on a dining table" loading="lazy"></div>
+      <div class="pb"><h3>Brass Snuffer &amp; Wick Trimmer Set</h3><div class="rate">★★★★★ <span>4.9 (76)</span></div><div class="price">$22.00</div><button class="add" type="button" data-add="Brass Snuffer &amp; Wick Trimmer Set" data-price="22">Add to cart</button></div>
+    </div>
+  </div>
+
+  <section class="feature" id="bestseller">
+    <div class="ph"><img src="https://images.unsplash.com/photo-1477763858572-cda7deaa9bc5?auto=format&fit=crop&w=1000&q=70" alt="Cosy desk with a lit Ember and Oak candle" loading="lazy"></div>
+    <div class="tx">
+      <div class="kick">Bestseller of the season</div>
+      <h2>Smoked Cedar &amp; Amber</h2>
+      <p>The one that started it all — cedarwood, amber resin and a whisper of woodsmoke. Poured into a reusable amber glass jar with a crackling wooden wick. 45+ hours of burn time.</p>
+      <div class="price"><s>$34.00</s>$28.00</div>
+      <button class="btn" type="button" data-add="Smoked Cedar &amp; Amber Candle" data-price="28">Add to cart — $28.00</button>
+    </div>
+  </section>
+
+  <section class="news" id="newsletter">
+    <h2>Get 10% off your first order</h2>
+    <p>Join The Hearth List — one cosy email a month with new scents, seconds sales and early access to seasonal batches.</p>
+    <form id="newsForm">
+      <input type="email" id="newsEmail" placeholder="Your email address" aria-label="Email address" required>
+      <button class="btn" type="submit">Claim 10% off</button>
+    </form>
+    <p class="ok" id="newsOk">You're on the list! Your 10% code is on its way to your inbox. 🕯️</p>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <p><a href="../index.html">← All demos</a></p>
+    <p style="margin-top:8px">Demo website by MintNest Studio — your business could look like this.</p>
+  </div>
+</footer>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-label="Shopping cart">
+  <header>
+    <h2>Your cart</h2>
+    <button class="x" id="cartClose" type="button" aria-label="Close cart">×</button>
+  </header>
+  <div class="items" id="cartItems">
+    <p class="empty">Your cart is empty — add something cosy. 🕯️</p>
+  </div>
+  <div class="foot">
+    <div class="totalrow"><span>Total</span><span id="cartTotal">$0.00</span></div>
+    <p class="shipnote">Free shipping over $50 · otherwise $4.95 at checkout</p>
+    <button class="checkout" id="checkoutBtn" type="button">Checkout →</button>
+    <p class="demonote" id="checkoutNote">Demo checkout — this is a design demo, so nothing is charged and no payment details are asked for.</p>
+  </div>
+</aside>
+
+<script>
+  (function(){
+    var cart = {}; // name -> {price, qty}
+    var drawer = document.getElementById('drawer'), scrim = document.getElementById('scrim');
+    var itemsEl = document.getElementById('cartItems'), countEl = document.getElementById('cartCount'), totalEl = document.getElementById('cartTotal');
+
+    function money(n){ return '$' + n.toFixed(2); }
+    function render(){
+      var names = Object.keys(cart), count = 0, total = 0, html = '';
+      names.forEach(function(name){
+        var it = cart[name]; count += it.qty; total += it.qty * it.price;
+        html += '<div class="item"><div><b>' + name + '</b><div class="unit">' + money(it.price) + ' each</div>' +
+          '<span class="qty"><button type="button" data-dec="' + name + '">−</button> ' + it.qty +
+          ' <button type="button" data-inc="' + name + '">+</button></span></div>' +
+          '<div class="line">' + money(it.qty * it.price) + '</div></div>';
+      });
+      itemsEl.innerHTML = html || '<p class="empty">Your cart is empty — add something cosy. 🕯️</p>';
+      countEl.textContent = count;
+      totalEl.textContent = money(total);
+    }
+    function addToCart(name, price){
+      if(cart[name]) cart[name].qty++; else cart[name] = {price: price, qty: 1};
+      render();
+    }
+    document.querySelectorAll('[data-add]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        addToCart(btn.getAttribute('data-add'), parseFloat(btn.getAttribute('data-price')));
+        if(btn.classList.contains('add')){
+          var old = btn.textContent; btn.textContent = 'Added ✓'; btn.classList.add('added');
+          setTimeout(function(){ btn.textContent = old; btn.classList.remove('added'); }, 1200);
+        }
+      });
+    });
+    itemsEl.addEventListener('click', function(e){
+      var inc = e.target.getAttribute('data-inc'), dec = e.target.getAttribute('data-dec');
+      if(inc){ cart[inc].qty++; render(); }
+      if(dec){ cart[dec].qty--; if(cart[dec].qty <= 0) delete cart[dec]; render(); }
+    });
+    function openCart(){ drawer.classList.add('open'); scrim.classList.add('open'); }
+    function closeCart(){ drawer.classList.remove('open'); scrim.classList.remove('open'); }
+    document.getElementById('cartOpen').addEventListener('click', openCart);
+    document.getElementById('cartClose').addEventListener('click', closeCart);
+    scrim.addEventListener('click', closeCart);
+    document.getElementById('checkoutBtn').addEventListener('click', function(){
+      document.getElementById('checkoutNote').textContent = Object.keys(cart).length
+        ? 'Demo checkout — on a real store this is where your customer pays. Nothing was charged. ✓'
+        : 'Your cart is empty — add a product first, then try checkout.';
+      openCart();
+    });
+    // Category filter pills
+    var pills = document.querySelectorAll('#cats .cat'), prods = document.querySelectorAll('#grid .prod');
+    pills.forEach(function(pill){
+      pill.addEventListener('click', function(){
+        pills.forEach(function(p){ p.classList.remove('active'); });
+        pill.classList.add('active');
+        var f = pill.getAttribute('data-shop-filter');
+        prods.forEach(function(prod){ prod.hidden = !(f === 'all' || prod.getAttribute('data-cat') === f); });
+      });
+    });
+    // Newsletter
+    document.getElementById('newsForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      var em = document.getElementById('newsEmail');
+      if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em.value)){ em.focus(); em.style.borderColor = '#c22e2e'; return; }
+      this.style.display = 'none';
+      document.getElementById('newsOk').style.display = 'block';
+    });
+    render();
+  })();
+</script>
+</body>
+</html>

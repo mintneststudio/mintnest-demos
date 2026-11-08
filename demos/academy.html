@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BrightFuture Academy — Tuition &amp; Coaching Centre · London</title>
+<meta name="description" content="BrightFuture Academy, London — small-group tuition for 11+, GCSE and A-Level. Courses, fees, results and a free demo class.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#f8f9fc;--ink:#1c2333;--navy:#1d3557;--blue:#2563eb;--sun:#f5b942;--line:#e2e7f0;--card:#ffffff}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.6}
+  img{display:block;max-width:100%}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 20px}
+  h1,h2,h3{font-family:'Poppins',sans-serif}
+  header{position:sticky;top:0;z-index:60;background:rgba(248,249,252,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+  .brand{font-family:'Poppins',sans-serif;font-size:1.3rem;font-weight:700;color:var(--navy);text-decoration:none}
+  .brand small{display:block;font-family:'Inter',sans-serif;font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--blue);font-weight:600}
+  .links{display:none;gap:26px}
+  .links a{text-decoration:none;font-weight:500;font-size:.95rem;color:var(--ink)}
+  .links a:hover{color:var(--blue)}
+  .callbtn{background:var(--blue);color:#fff;text-decoration:none;font-weight:600;padding:10px 18px;border-radius:999px;font-size:.92rem}
+  .burger{background:none;border:0;font-size:1.5rem;cursor:pointer;color:var(--ink);padding:6px 10px}
+  .mobile{display:none;border-top:1px solid var(--line);padding:10px 0 14px}
+  .mobile a{display:block;padding:9px 2px;text-decoration:none;font-weight:500;color:var(--ink)}
+  .mobile.open{display:block}
+  @media(min-width:820px){.links{display:flex}.burger{display:none}}
+  .hero{background:linear-gradient(rgba(18,30,54,.62),rgba(18,30,54,.68)),url('https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1600&q=70') center/cover,#1d3557;color:#fff;text-align:center;padding:96px 20px 84px}
+  .hero .since{letter-spacing:.28em;text-transform:uppercase;font-size:.78rem;color:#ffd98a;font-weight:700}
+  .hero h1{font-size:clamp(2.2rem,6vw,3.5rem);margin:12px 0 10px;line-height:1.12}
+  .hero p{max-width:580px;margin:0 auto 26px;color:#e8edf7;font-size:1.05rem}
+  .hero .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .btn{display:inline-block;text-decoration:none;font-weight:600;padding:13px 26px;border-radius:999px}
+  .btn-sun{background:var(--sun);color:#231a04}.btn-sun:hover{background:#eaa92f}
+  .btn-ghost{border:2px solid #fff;color:#fff}.btn-ghost:hover{background:rgba(255,255,255,.14)}
+  .rating{margin-top:26px;font-size:.95rem;color:#ffe1a8}
+  .stats{background:var(--navy);color:#fff}
+  .stats .wrap{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding-top:30px;padding-bottom:30px;text-align:center}
+  @media(min-width:820px){.stats .wrap{grid-template-columns:repeat(4,1fr)}}
+  .stat .num{font-family:'Poppins',sans-serif;font-size:2rem;font-weight:700;color:var(--sun)}
+  .stat p{font-size:.88rem;color:#c9d4e8}
+  section{padding:56px 0}
+  .kicker{text-align:center;letter-spacing:.26em;text-transform:uppercase;font-size:.74rem;color:var(--blue);font-weight:700}
+  h2.title{text-align:center;font-size:clamp(1.7rem,4.5vw,2.3rem);margin:8px 0 8px;color:var(--navy)}
+  .sub{text-align:center;color:#5d6880;max-width:620px;margin:0 auto 34px}
+  .course-grid{display:grid;gap:18px}
+  @media(min-width:820px){.course-grid{grid-template-columns:1fr 1fr}}
+  .course{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px}
+  .course .top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+  .course h3{font-size:1.3rem;color:var(--navy)}
+  .course .fee{font-weight:700;color:var(--blue);white-space:nowrap}
+  .course .fee small{color:#8593ad;font-weight:500}
+  .course .level{font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:#8593ad;font-weight:700}
+  .course p{color:#5d6880;font-size:.94rem;margin:8px 0 10px}
+  .course ul{list-style:none;display:grid;gap:6px;font-size:.9rem;color:#414c63}
+  .course li::before{content:"✔";color:var(--blue);font-weight:700;margin-right:8px}
+  .team{display:grid;gap:18px}
+  @media(min-width:820px){.team{grid-template-columns:repeat(3,1fr)}}
+  .member{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;text-align:center}
+  .member .ph{aspect-ratio:4/3;background:linear-gradient(135deg,#1d3557,#2563eb)}
+  .member .ph img{width:100%;height:100%;object-fit:cover}
+  .member .body{padding:18px}
+  .member h3{font-size:1.12rem;color:var(--navy)}
+  .member .role{color:var(--blue);font-weight:700;font-size:.84rem;text-transform:uppercase;letter-spacing:.06em}
+  .member p{font-size:.9rem;color:#5d6880;margin-top:6px}
+  .reviews{display:grid;gap:16px}
+  @media(min-width:820px){.reviews{grid-template-columns:repeat(3,1fr)}}
+  .review{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .review .stars{color:var(--sun);letter-spacing:2px}
+  .review p{font-size:.94rem;color:#414c63;margin:8px 0}
+  .review b{font-size:.9rem}
+  .visit{display:grid;gap:26px}
+  @media(min-width:820px){.visit{grid-template-columns:1fr 1fr}}
+  .hours{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px}
+  .hours table{width:100%;border-collapse:collapse}
+  .hours td{padding:7px 0;border-bottom:1px solid var(--line);font-size:.95rem}
+  .hours td:last-child{text-align:right;font-weight:600}
+  .hours tr:last-child td{border-bottom:0}
+  .reserve{background:var(--navy);color:#fff;border-radius:14px;padding:28px;text-align:center;display:flex;flex-direction:column;justify-content:center;gap:10px}
+  .reserve h3{font-size:1.5rem}
+  .reserve p{color:#d4deed;font-size:.95rem}
+  .reserve .btn{align-self:center;margin-top:6px}
+  footer{border-top:1px solid var(--line);padding:26px 0 34px;text-align:center;color:#74809a;font-size:.88rem}
+  footer a{color:var(--blue);font-weight:600;text-decoration:none}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#">BrightFuture Academy<small>London · Tuition Centre</small></a>
+    <nav class="links">
+      <a href="#courses">Courses</a><a href="#results">Results</a><a href="#tutors">Tutors</a><a href="#visit">Visit</a>
+    </nav>
+    <a class="callbtn" href="tel:+442079460821">📞 Free demo class</a>
+    <button class="burger" id="burger" aria-label="Menu">☰</button>
+  </div>
+  <div class="wrap mobile" id="mobileMenu">
+    <a href="#courses">Courses &amp; Fees</a><a href="#results">Results</a><a href="#tutors">Tutors</a><a href="#visit">Hours &amp; Demo Class</a>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="since">11+ · GCSE · A-Level · Small groups of 6</div>
+  <h1>Grades go up when<br>classes stay small</h1>
+  <p>Expert tuition in Highbury with a maximum of six students per class, a personal plan for every child, and a progress report to parents every single month.</p>
+  <div class="btns">
+    <a class="btn btn-sun" href="tel:+442079460821">📞 Book a free demo class</a>
+    <a class="btn btn-ghost" href="#courses">See courses &amp; fees</a>
+  </div>
+  <div class="rating">★★★★★ 4.9 — from 340 Google reviews · Ofsted-registered childcare provider</div>
+</div>
+
+<div class="stats" id="results">
+  <div class="wrap">
+    <div class="stat"><div class="num">94%</div><p>of our GCSE students achieved grades 9–7 in 2025</p></div>
+    <div class="stat"><div class="num">+2</div><p>average grades improved per student within a year</p></div>
+    <div class="stat"><div class="num">1,200+</div><p>students taught since we opened in 2014</p></div>
+    <div class="stat"><div class="num">38</div><p>offers from grammar &amp; independent schools last year</p></div>
+  </div>
+</div>
+
+<section id="courses">
+  <div class="wrap">
+    <div class="kicker">Courses &amp; fees</div>
+    <h2 class="title">Tuition by level</h2>
+    <p class="sub">Two 90-minute classes per week, homework support included. No joining fee, no contract — sibling discount of 10% and pause-anytime terms.</p>
+    <div class="course-grid">
+      <div class="course">
+        <div class="level">Years 3–6 · Ages 7–11</div>
+        <div class="top"><h3>Primary Foundations</h3><div class="fee">£180 <small>/ month</small></div></div>
+        <p>Confident readers and happy mathematicians. We build the habits — times tables, comprehension, neat working — that make secondary school easy.</p>
+        <ul><li>Maths, English &amp; reasoning</li><li>Weekly reading record checked</li><li>Termly parents' meeting</li></ul>
+      </div>
+      <div class="course">
+        <div class="level">Ages 9–11 · Exam prep</div>
+        <div class="top"><h3>11+ Grammar Prep</h3><div class="fee">£210 <small>/ month</small></div></div>
+        <p>A two-year runway to the 11+: verbal &amp; non-verbal reasoning, timed practice, and six full mock exams with detailed feedback before the real thing.</p>
+        <ul><li>GL &amp; CEM formats covered</li><li>6 mock exams included</li><li>Interview practice in Year 6</li></ul>
+      </div>
+      <div class="course">
+        <div class="level">Years 10–11 · Ages 14–16</div>
+        <div class="top"><h3>GCSE Excellence</h3><div class="fee">£240 <small>/ month</small></div></div>
+        <p>Maths, English and the sciences, taught to the exam board your school uses. Past-paper drills every fortnight and a predicted-grade tracker parents can see live.</p>
+        <ul><li>AQA, Edexcel &amp; OCR covered</li><li>Fortnightly past-paper practice</li><li>Easter revision camp included</li></ul>
+      </div>
+      <div class="course">
+        <div class="level">Years 12–13 · Ages 16–18</div>
+        <div class="top"><h3>A-Level Mastery</h3><div class="fee">£290 <small>/ month</small></div></div>
+        <p>Small, serious classes with subject specialists — including two Oxbridge graduates — plus UCAS and personal-statement support at no extra cost.</p>
+        <ul><li>Maths, Physics, Chemistry, Biology, Economics</li><li>UCAS &amp; statement mentoring</li><li>1-to-1 slots available (£45/hr)</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="tutors" style="padding-top:0">
+  <div class="wrap">
+    <div class="kicker">Our tutors</div>
+    <h2 class="title">Taught by specialists</h2>
+    <p class="sub">Every tutor is DBS-checked, subject-qualified, and observed in class each term.</p>
+    <div class="team">
+      <div class="member">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=800&q=70" alt="Mrs. Aditi Sharma" loading="lazy"></div>
+        <div class="body"><h3>Mrs. Aditi Sharma</h3><div class="role">Head of GCSE · Maths</div><p>Former head of maths at a North London comprehensive; 15 years turning "I can't do maths" into grade 9s.</p></div>
+      </div>
+      <div class="member">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=70" alt="Mr. Daniel Whitfield" loading="lazy"></div>
+        <div class="body"><h3>Mr. Daniel Whitfield</h3><div class="role">A-Level Sciences</div><p>Cambridge natural-sciences graduate. Runs our A-Level physics and chemistry groups and the Oxbridge prep club.</p></div>
+      </div>
+      <div class="member">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=800&q=70" alt="Miss Grace O'Brien" loading="lazy"></div>
+        <div class="body"><h3>Miss Grace O'Brien</h3><div class="role">English &amp; 11+</div><p>Primary specialist who leads 11+ prep — her classes filled our last two grammar-school cohorts. Storyteller-in-chief.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews" style="padding-top:0">
+  <div class="wrap">
+    <div class="kicker">Reviews</div>
+    <h2 class="title">What parents say</h2>
+    <p class="sub">★★★★★ 4.9 average across 340 Google reviews.</p>
+    <div class="reviews">
+      <div class="review"><div class="stars">★★★★★</div><p>"My son went from a grade 5 prediction to a 9 in GCSE maths. The monthly reports meant we always knew exactly where he stood."</p><b>— Mrs. Kaur, Islington</b></div>
+      <div class="review"><div class="stars">★★★★★</div><p>"Both daughters passed the 11+ with BrightFuture. Small classes, honest feedback, and tutors who genuinely know each child."</p><b>— Mr. &amp; Mrs. Adeyemi, Highbury</b></div>
+      <div class="review"><div class="stars">★★★★★</div><p>"We tried two centres before this one. The difference: they spotted my daughter's dyslexia-friendly way of learning within a fortnight."</p><b>— Ms. Doyle, Stoke Newington</b></div>
+    </div>
+  </div>
+</section>
+
+<section id="visit" style="padding-top:0">
+  <div class="wrap">
+    <div class="kicker">Visit us</div>
+    <h2 class="title">Hours &amp; free demo class</h2>
+    <p class="sub">218 Highbury Park, London N5 2RA · Two minutes from Highbury &amp; Islington station</p>
+    <div class="visit">
+      <div class="hours">
+        <table>
+          <tr><td>Monday – Friday</td><td>4:00 pm – 8:30 pm</td></tr>
+          <tr><td>Saturday</td><td>9:00 am – 5:00 pm</td></tr>
+          <tr><td>Sunday</td><td>10:00 am – 2:00 pm</td></tr>
+          <tr><td>School holidays</td><td>Camps, 9:00 am – 3:00 pm</td></tr>
+        </table>
+      </div>
+      <div class="reserve">
+        <h3>Try a class, free</h3>
+        <p>Your child joins a real class for a full session — and you get a written assessment afterwards. No obligation, no sales pitch.</p>
+        <a class="btn btn-sun" href="tel:+442079460821">📞 020 7946 0821</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><a href="../index.html">← All demos</a></p>
+    <p style="margin-top:8px">Demo website by MintNest Studio — your business could look like this.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('burger').addEventListener('click', function(){
+    document.getElementById('mobileMenu').classList.toggle('open');
+  });
+</script>
+</body>
+</html>

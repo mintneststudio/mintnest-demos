@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Maple Leaf Inn — Boutique Hotel &amp; B&amp;B · Niagara-on-the-Lake</title>
+<meta name="description" content="The Maple Leaf Inn — a six-room boutique B&B in Niagara-on-the-Lake, 80 minutes from Toronto. Rooms, rates, amenities and booking.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--cream:#faf5ec;--ink:#2e2118;--maple:#9a3b26;--sage:#66755a;--gold:#b8892f;--line:#e8dbc4;--card:#fffdf7}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--cream);color:var(--ink);line-height:1.6}
+  img{display:block;max-width:100%}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 20px}
+  h1,h2,h3{font-family:'Playfair Display',Georgia,serif}
+  header{position:sticky;top:0;z-index:60;background:rgba(250,245,236,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+  .brand{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;color:var(--maple);text-decoration:none}
+  .brand small{display:block;font-family:'Inter',sans-serif;font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--sage);font-weight:600}
+  .links{display:none;gap:26px}
+  .links a{text-decoration:none;font-weight:500;font-size:.95rem;color:var(--ink)}
+  .links a:hover{color:var(--maple)}
+  .callbtn{background:var(--maple);color:#fff;text-decoration:none;font-weight:600;padding:10px 18px;border-radius:999px;font-size:.92rem}
+  .burger{background:none;border:0;font-size:1.5rem;cursor:pointer;color:var(--ink);padding:6px 10px}
+  .mobile{display:none;border-top:1px solid var(--line);padding:10px 0 14px}
+  .mobile a{display:block;padding:9px 2px;text-decoration:none;font-weight:500;color:var(--ink)}
+  .mobile.open{display:block}
+  @media(min-width:820px){.links{display:flex}.burger{display:none}}
+  .hero{background:linear-gradient(rgba(28,16,8,.5),rgba(28,16,8,.6)),url('https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=70') center/cover,#3d2c1e;color:#fff;text-align:center;padding:100px 20px 88px}
+  .hero .since{letter-spacing:.3em;text-transform:uppercase;font-size:.78rem;color:#f0d9a8;font-weight:600}
+  .hero h1{font-size:clamp(2.4rem,7vw,4rem);margin:12px 0 10px}
+  .hero p{max-width:560px;margin:0 auto 26px;color:#f6ecda;font-size:1.05rem}
+  .hero .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .btn{display:inline-block;text-decoration:none;font-weight:600;padding:13px 26px;border-radius:999px}
+  .btn-gold{background:var(--gold);color:#fff}.btn-gold:hover{background:#a3781f}
+  .btn-ghost{border:2px solid #fff;color:#fff}.btn-ghost:hover{background:rgba(255,255,255,.14)}
+  .rating{margin-top:26px;font-size:.95rem;color:#ffe9b0}
+  section{padding:56px 0}
+  .kicker{text-align:center;letter-spacing:.28em;text-transform:uppercase;font-size:.74rem;color:var(--sage);font-weight:700}
+  h2.title{text-align:center;font-size:clamp(1.7rem,4.5vw,2.3rem);margin:8px 0 8px;color:var(--maple)}
+  .sub{text-align:center;color:#6f5d4c;max-width:620px;margin:0 auto 34px}
+  .rooms{display:grid;gap:20px}
+  @media(min-width:820px){.rooms{grid-template-columns:1fr 1fr}}
+  .room{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+  .room .ph{aspect-ratio:16/10;background:linear-gradient(135deg,#66755a,#2e2118)}
+  .room .ph img{width:100%;height:100%;object-fit:cover}
+  .room .body{padding:20px 22px 22px}
+  .room .top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+  .room h3{font-size:1.35rem;color:var(--ink)}
+  .room .price{font-weight:700;color:var(--maple);white-space:nowrap}
+  .room .price small{color:#8a7863;font-weight:500}
+  .room p{color:#6f5d4c;font-size:.94rem;margin:8px 0 12px}
+  .room .meta{font-size:.85rem;color:var(--sage);font-weight:600}
+  .amen{background:#f3ead9;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .amen-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  @media(min-width:820px){.amen-grid{grid-template-columns:repeat(4,1fr)}}
+  .amen-item{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;text-align:center}
+  .amen-item .ic{font-size:1.7rem}
+  .amen-item h4{font-size:.98rem;margin:8px 0 4px}
+  .amen-item p{font-size:.85rem;color:#6f5d4c}
+  .reviews{display:grid;gap:16px}
+  @media(min-width:820px){.reviews{grid-template-columns:repeat(3,1fr)}}
+  .review{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .review .stars{color:var(--gold);letter-spacing:2px}
+  .review p{font-size:.94rem;color:#57493a;margin:8px 0}
+  .review b{font-size:.9rem}
+  .visit{display:grid;gap:26px}
+  @media(min-width:820px){.visit{grid-template-columns:1fr 1fr}}
+  .hours{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px}
+  .hours table{width:100%;border-collapse:collapse}
+  .hours td{padding:7px 0;border-bottom:1px solid var(--line);font-size:.95rem}
+  .hours td:last-child{text-align:right;font-weight:600}
+  .hours tr:last-child td{border-bottom:0}
+  .reserve{background:var(--maple);color:#fff;border-radius:14px;padding:28px;text-align:center;display:flex;flex-direction:column;justify-content:center;gap:10px}
+  .reserve h3{font-size:1.5rem}
+  .reserve p{color:#f3ddd2;font-size:.95rem}
+  .reserve .btn{align-self:center;margin-top:6px}
+  footer{border-top:1px solid var(--line);padding:26px 0 34px;text-align:center;color:#7a6a58;font-size:.88rem}
+  footer a{color:var(--maple);font-weight:600;text-decoration:none}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#">The Maple Leaf Inn<small>Niagara-on-the-Lake · Est. 1998</small></a>
+    <nav class="links">
+      <a href="#rooms">Rooms</a><a href="#amenities">Amenities</a><a href="#reviews">Reviews</a><a href="#visit">Good to know</a>
+    </nav>
+    <a class="callbtn" href="tel:+14165550139">📞 Book your stay</a>
+    <button class="burger" id="burger" aria-label="Menu">☰</button>
+  </div>
+  <div class="wrap mobile" id="mobileMenu">
+    <a href="#rooms">Rooms &amp; Rates</a><a href="#amenities">Amenities</a><a href="#reviews">Reviews</a><a href="#visit">Check-in &amp; Booking</a>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="since">A six-room hideaway · 80 minutes from Toronto</div>
+  <h1>Slow mornings,<br>maple-syrup breakfasts</h1>
+  <p>A wraparound porch, a wood stove in the library, and breakfast worth waking up for — in the heart of wine country.</p>
+  <div class="btns">
+    <a class="btn btn-gold" href="tel:+14165550139">📞 Check availability</a>
+    <a class="btn btn-ghost" href="#rooms">See rooms &amp; rates</a>
+  </div>
+  <div class="rating">★★★★★ 4.9 — from 486 Google reviews · Breakfast included in every rate</div>
+</div>
+
+<section id="rooms">
+  <div class="wrap">
+    <div class="kicker">Stay with us</div>
+    <h2 class="title">Rooms &amp; rates</h2>
+    <p class="sub">Rates are per night in CAD and always include our full cooked breakfast, parking, and bikes to borrow. Two-night minimum on summer weekends.</p>
+    <div class="rooms">
+      <div class="room">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1000&q=70" alt="The Maple Room with king bed" loading="lazy"></div>
+        <div class="body">
+          <div class="top"><h3>The Maple Room</h3><div class="price">$189 <small>/ night</small></div></div>
+          <p>Our cosiest room — king bed, reading nook under the eaves, and a soaker tub in the ensuite. Looks over the back garden and the maple it's named for.</p>
+          <div class="meta">Sleeps 2 · King bed · Ensuite soaker tub · Garden view</div>
+        </div>
+      </div>
+      <div class="room">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1000&q=70" alt="The Orchard Suite with sitting area" loading="lazy"></div>
+        <div class="body">
+          <div class="top"><h3>The Orchard Suite</h3><div class="price">$259 <small>/ night</small></div></div>
+          <p>A proper suite: separate sitting room with fireplace, king bedroom, and a balcony made for morning coffee as the mist lifts off the orchard.</p>
+          <div class="meta">Sleeps 2–3 · Fireplace · Private balcony · Rain shower</div>
+        </div>
+      </div>
+      <div class="room">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=1000&q=70" alt="The Lakeside Loft with bright windows" loading="lazy"></div>
+        <div class="body">
+          <div class="top"><h3>The Lakeside Loft</h3><div class="price">$329 <small>/ night</small></div></div>
+          <p>The top-floor loft — vaulted ceilings, a freestanding copper tub, and a telescope by the window for Lake Ontario sunsets and starry nights.</p>
+          <div class="meta">Sleeps 2 · Copper tub · Lake view · Skylights</div>
+        </div>
+      </div>
+      <div class="room">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1591088398332-8a7791972843?auto=format&fit=crop&w=1000&q=70" alt="The Garden Cottage interior" loading="lazy"></div>
+        <div class="body">
+          <div class="top"><h3>The Garden Cottage</h3><div class="price">$379 <small>/ night</small></div></div>
+          <p>Your own little house at the bottom of the garden — kitchenette, wood stove, private terrace with a hot tub, and breakfast delivered in a hamper.</p>
+          <div class="meta">Sleeps 4 · Kitchenette · Private hot tub · Dogs welcome</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="amen" id="amenities">
+  <div class="wrap">
+    <div class="kicker">Included &amp; nearby</div>
+    <h2 class="title">Amenities</h2>
+    <p class="sub">The little things are the whole point.</p>
+    <div class="amen-grid">
+      <div class="amen-item"><div class="ic">🥞</div><h4>Cooked breakfast</h4><p>Maple pancakes, farm eggs &amp; seasonal preserves, 7:30–10 am</p></div>
+      <div class="amen-item"><div class="ic">🚲</div><h4>Bikes to borrow</h4><p>Six cruisers with baskets for winery-hopping</p></div>
+      <div class="amen-item"><div class="ic">🍷</div><h4>Wine-country tours</h4><p>We book tastings at 14 partner estates — shuttle included</p></div>
+      <div class="amen-item"><div class="ic">📚</div><h4>Library &amp; stove</h4><p>Board games, vinyl, and a wood stove on chilly nights</p></div>
+      <div class="amen-item"><div class="ic">🛁</div><h4>Garden hot tub</h4><p>Book a private hour under the stars</p></div>
+      <div class="amen-item"><div class="ic">📶</div><h4>Fast Wi-Fi</h4><p>Fibre in every room, if you must (we won't tell)</p></div>
+      <div class="amen-item"><div class="ic">🅿️</div><h4>Free parking + EV</h4><p>On-site parking and two EV chargers</p></div>
+      <div class="amen-item"><div class="ic">🐾</div><h4>Dogs welcome</h4><p>In the Garden Cottage — treats at check-in</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews">
+  <div class="wrap">
+    <div class="kicker">Guest book</div>
+    <h2 class="title">What guests say</h2>
+    <p class="sub">★★★★★ 4.9 average across 486 Google reviews.</p>
+    <div class="reviews">
+      <div class="review"><div class="stars">★★★★★</div><p>"The breakfast alone is worth the drive from Toronto. Hosts remembered our names, our coffee order, everything. We've already rebooked for fall colours."</p><b>— Melissa T., Toronto</b></div>
+      <div class="review"><div class="stars">★★★★★</div><p>"Stayed in the Lakeside Loft for our anniversary. Sunset over the lake, copper tub, total quiet. Better than hotels three times the price."</p><b>— Andrew &amp; Kate W., Buffalo</b></div>
+      <div class="review"><div class="stars">★★★★★</div><p>"The cottage with our dog was perfect — private hot tub after a day of wine tasting. The hamper breakfast on the terrace was a lovely touch."</p><b>— The Nguyen Family, Hamilton</b></div>
+    </div>
+  </div>
+</section>
+
+<section id="visit" style="padding-top:0">
+  <div class="wrap">
+    <div class="kicker">Good to know</div>
+    <h2 class="title">Check-in &amp; booking</h2>
+    <p class="sub">124 Queen Street, Niagara-on-the-Lake, ON L0S 1J0 · Free cancellation up to 7 days before arrival</p>
+    <div class="visit">
+      <div class="hours">
+        <table>
+          <tr><td>Check-in</td><td>3:00 pm – 8:00 pm</td></tr>
+          <tr><td>Check-out</td><td>Until 11:00 am</td></tr>
+          <tr><td>Breakfast</td><td>7:30 am – 10:00 am</td></tr>
+          <tr><td>Front desk phone</td><td>8:00 am – 9:00 pm</td></tr>
+        </table>
+      </div>
+      <div class="reserve">
+        <h3>Book direct &amp; save 10%</h3>
+        <p>Call us and book direct — no booking-site fees, and we'll match any rate you find for the same room and dates.</p>
+        <a class="btn btn-gold" href="tel:+14165550139">📞 (416) 555-0139</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><a href="../index.html">← All demos</a></p>
+    <p style="margin-top:8px">Demo website by MintNest Studio — your business could look like this.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('burger').addEventListener('click', function(){
+    document.getElementById('mobileMenu').classList.toggle('open');
+  });
+</script>
+</body>
+</html>

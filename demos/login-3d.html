@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OrbitPay — Sign in</title>
+<meta name="description" content="OrbitPay demo login — a playful 3D-card sign-in page design by MintNest Studio.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Nunito',system-ui,sans-serif;min-height:100vh;color:#fff;position:relative;overflow-x:hidden;
+    background:linear-gradient(120deg,#ff9a56 0%,#ff6a95 48%,#7c5cff 100%);
+    display:flex;flex-direction:column}
+  /* floating shapes */
+  .shape{position:absolute;border-radius:50%;pointer-events:none;animation:float 7s ease-in-out infinite}
+  .s1{width:130px;height:130px;background:rgba(255,255,255,.22);top:9%;left:5%}
+  .s2{width:70px;height:70px;background:rgba(255,255,255,.28);bottom:16%;left:11%;animation-delay:1.2s}
+  .s3{width:190px;height:190px;background:rgba(124,92,255,.35);top:-50px;right:6%;animation-delay:.6s}
+  .s4{width:52px;height:52px;background:rgba(255,209,102,.75);bottom:10%;right:13%;animation-delay:2s}
+  .s5{width:26px;height:26px;background:rgba(255,255,255,.5);top:38%;right:26%;animation-delay:1.6s}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+  .topbar{position:relative;z-index:3;display:flex;justify-content:space-between;align-items:center;padding:18px 22px;max-width:1120px;width:100%;margin:0 auto}
+  .topbar a{color:rgba(255,255,255,.88);text-decoration:none;font-size:.92rem;font-weight:800}
+  .topbar a:hover{color:#fff}
+  .stage{position:relative;z-index:2;flex:1;display:flex;align-items:center;justify-content:center;padding:20px 18px 46px;perspective:1200px}
+  .layout{display:grid;gap:36px;align-items:center;width:100%;max-width:980px}
+  @media(min-width:880px){.layout{grid-template-columns:1.02fr .98fr}}
+  .pitch h1{font-size:clamp(2.1rem,6vw,3.2rem);line-height:1.07;font-weight:900;letter-spacing:-.01em;text-shadow:0 4px 22px rgba(120,20,80,.25)}
+  .pitch p{color:rgba(255,255,255,.92);margin:16px 0 22px;max-width:440px;font-size:1.05rem;line-height:1.6;font-weight:600}
+  .pitch ul{list-style:none;display:grid;gap:11px;font-size:.97rem;font-weight:700}
+  .pitch li{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);display:inline-flex;align-items:center;gap:9px;padding:9px 15px;border-radius:999px;justify-self:start;backdrop-filter:blur(4px)}
+  @media(max-width:879px){.pitch{text-align:center}.pitch p{margin-left:auto;margin-right:auto}.pitch li{justify-self:center}}
+  /* 3D card */
+  .cardwrap{position:relative;max-width:430px;width:100%;margin:0 auto}
+  .card{background:#fff;color:#241d33;border-radius:28px;padding:32px 28px;position:relative;
+    box-shadow:0 34px 60px rgba(94,16,84,.38),0 6px 16px rgba(94,16,84,.2);
+    transform-style:preserve-3d;transition:transform .25s ease;will-change:transform}
+  .chip{position:absolute;background:#fff;color:#3b2a63;font-weight:800;font-size:.84rem;padding:9px 15px;border-radius:999px;
+    box-shadow:0 14px 28px rgba(94,16,84,.3);animation:float 6s ease-in-out infinite;z-index:4;white-space:nowrap}
+  .chip-a{top:-18px;left:-24px;transform:rotate(-5deg)}
+  .chip-b{bottom:34px;right:-30px;transform:rotate(4deg);animation-delay:1.4s}
+  @media(max-width:560px){.chip{display:none}}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:900;font-size:1.25rem;color:#241d33}
+  .logo .mark{width:36px;height:36px;border-radius:12px;background:linear-gradient(135deg,#ff6a95,#7c5cff);display:flex;align-items:center;justify-content:center;font-size:1.05rem;color:#fff;box-shadow:0 8px 18px rgba(255,106,149,.5)}
+  .card h2{font-size:1.45rem;font-weight:900;margin:12px 0 4px}
+  .card .sub{color:#7a7391;font-size:.93rem;margin-bottom:20px;font-weight:600}
+  .tabs{display:flex;background:#f1eefc;border-radius:999px;padding:5px;margin-bottom:20px}
+  .tabs button{flex:1;border:0;background:transparent;color:#7a7391;font:inherit;font-weight:800;font-size:.92rem;padding:10px 0;border-radius:999px;cursor:pointer}
+  .tabs button.active{background:linear-gradient(90deg,#ff6a95,#7c5cff);color:#fff;box-shadow:0 6px 14px rgba(255,106,149,.4)}
+  label{display:block;font-size:.84rem;font-weight:800;color:#3b2a63;margin:14px 0 6px}
+  input{width:100%;padding:14px 16px;border-radius:16px;border:2px solid #e6e1f5;background:#faf9ff;color:#241d33;font:inherit;font-size:.97rem;font-weight:600;outline:none}
+  input::placeholder{color:#a49cc0;font-weight:600}
+  input:focus{border-color:#7c5cff;background:#fff;box-shadow:0 0 0 4px rgba(124,92,255,.16)}
+  .row{display:flex;justify-content:space-between;align-items:center;margin:14px 0 4px;font-size:.87rem}
+  .row label{display:flex;align-items:center;gap:7px;margin:0;font-weight:700;color:#7a7391;cursor:pointer}
+  .row input{width:auto;accent-color:#ff6a95}
+  .row a{color:#7c5cff;text-decoration:none;font-weight:800}
+  .row a:hover{text-decoration:underline}
+  .submit{width:100%;margin-top:18px;padding:15px;border:0;border-radius:16px;cursor:pointer;
+    background:linear-gradient(90deg,#ff9a56,#ff6a95);color:#fff;font:inherit;font-weight:900;font-size:1.02rem;
+    box-shadow:0 14px 26px rgba(255,106,149,.45);transition:transform .15s ease,box-shadow .15s ease}
+  .submit:hover{transform:translateY(-2px) scale(1.01);box-shadow:0 18px 32px rgba(255,106,149,.55)}
+  .divider{display:flex;align-items:center;gap:12px;color:#a49cc0;font-size:.8rem;margin:20px 0 14px;font-weight:700}
+  .divider::before,.divider::after{content:"";flex:1;height:2px;background:#efeafd;border-radius:2px}
+  .social{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .social button{padding:12px;border-radius:16px;border:2px solid #e6e1f5;background:#fff;color:#3b2a63;font:inherit;font-weight:800;font-size:.9rem;cursor:pointer}
+  .social button:hover{border-color:#7c5cff}
+  .notice{display:none;margin-top:16px;border:1px solid #7fe0a8;background:#e9fbef;color:#136f3c;border-radius:16px;padding:12px 14px;font-size:.88rem;text-align:center;font-weight:700}
+  .fineprint{margin-top:18px;text-align:center;font-size:.78rem;color:#a49cc0;font-weight:600}
+  footer{position:relative;z-index:2;text-align:center;padding:0 18px 26px;color:rgba(255,255,255,.9);font-size:.85rem;font-weight:700}
+  footer a{color:#fff;text-decoration:underline}
+</style>
+</head>
+<body>
+
+<div class="shape s1"></div><div class="shape s2"></div><div class="shape s3"></div><div class="shape s4"></div><div class="shape s5"></div>
+
+<div class="topbar">
+  <a href="../index.html">← All demos</a>
+  <a href="../index.html">MintNest Studio</a>
+</div>
+
+<div class="stage">
+  <div class="layout">
+    <div class="pitch">
+      <h1>Money that moves at your speed.</h1>
+      <p>OrbitPay sends money to friends, family and 40+ countries in seconds — with rates you can actually understand before you tap send.</p>
+      <ul>
+        <li>⚡ Average transfer time: 20 seconds</li>
+        <li>💸 Upfront fees — no surprises, ever</li>
+        <li>🌍 40+ countries, 12 currencies</li>
+      </ul>
+    </div>
+
+    <div class="cardwrap">
+      <div class="chip chip-a">⚡ Instant transfers</div>
+      <div class="chip chip-b">0% fees on your first $500*</div>
+      <form class="card" id="tiltCard" onsubmit="return demoSubmit(event)">
+        <div class="logo"><div class="mark">◎</div>OrbitPay</div>
+        <h2 id="formTitle">Welcome back!</h2>
+        <p class="sub" id="formSub">Pick up right where you left off — your money missed you.</p>
+
+        <div class="tabs">
+          <button type="button" id="tabIn" class="active" onclick="switchTab('in')">Sign in</button>
+          <button type="button" id="tabUp" onclick="switchTab('up')">Create account</button>
+        </div>
+
+        <div id="nameField" style="display:none">
+          <label for="name">Full name</label>
+          <input id="name" type="text" placeholder="Alex Morgan" autocomplete="name">
+        </div>
+
+        <label for="email">Email address</label>
+        <input id="email" type="email" placeholder="you@email.com" autocomplete="email" required>
+
+        <label for="password">Password</label>
+        <input id="password" type="password" placeholder="••••••••••" autocomplete="current-password" required>
+
+        <div class="row" id="rememberRow">
+          <label><input type="checkbox" checked> Keep me signed in</label>
+          <a href="#" onclick="return false">Forgot password?</a>
+        </div>
+
+        <button class="submit" type="submit" id="submitBtn">Sign in →</button>
+
+        <div class="notice" id="notice">✅ This is a design demo by MintNest Studio — no data is sent anywhere. Your app could look exactly like this.</div>
+
+        <div class="divider">or continue with</div>
+        <div class="social">
+          <button type="button" onclick="showNotice()">G&nbsp; Google</button>
+          <button type="button" onclick="showNotice()">&nbsp; Apple</button>
+        </div>
+
+        <p class="fineprint">*New customers, first transfer only.<br>By continuing you agree to the Terms &amp; Privacy Policy.</p>
+      </form>
+    </div>
+  </div>
+</div>
+
+<footer>
+  Demo website by MintNest Studio — your business could look like this · <a href="../index.html">← All demos</a>
+</footer>
+
+<script>
+  /* strong playful 3D tilt on the card */
+  (function(){
+    var card = document.getElementById('tiltCard');
+    if (!window.matchMedia || !matchMedia('(pointer:fine)').matches) return;
+    document.querySelector('.stage').addEventListener('mousemove', function(e){
+      var r = card.getBoundingClientRect();
+      var x = (e.clientX - r.left - r.width/2) / r.width;
+      var y = (e.clientY - r.top - r.height/2) / r.height;
+      card.style.transform = 'rotateY(' + (x*12).toFixed(2) + 'deg) rotateX(' + (-y*12).toFixed(2) + 'deg)';
+    });
+    document.querySelector('.stage').addEventListener('mouseleave', function(){
+      card.style.transform = 'rotateY(0deg) rotateX(0deg)';
+    });
+  })();
+
+  function switchTab(which){
+    var up = which === 'up';
+    document.getElementById('tabIn').classList.toggle('active', !up);
+    document.getElementById('tabUp').classList.toggle('active', up);
+    document.getElementById('nameField').style.display = up ? 'block' : 'none';
+    document.getElementById('rememberRow').style.display = up ? 'none' : 'flex';
+    document.getElementById('formTitle').textContent = up ? 'Join OrbitPay 🚀' : 'Welcome back!';
+    document.getElementById('formSub').textContent = up ? 'Two minutes to your first instant transfer.' : 'Pick up right where you left off — your money missed you.';
+    document.getElementById('submitBtn').textContent = up ? 'Create free account →' : 'Sign in →';
+  }
+  function showNotice(){
+    document.getElementById('notice').style.display = 'block';
+  }
+  function demoSubmit(e){
+    e.preventDefault();
+    showNotice();
+    return false;
+  }
+</script>
+</body>
+</html>

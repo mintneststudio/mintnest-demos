@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BrightSmile Dental Clinic — Dentist in Austin · Checkups, Whitening, Implants</title>
+<meta name="description" content="BrightSmile Dental Clinic, Austin — gentle family dentistry: checkups, whitening, implants and Invisalign. Transparent prices, most PPO insurance accepted, book by phone.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#f5f9fc;--ink:#17323f;--blue:#0e6ea8;--bluedeep:#0a527e;--sky:#e2f0f8;--teal:#17a398;--line:#d7e6ef;--card:#ffffff}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+  img{display:block;max-width:100%}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 20px}
+  h1,h2,h3{font-weight:800;letter-spacing:-.01em}
+  header{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.97);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+  .brand{font-size:1.3rem;font-weight:800;color:var(--bluedeep);text-decoration:none}
+  .brand span{color:var(--teal)}
+  .brand small{display:block;font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:#5d7d8c;font-weight:600}
+  .links{display:none;gap:26px}
+  .links a{text-decoration:none;font-weight:500;font-size:.95rem;color:var(--ink)}
+  .links a:hover{color:var(--blue)}
+  .callbtn{background:var(--blue);color:#fff;text-decoration:none;font-weight:600;padding:10px 18px;border-radius:999px;font-size:.92rem}
+  .burger{background:none;border:0;font-size:1.5rem;cursor:pointer;color:var(--ink);padding:6px 10px}
+  .mobile{display:none;border-top:1px solid var(--line);padding:10px 0 14px}
+  .mobile a{display:block;padding:9px 2px;text-decoration:none;font-weight:500;color:var(--ink)}
+  .mobile.open{display:block}
+  @media(min-width:820px){.links{display:flex}.burger{display:none}}
+  .hero{background:linear-gradient(rgba(8,52,80,.62),rgba(8,52,80,.7)),url('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1600&q=70') center/cover,#0a527e;color:#fff;text-align:center;padding:96px 20px 84px}
+  .hero .since{letter-spacing:.28em;text-transform:uppercase;font-size:.78rem;color:#a8dcf5;font-weight:700}
+  .hero h1{font-size:clamp(2.3rem,7vw,3.8rem);margin:12px 0 10px}
+  .hero p{max-width:580px;margin:0 auto 26px;color:#e3f2fa;font-size:1.05rem}
+  .hero .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .btn{display:inline-block;text-decoration:none;font-weight:700;padding:13px 26px;border-radius:999px}
+  .btn-teal{background:var(--teal);color:#fff}.btn-teal:hover{background:#12897f}
+  .btn-ghost{border:2px solid #fff;color:#fff}.btn-ghost:hover{background:rgba(255,255,255,.14)}
+  .rating{margin-top:26px;font-size:.95rem;color:#ffe9a8}
+  section{padding:56px 0}
+  .kicker{text-align:center;letter-spacing:.26em;text-transform:uppercase;font-size:.74rem;color:var(--blue);font-weight:700}
+  h2.title{text-align:center;font-size:clamp(1.7rem,4.5vw,2.3rem);margin:8px 0 8px;color:var(--bluedeep)}
+  .sub{text-align:center;color:#55707e;max-width:620px;margin:0 auto 34px}
+  .svc-sec{background:var(--sky);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .svc-grid{display:grid;gap:16px}
+  @media(min-width:820px){.svc-grid{grid-template-columns:1fr 1fr}}
+  .svc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px}
+  .svc .top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+  .svc h3{font-size:1.15rem;color:var(--bluedeep)}
+  .svc .price{font-weight:800;color:var(--teal);white-space:nowrap}
+  .svc p{font-size:.92rem;color:#55707e;margin-top:6px}
+  .note{max-width:760px;margin:22px auto 0;background:#fff8e2;border:1px solid #ecd28a;border-radius:12px;padding:16px 20px;font-size:.94rem;color:#6b5510;text-align:center}
+  .team{display:grid;gap:16px}
+  @media(min-width:820px){.team{grid-template-columns:repeat(3,1fr)}}
+  .person{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;text-align:center;padding-bottom:18px}
+  .person .ph{aspect-ratio:4/3;background:linear-gradient(135deg,#0e6ea8,#17a398)}
+  .person img{width:100%;height:100%;object-fit:cover}
+  .person h3{margin:14px 0 2px;font-size:1.12rem;color:var(--bluedeep)}
+  .person .role{font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);font-weight:700}
+  .person p{font-size:.9rem;color:#55707e;padding:8px 18px 0}
+  .reviews{display:grid;gap:16px}
+  @media(min-width:820px){.reviews{grid-template-columns:repeat(3,1fr)}}
+  .review{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .review .stars{color:#e8a812;letter-spacing:2px}
+  .review p{font-size:.94rem;color:#415c68;margin:8px 0}
+  .review b{font-size:.9rem}
+  .visit{display:grid;gap:26px}
+  @media(min-width:820px){.visit{grid-template-columns:1fr 1fr}}
+  .hours{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px}
+  .hours table{width:100%;border-collapse:collapse}
+  .hours td{padding:7px 0;border-bottom:1px solid var(--line);font-size:.95rem}
+  .hours td:last-child{text-align:right;font-weight:600}
+  .hours tr:last-child td{border-bottom:0}
+  .book{background:var(--bluedeep);color:#fff;border-radius:14px;padding:28px;text-align:center;display:flex;flex-direction:column;justify-content:center;gap:10px}
+  .book h3{font-size:1.5rem}
+  .book p{color:#cfe8f5;font-size:.95rem}
+  .book .btn{align-self:center;margin-top:6px;background:var(--teal);color:#fff}
+  footer{border-top:1px solid var(--line);padding:26px 0 34px;text-align:center;color:#7d99a8;font-size:.88rem;background:#fff}
+  footer a{color:var(--blue);font-weight:600;text-decoration:none}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#">Bright<span>Smile</span><small>Dental Clinic · Austin</small></a>
+    <nav class="links">
+      <a href="#services">Treatments</a><a href="#team">Dentists</a><a href="#reviews">Reviews</a><a href="#visit">Visit</a>
+    </nav>
+    <a class="callbtn" href="tel:+15125550163">📞 Book a visit</a>
+    <button class="burger" id="burger" aria-label="Menu">☰</button>
+  </div>
+  <div class="wrap mobile" id="mobileMenu">
+    <a href="#services">Treatments &amp; Prices</a><a href="#team">Our Dentists</a><a href="#reviews">Reviews</a><a href="#visit">Hours &amp; Location</a>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="since">Gentle family dentistry · Since 2009</div>
+  <h1>A healthier smile,<br>without the dread</h1>
+  <p>Nervous patients welcome. Transparent prices agreed before we start, Saturday hours, and a team that explains everything in plain English — never jargon.</p>
+  <div class="btns">
+    <a class="btn btn-teal" href="tel:+15125550163">📞 Book an appointment</a>
+    <a class="btn btn-ghost" href="#services">Treatments &amp; prices</a>
+  </div>
+  <div class="rating">★★★★★ 4.9 — from 1,530 Google reviews</div>
+</div>
+
+<section class="svc-sec" id="services" style="border-top:0">
+  <div class="wrap">
+    <div class="kicker">Treatments &amp; Prices</div>
+    <h2 class="title">What we do</h2>
+    <p class="sub">Fixed written quotes before any treatment begins — the price we agree is the price you pay. 0% payment plans on treatments over $500.</p>
+    <div class="svc-grid">
+      <div class="svc"><div class="top"><h3>New Patient Checkup &amp; Clean</h3><div class="price">$99</div></div><p>Full examination, digital X-rays, professional clean and polish, plus a personal treatment plan. Our most-booked first visit.</p></div>
+      <div class="svc"><div class="top"><h3>Professional Teeth Whitening</h3><div class="price">$299</div></div><p>In-chair whitening in about an hour — up to eight shades brighter, with a take-home top-up kit included.</p></div>
+      <div class="svc"><div class="top"><h3>Dental Implants</h3><div class="price">from $1,899</div></div><p>A permanent, natural-feeling replacement for a missing tooth: titanium implant, abutment and porcelain crown, placed by Dr. Alvarez.</p></div>
+      <div class="svc"><div class="top"><h3>Invisalign® &amp; Braces</h3><div class="price">from $3,200</div></div><p>Discreet clear aligners or modern braces for teens and adults, with free retainers at the end of treatment.</p></div>
+      <div class="svc"><div class="top"><h3>Fillings, Crowns &amp; Root Canal</h3><div class="price">from $149</div></div><p>Tooth-coloured fillings, same-day crowns in most cases, and gentle single-visit root canal therapy with microscope precision.</p></div>
+      <div class="svc"><div class="top"><h3>Emergency Dentistry</h3><div class="price">from $79</div></div><p>Toothache, chipped or knocked-out tooth? Same-day emergency slots held every morning — call before noon and we'll see you today.</p></div>
+    </div>
+    <div class="note">💳 <b>Insurance:</b> we accept most PPO plans (Delta Dental, Cigna, Aetna, MetLife, Guardian and more) and verify your coverage for free before your visit. No insurance? Ask about BrightSmile Membership — checkups, cleans and X-rays for $24/month.</div>
+  </div>
+</section>
+
+<section id="team">
+  <div class="wrap">
+    <div class="kicker">Meet the team</div>
+    <h2 class="title">Your dentists</h2>
+    <p class="sub">Three dentists, one promise: we treat you the way we'd treat our own family.</p>
+    <div class="team">
+      <div class="person"><div class="ph"><img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=700&q=70" alt="Dentist portrait" loading="lazy"></div><h3>Dr. Miguel Alvarez, DDS</h3><div class="role">Implants &amp; Cosmetic Dentistry</div><p>18 years of practice, 2,000+ implants placed. Miguel leads our cosmetic and restorative work.</p></div>
+      <div class="person"><div class="ph"><img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=700&q=70" alt="Dentist portrait" loading="lazy"></div><h3>Dr. Sarah Kim, DMD</h3><div class="role">Family &amp; Children's Dentistry</div><p>Our most-requested dentist for anxious patients and kids. Famous for painless injections and endless patience.</p></div>
+      <div class="person"><div class="ph"><img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=700&q=70" alt="Orthodontist portrait" loading="lazy"></div><h3>Dr. James Osei, DDS, MS</h3><div class="role">Orthodontics · Invisalign®</div><p>Board-certified orthodontist and Invisalign® Platinum provider. Straightens smiles for teens and adults alike.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews" style="padding-top:0">
+  <div class="wrap">
+    <div class="kicker">Reviews</div>
+    <h2 class="title">What patients say</h2>
+    <p class="sub">★★★★★ 4.9 average across 1,530 Google reviews.</p>
+    <div class="reviews">
+      <div class="review"><div class="stars">★★★★★</div><p>"I avoided dentists for six years out of fear. Dr. Kim got me through a root canal without a single flinch — and the price never changed from the quote."</p><b>— Daniel W., Austin</b></div>
+      <div class="review"><div class="stars">★★★★★</div><p>"Whitening before my wedding took one lunch break. Eight shades brighter is real — the photos are proof."</p><b>— Megan S., Round Rock</b></div>
+      <div class="review"><div class="stars">★★★★★</div><p>"Called at 9am with a cracked tooth, seen by 11, crown fitted the same week. They checked my insurance before I even sat down."</p><b>— Robert L., Cedar Park</b></div>
+    </div>
+  </div>
+</section>
+
+<section id="visit" style="padding-top:0">
+  <div class="wrap">
+    <div class="kicker">Visit us</div>
+    <h2 class="title">Hours &amp; appointments</h2>
+    <p class="sub">2410 S Congress Avenue, Austin, TX 78704 · Free patient parking behind the clinic</p>
+    <div class="visit">
+      <div class="hours">
+        <table>
+          <tr><td>Monday – Friday</td><td>8:00 am – 6:00 pm</td></tr>
+          <tr><td>Saturday</td><td>9:00 am – 3:00 pm</td></tr>
+          <tr><td>Sunday</td><td>Closed</td></tr>
+          <tr><td>Dental emergencies</td><td>Same-day, call from 7:30 am</td></tr>
+        </table>
+      </div>
+      <div class="book">
+        <h3>Book your visit</h3>
+        <p>New-patient checkups are $99 this month. Call us and we'll find a time that suits you — including Saturdays.</p>
+        <a class="btn" href="tel:+15125550163">📞 (512) 555-0163</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><a href="../index.html">← All demos</a></p>
+    <p style="margin-top:8px">Demo website by MintNest Studio — your business could look like this.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('burger').addEventListener('click', function(){
+    document.getElementById('mobileMenu').classList.toggle('open');
+  });
+</script>
+</body>
+</html>

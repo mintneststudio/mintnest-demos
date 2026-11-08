@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FixIt Fast — 24/7 Plumber &amp; Electrician · Toronto</title>
+<meta name="description" content="FixIt Fast — licensed plumbers and electricians across the GTA. 24/7 emergency call-outs, upfront prices, service areas and reviews.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#f6f7f9;--ink:#141a22;--navy:#101c2c;--orange:#f2622e;--steel:#33506e;--line:#dde3ea;--card:#ffffff}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.6}
+  img{display:block;max-width:100%}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 20px}
+  h1,h2,h3{font-family:'Archivo',sans-serif}
+  header{position:sticky;top:0;z-index:60;background:rgba(246,247,249,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+  .brand{font-family:'Archivo',sans-serif;font-size:1.35rem;font-weight:800;color:var(--navy);text-decoration:none}
+  .brand span{color:var(--orange)}
+  .brand small{display:block;font-family:'Inter',sans-serif;font-size:.64rem;letter-spacing:.22em;text-transform:uppercase;color:var(--steel);font-weight:600}
+  .links{display:none;gap:26px}
+  .links a{text-decoration:none;font-weight:500;font-size:.95rem;color:var(--ink)}
+  .links a:hover{color:var(--orange)}
+  .callbtn{background:var(--orange);color:#fff;text-decoration:none;font-weight:700;padding:10px 18px;border-radius:10px;font-size:.92rem}
+  .burger{background:none;border:0;font-size:1.5rem;cursor:pointer;color:var(--ink);padding:6px 10px}
+  .mobile{display:none;border-top:1px solid var(--line);padding:10px 0 14px}
+  .mobile a{display:block;padding:9px 2px;text-decoration:none;font-weight:500;color:var(--ink)}
+  .mobile.open{display:block}
+  @media(min-width:820px){.links{display:flex}.burger{display:none}}
+  .hero{background:linear-gradient(rgba(10,18,28,.72),rgba(10,18,28,.78)),url('https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=1600&q=70') center/cover,#101c2c;color:#fff;text-align:center;padding:92px 20px 80px}
+  .hero .alarm{display:inline-block;background:var(--orange);color:#fff;font-weight:700;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;padding:6px 14px;border-radius:999px}
+  .hero h1{font-size:clamp(2.2rem,6.5vw,3.8rem);margin:16px 0 10px;line-height:1.08}
+  .hero h1 span{color:#ffb59d}
+  .hero p{max-width:580px;margin:0 auto 26px;color:#e6ecf3;font-size:1.05rem}
+  .hero .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .btn{display:inline-block;text-decoration:none;font-weight:700;padding:14px 28px;border-radius:10px}
+  .btn-orange{background:var(--orange);color:#fff;font-size:1.05rem}.btn-orange:hover{background:#d94e21}
+  .btn-ghost{border:2px solid #fff;color:#fff}.btn-ghost:hover{background:rgba(255,255,255,.14)}
+  .badges{margin-top:28px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .badges span{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);padding:7px 14px;border-radius:999px;font-size:.86rem;font-weight:600}
+  section{padding:56px 0}
+  .kicker{text-align:center;letter-spacing:.26em;text-transform:uppercase;font-size:.74rem;color:var(--orange);font-weight:700}
+  h2.title{text-align:center;font-size:clamp(1.7rem,4.5vw,2.3rem);margin:8px 0 8px;color:var(--navy)}
+  .sub{text-align:center;color:#5b6774;max-width:640px;margin:0 auto 34px}
+  .svc-sec{background:#eceff3;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .svc-grid{display:grid;gap:30px}
+  @media(min-width:820px){.svc-grid{grid-template-columns:1fr 1fr}}
+  .svc-cat h3{font-size:1.3rem;color:var(--navy);border-bottom:3px solid var(--orange);display:inline-block;padding-bottom:4px;margin-bottom:14px}
+  .item{display:flex;gap:10px;margin-bottom:14px}
+  .item .dots{flex:1;border-bottom:2px dotted #a9b6c4;transform:translateY(-5px)}
+  .item h4{font-size:1rem;font-weight:700}
+  .item p{font-size:.87rem;color:#5b6774}
+  .item .price{font-weight:800;color:var(--orange);white-space:nowrap}
+  .steps{display:grid;gap:16px}
+  @media(min-width:820px){.steps{grid-template-columns:repeat(3,1fr)}}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px}
+  .step .n{width:40px;height:40px;border-radius:50%;background:var(--navy);color:#fff;font-family:'Archivo',sans-serif;font-weight:800;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+  .step h3{font-size:1.1rem;margin-bottom:6px}
+  .step p{font-size:.93rem;color:#5b6774}
+  .areas{background:var(--navy);color:#fff}
+  .areas h2.title{color:#fff}
+  .areas .sub{color:#c3cfdd}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:760px;margin:0 auto}
+  .chips span{border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.07);padding:8px 16px;border-radius:999px;font-weight:600;font-size:.92rem}
+  .reviews{display:grid;gap:16px}
+  @media(min-width:820px){.reviews{grid-template-columns:repeat(3,1fr)}}
+  .review{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .review .stars{color:var(--orange);letter-spacing:2px}
+  .review p{font-size:.94rem;color:#414c5a;margin:8px 0}
+  .review b{font-size:.9rem}
+  .visit{display:grid;gap:26px}
+  @media(min-width:820px){.visit{grid-template-columns:1fr 1fr}}
+  .hours{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px}
+  .hours table{width:100%;border-collapse:collapse}
+  .hours td{padding:7px 0;border-bottom:1px solid var(--line);font-size:.95rem}
+  .hours td:last-child{text-align:right;font-weight:700}
+  .hours tr:last-child td{border-bottom:0}
+  .reserve{background:var(--orange);color:#fff;border-radius:14px;padding:28px;text-align:center;display:flex;flex-direction:column;justify-content:center;gap:10px}
+  .reserve h3{font-size:1.55rem}
+  .reserve p{color:#ffe3d6;font-size:.95rem}
+  .reserve .btn{align-self:center;margin-top:6px;background:#fff;color:var(--orange)}
+  footer{border-top:1px solid var(--line);padding:26px 0 34px;text-align:center;color:#74808e;font-size:.88rem}
+  footer a{color:var(--orange);font-weight:700;text-decoration:none}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#">FixIt <span>Fast</span><small>Plumbing · Electrical · Toronto &amp; GTA</small></a>
+    <nav class="links">
+      <a href="#services">Services</a><a href="#how">How it works</a><a href="#areas">Areas</a><a href="#reviews">Reviews</a>
+    </nav>
+    <a class="callbtn" href="tel:+14165550199">📞 24/7 Emergency</a>
+    <button class="burger" id="burger" aria-label="Menu">☰</button>
+  </div>
+  <div class="wrap mobile" id="mobileMenu">
+    <a href="#services">Services &amp; Prices</a><a href="#how">How it works</a><a href="#areas">Service Areas</a><a href="#reviews">Reviews</a>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="alarm">🚨 Emergency? We answer in under a minute</div>
+  <h1>Burst pipe? No power?<br><span>We're already on our way.</span></h1>
+  <p>Licensed Toronto plumbers and electricians, at your door in 60–90 minutes across the GTA — with the price agreed before we start. No surprises, ever.</p>
+  <div class="btns">
+    <a class="btn btn-orange" href="tel:+14165550199">📞 Call (416) 555-0199</a>
+    <a class="btn btn-ghost" href="#services">See prices first</a>
+  </div>
+  <div class="badges">
+    <span>✔ Licensed &amp; insured</span><span>✔ Upfront flat prices</span><span>✔ 2-year workmanship warranty</span><span>★★★★★ 4.8 · 1,530 reviews</span>
+  </div>
+</div>
+
+<section class="svc-sec" id="services">
+  <div class="wrap">
+    <div class="kicker">Services &amp; prices</div>
+    <h2 class="title">Upfront prices, in writing</h2>
+    <p class="sub">Call-out is $89 — and it's free when you go ahead with the repair. Every job is quoted flat before work begins; the price we say is the price you pay.</p>
+    <div class="svc-grid">
+      <div class="svc-cat">
+        <h3>🔧 Plumbing</h3>
+        <div class="item"><div><h4>Emergency Call-Out</h4><p>24/7, anywhere in the GTA — waived if we do the repair</p></div><div class="dots"></div><div class="price">$89</div></div>
+        <div class="item"><div><h4>Drain Unblocking</h4><p>Sinks, toilets, main lines — camera inspection included</p></div><div class="dots"></div><div class="price">from $120</div></div>
+        <div class="item"><div><h4>Leak Detection &amp; Repair</h4><p>Non-invasive acoustic detection, same-visit fix in most cases</p></div><div class="dots"></div><div class="price">$150</div></div>
+        <div class="item"><div><h4>Water Heater Install</h4><p>Tank &amp; tankless, old unit removed and recycled</p></div><div class="dots"></div><div class="price">from $1,450</div></div>
+        <div class="item"><div><h4>Bathroom Rough-In</h4><p>Full plumbing for new bathrooms &amp; basements</p></div><div class="dots"></div><div class="price">Free quote</div></div>
+      </div>
+      <div class="svc-cat">
+        <h3>⚡ Electrical</h3>
+        <div class="item"><div><h4>Emergency Call-Out</h4><p>Sparkling outlets, dead panels, burning smells — call now</p></div><div class="dots"></div><div class="price">$89</div></div>
+        <div class="item"><div><h4>Panel Upgrade (100→200A)</h4><p>ESA permit &amp; inspection handled for you</p></div><div class="dots"></div><div class="price">from $1,900</div></div>
+        <div class="item"><div><h4>Lighting &amp; Sockets</h4><p>Pot lights, dimmers, USB outlets, EV charger points</p></div><div class="dots"></div><div class="price">from $110</div></div>
+        <div class="item"><div><h4>Fault Finding</h4><p>Tripping breakers and intermittent faults, fixed properly</p></div><div class="dots"></div><div class="price">$140</div></div>
+        <div class="item"><div><h4>Home Safety Inspection</h4><p>Full electrical &amp; plumbing health check with written report</p></div><div class="dots"></div><div class="price">$180</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="kicker">How it works</div>
+    <h2 class="title">Fixed in three steps</h2>
+    <p class="sub">No call centres, no vague "we'll see when we get there".</p>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><h3>Call or tap to book</h3><p>A real dispatcher answers 24/7, gives you a 2-hour arrival window, and texts you your technician's name and photo.</p></div>
+      <div class="step"><div class="n">2</div><h3>Agree the flat price</h3><p>Your technician diagnoses on site and quotes one flat price before any work starts. Say no, and you only pay the call-out.</p></div>
+      <div class="step"><div class="n">3</div><h3>Fixed &amp; guaranteed</h3><p>We fix it, clean up, and back the work with a 2-year warranty. Pay by card, e-transfer, or cash — receipt by email.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="areas" id="areas">
+  <div class="wrap">
+    <div class="kicker" style="color:#ffb59d">Where we work</div>
+    <h2 class="title">Service areas</h2>
+    <p class="sub">Based in Etobicoke, covering the whole Greater Toronto Area — typically at your door within 60–90 minutes.</p>
+    <div class="chips">
+      <span>Toronto</span><span>Etobicoke</span><span>North York</span><span>Scarborough</span><span>Mississauga</span><span>Brampton</span><span>Vaughan</span><span>Richmond Hill</span><span>Markham</span><span>Oakville</span><span>Milton</span><span>Pickering</span>
+    </div>
+  </div>
+</section>
+
+<section id="reviews">
+  <div class="wrap">
+    <div class="kicker">Reviews</div>
+    <h2 class="title">Neighbours who called us</h2>
+    <p class="sub">★★★★★ 4.8 average across 1,530 Google reviews.</p>
+    <div class="reviews">
+      <div class="review"><div class="stars">★★★★★</div><p>"Pipe burst at 2 am, tech was here by 3, water off and fixed by morning. The price never moved from the quote. Unreal service."</p><b>— Danielle R., Etobicoke</b></div>
+      <div class="review"><div class="stars">★★★★★</div><p>"Three electricians couldn't find our tripping fault. FixIt found it in 40 minutes — a melted wire in the panel. Straight talk, fair price."</p><b>— Mr. Chen, Markham</b></div>
+      <div class="review"><div class="stars">★★★★★</div><p>"Panel upgrade passed inspection first try and they patched the drywall too. Booked them again for our basement bathroom."</p><b>— The Osei Family, Vaughan</b></div>
+    </div>
+  </div>
+</section>
+
+<section id="visit" style="padding-top:0">
+  <div class="wrap">
+    <div class="kicker">Availability</div>
+    <h2 class="title">Hours — we're always open</h2>
+    <p class="sub">Head office: 88 Advance Road, Etobicoke, ON M8Z 2S6 · Licensed Master Plumbers &amp; ECRA/ESA Licensed Electrical Contractor</p>
+    <div class="visit">
+      <div class="hours">
+        <table>
+          <tr><td>Emergency line</td><td>24 hours, 7 days</td></tr>
+          <tr><td>Same-day bookings</td><td>Until 9:00 pm</td></tr>
+          <tr><td>Office &amp; quotes</td><td>Mon – Fri, 8:00 am – 6:00 pm</td></tr>
+          <tr><td>Average arrival (GTA)</td><td>60–90 minutes</td></tr>
+        </table>
+      </div>
+      <div class="reserve">
+        <h3>Problem can't wait?</h3>
+        <p>Turn off your water or breaker if it's safe to do so — then call us. A dispatcher answers in under a minute, day or night.</p>
+        <a class="btn" href="tel:+14165550199">📞 (416) 555-0199</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><a href="../index.html">← All demos</a></p>
+    <p style="margin-top:8px">Demo website by MintNest Studio — your business could look like this.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('burger').addEventListener('click', function(){
+    document.getElementById('mobileMenu').classList.toggle('open');
+  });
+</script>
+</body>
+</html>
