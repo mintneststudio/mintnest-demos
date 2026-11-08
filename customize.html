@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{--ink:#1c2430;--muted:#5c6572;--accent:#0f766e;--accent-d:#0b5f58;--gold:#b98a2f;--line:#e5e0d4;--bg:#f7f5f1;--card:#ffffff}
+  :root{--ink:#1c2430;--muted:#5c6572;--accent:#1d4e89;--accent-d:#163a66;--gold:#b98a2f;--line:#e5e0d4;--bg:#f7f5f1;--card:#ffffff}
   *{margin:0;padding:0;box-sizing:border-box}
   body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
   header{position:sticky;top:0;z-index:60;background:rgba(247,245,241,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
@@ -31,7 +31,7 @@
   .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
   .pills{display:flex;flex-wrap:wrap;gap:8px}
   .pill{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:8px 14px;font:inherit;font-size:.88rem;font-weight:600;cursor:pointer;color:var(--ink)}
-  .pill.active{border-color:var(--accent);background:#e6f4f1;color:var(--accent-d)}
+  .pill.active{border-color:var(--accent);background:#e8eefb;color:var(--accent-d)}
   .swatches{display:flex;gap:10px;align-items:center}
   .swatch{width:32px;height:32px;border-radius:50%;border:2.5px solid #fff;box-shadow:0 0 0 1.5px var(--line);cursor:pointer;padding:0}
   .swatch.active{box-shadow:0 0 0 2.5px var(--accent)}
@@ -108,12 +108,12 @@
 
     <label>Theme colour</label>
     <div class="swatches" id="themeSwatches">
-      <button type="button" class="swatch" data-th="teal" style="background:#0f766e" aria-label="Teal"></button>
+      <button type="button" class="swatch" data-th="navy" style="background:#1d4e89" aria-label="Navy"></button>
       <button type="button" class="swatch" data-th="burgundy" style="background:#6d1f2c" aria-label="Burgundy"></button>
       <button type="button" class="swatch" data-th="navy" style="background:#1d4e89" aria-label="Navy"></button>
       <button type="button" class="swatch" data-th="rose" style="background:#b23a5e" aria-label="Rose"></button>
       <button type="button" class="swatch" data-th="charcoal" style="background:#b98a2f" aria-label="Charcoal and gold"></button>
-      <span class="swlabel" id="swLabel">Theme: Teal</span>
+      <span class="swlabel" id="swLabel">Theme: Navy</span>
     </div>
 
     <label>Design level</label>
@@ -160,7 +160,7 @@
     "299": "Premium — $299 one-time. Top-tier finish: premium styling, depth and shadows — the version that makes people say wow."
   };
   var LVLS = ["60","199","299"];
-  var state = { t:"restaurant", th:"teal", lvl:"199" };
+  var state = { t:"restaurant", th:"navy", lvl:"199" };
 
   function $(id){ return document.getElementById(id); }
   var fName=$("fName"), fTagline=$("fTagline"), fCity=$("fCity"), fPhone=$("fPhone"), fEmail=$("fEmail");
@@ -244,6 +244,37 @@
     lastSrc = buildDemoURL(); frame.src = lastSrc;
   })();
 })();
+</script>
+
+<!-- swarm-rebuild -->
+<script>
+(function(){try{
+if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+var SEL=['header','.hero > *','section > *','.grid > *','.cards > *','.menu-grid > *','.gallery > *'];
+var seen=[],els=[];
+SEL.forEach(function(sel){document.querySelectorAll(sel).forEach(function(el){
+if(seen.indexOf(el)>-1)return;
+var root=el.closest?el.closest('[data-rbroot]'):null;
+if(root&&root!==el)return;
+if(el.classList&&el.classList.contains('reveal'))return;
+el.setAttribute('data-rbroot','1');seen.push(el);els.push(el);
+});});
+if(!els.length)return;
+var st=document.createElement('style');
+st.textContent='.rb-from{opacity:0!important;transform:translate(var(--rbx,0),var(--rby,26px)) rotate(var(--rbr,0deg)) scale(.93)!important;}.rb-in{opacity:1!important;transform:none!important;transition:opacity .6s ease,transform .6s cubic-bezier(.2,.85,.3,1.15)!important;}';
+document.head.appendChild(st);
+function prep(el){var dirs=[[-70,14,-6],[70,14,6],[0,-56,-4],[0,64,4],[-48,44,5],[48,44,-5]];var d=dirs[Math.floor(Math.random()*dirs.length)];el.style.setProperty('--rbx',d[0]+'px');el.style.setProperty('--rby',d[1]+'px');el.style.setProperty('--rbr',d[2]+'deg');el.classList.add('rb-from');}
+function play(el){setTimeout(function(){el.classList.add('rb-in');setTimeout(function(){el.classList.remove('rb-from');el.classList.remove('rb-in');el.style.removeProperty('--rbx');el.style.removeProperty('--rby');el.style.removeProperty('--rbr');},750);},20);}
+function sweep(){els.forEach(function(el){el.classList.remove('rb-from');el.classList.remove('rb-in');});}
+setTimeout(sweep,2600);
+var vh=window.innerHeight||800,first=[],rest=[];
+els.forEach(function(el){var r=el.getBoundingClientRect();if(r.top<vh*0.92&&r.bottom>0)first.push(el);else rest.push(el);});
+first.slice(0,16).forEach(function(el,i){prep(el);setTimeout(function(){play(el);},100*i+80);});
+if('IntersectionObserver' in window){
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var el=e.target;io.unobserve(el);prep(el);play(el);}});},{threshold:.08});
+rest.forEach(function(el){io.observe(el);});
+}
+}catch(err){}})();
 </script>
 </body>
 </html>
