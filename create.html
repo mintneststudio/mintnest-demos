@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Template Studio — Create Your Own Page, Free · MintNest Studio</title>
+<meta name="description" content="Make your own surprise page in minutes: pick a template, add a name, photo and message, set a secret PIN and download your page. Free templates with more premium designs to unlock.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#060b18; --bg2:#0a1428; --panel:#0e1a30; --panel2:#0b1626;
+    --ink:#eef2f8; --muted:#9db0c8; --line:rgba(212,175,55,.18); --line2:rgba(255,255,255,.08);
+    --gold:#d4af37; --gold2:#f0d47a;
+    --radius:20px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;overflow-x:hidden}
+  a{color:inherit}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+  ::selection{background:var(--gold);color:#1a1405}
+  button{font:inherit}
+
+  /* ---------- header ---------- */
+  header{position:sticky;top:0;z-index:90;background:rgba(6,11,24,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line2)}
+  .nav{display:flex;align-items:center;gap:18px;padding:9px 0;flex-wrap:wrap}
+  .logo{display:flex;align-items:center;gap:11px;text-decoration:none;font-family:'Fraunces',serif;font-weight:900;font-size:1.14rem;letter-spacing:.2px}
+  .logo .mark{width:32px;height:32px;border-radius:12px;background:linear-gradient(145deg,#12294d,#1d4e89);display:grid;place-items:center;box-shadow:0 6px 18px rgba(10,25,55,.6), inset 0 0 0 1px rgba(212,175,55,.5)}
+  .logo em{font-style:normal;color:var(--gold)}
+  .nav .links{display:none;gap:22px;margin-left:auto}
+  @media(min-width:860px){.nav .links{display:flex}}
+  .nav .links a{text-decoration:none;font-weight:600;font-size:.94rem;color:var(--muted)}
+  .nav .links a:hover{color:var(--gold2)}
+  .pill{display:inline-flex;align-items:center;gap:7px;background:rgba(212,175,55,.13);border:1px solid var(--gold);color:var(--gold2);font-weight:800;font-size:.8rem;padding:7px 14px;border-radius:999px}
+  .pill[hidden]{display:none}
+  .nav .cta{margin-left:auto;background:linear-gradient(135deg,var(--gold),#b98a2f);color:#191304;font-weight:800;font-size:.92rem;text-decoration:none;padding:10px 18px;border-radius:999px;box-shadow:0 8px 22px rgba(212,175,55,.35)}
+  @media(min-width:860px){.nav .cta{margin-left:0}}
+  .nav .spacer{margin-left:auto}
+  @media(min-width:860px){.nav .spacer{display:none}}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;padding:44px 0 8px;text-align:center;background:
+    radial-gradient(720px 380px at 15% -60px, rgba(59,110,196,.26), transparent 65%),
+    radial-gradient(820px 420px at 88% -40px, rgba(212,175,55,.16), transparent 65%),
+    linear-gradient(180deg, var(--bg2), var(--bg))}
+  .kick{display:inline-flex;align-items:center;gap:8px;background:rgba(212,175,55,.10);border:1px solid var(--line);color:var(--gold2);font-weight:700;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;padding:7px 15px;border-radius:999px}
+  .kick i{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 10px var(--gold)}
+  .hero h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.9rem,4.6vw,2.8rem);line-height:1.08;max-width:820px;margin:20px auto 14px}
+  .hero h1 .gold{background:linear-gradient(100deg,var(--gold2),var(--gold) 55%,#9a7b24);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p{color:var(--muted);font-size:clamp(1rem,2.2vw,1.13rem);max-width:620px;margin:0 auto 26px}
+  .btn{display:inline-block;text-decoration:none;font-weight:800;font-size:.98rem;padding:14px 26px;border-radius:999px;border:0;cursor:pointer;transition:transform .18s ease, box-shadow .18s ease;text-align:center}
+  .btn:hover{transform:translateY(-2px)}
+  .btn-gold{background:linear-gradient(135deg,var(--gold2),var(--gold) 60%,#a37f27);color:#191304;box-shadow:0 12px 30px rgba(212,175,55,.35)}
+  .btn-ghost{border:1.5px solid rgba(255,255,255,.28);color:var(--ink);background:rgba(255,255,255,.03)}
+  .btn-wa{background:#1faa55;color:#fff;box-shadow:0 12px 30px rgba(31,170,85,.3)}
+  .hero .btns{display:flex;gap:13px;justify-content:center;flex-wrap:wrap}
+
+  section{padding:56px 0}
+  .shead{text-align:center;max-width:680px;margin:0 auto 36px}
+  .shead .kick{margin-bottom:14px}
+  .shead h2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.8rem,4.2vw,2.5rem);line-height:1.12}
+  .shead p{color:var(--muted);margin-top:10px}
+
+  /* ---------- template gallery ---------- */
+  .tgrid{display:grid;gap:22px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+  .tcard{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line2);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:transform .22s ease, border-color .22s ease, box-shadow .22s ease}
+  .tcard:hover{transform:translateY(-5px);border-color:var(--line);box-shadow:0 24px 46px rgba(0,0,0,.45)}
+  .tcard.premium-card{border-color:rgba(212,175,55,.45)}
+  .thumb{position:relative;height:190px;overflow:hidden}
+  .thumb svg{position:absolute;inset:0;width:100%;height:100%}
+  .badge{position:absolute;top:12px;left:12px;z-index:3;font-size:.7rem;font-weight:800;letter-spacing:.12em;padding:6px 12px;border-radius:999px}
+  .badge-free{background:#1faa55;color:#fff}
+  .badge-premium{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#191304;box-shadow:0 6px 18px rgba(212,175,55,.4)}
+  .lockveil{position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,rgba(4,7,15,.18),rgba(4,7,15,.55));display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:#ffeec2;text-align:center;padding:12px}
+  .lockveil .lockbig{font-size:2rem;filter:drop-shadow(0 4px 10px rgba(0,0,0,.6))}
+  .lockveil b{font-size:.86rem;letter-spacing:.04em}
+  .tcard.open .lockveil{display:none}
+  .tbody{padding:19px 20px 21px;display:flex;flex-direction:column;gap:6px;flex:1}
+  .tbody h3{font-family:'Fraunces',serif;font-size:1.26rem;font-weight:700}
+  .tbody p{color:var(--muted);font-size:.92rem;flex:1}
+  .topen{margin-top:10px;background:rgba(255,255,255,.05);border:1px solid var(--line2);color:var(--ink);font-weight:800;font-size:.92rem;padding:12px 16px;border-radius:12px;cursor:pointer;transition:border-color .18s ease, background .18s ease}
+  .topen:hover{border-color:var(--gold)}
+  .topen.goldbtn{background:linear-gradient(135deg,var(--gold2),var(--gold) 60%,#a37f27);color:#191304;border:0}
+  .topen[disabled]{opacity:.75;cursor:default}
+  .gnote{text-align:center;color:var(--muted);font-size:.9rem;margin-top:22px}
+
+  /* ---------- maker ---------- */
+  .maker-grid{display:grid;gap:30px;align-items:start}
+  @media(min-width:920px){.maker-grid{grid-template-columns:1fr 400px}}
+  .tabs{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap}
+  .tab{flex:1;min-width:150px;border:1px solid var(--line2);background:rgba(255,255,255,.04);color:var(--muted);font-weight:800;font-size:.95rem;padding:13px 14px;border-radius:14px;cursor:pointer}
+  .tab.active{background:linear-gradient(135deg,var(--gold2),var(--gold) 60%,#a37f27);color:#191304;border:0}
+  .tab .sub{display:block;font-size:.74rem;font-weight:600;opacity:.85;margin-top:2px}
+  .ffield{margin-bottom:16px}
+  .ffield label{display:block;font-weight:700;font-size:.9rem;margin-bottom:7px}
+  .ffield label small{color:var(--muted);font-weight:500}
+  .ffield input[type=text], .ffield textarea{width:100%;background:#0a1730;border:1px solid var(--line2);border-radius:12px;color:var(--ink);font:inherit;font-size:.98rem;padding:13px 15px;outline:none;transition:border-color .15s ease}
+  .ffield input[type=text]:focus, .ffield textarea:focus{border-color:var(--gold)}
+  .ffield textarea{min-height:96px;resize:vertical}
+  .ffield input[type=file]{width:100%;background:#0a1730;border:1px dashed rgba(212,175,55,.4);border-radius:12px;color:var(--muted);font:inherit;font-size:.9rem;padding:12px 14px}
+  .gate-note{display:none;background:rgba(212,175,55,.09);border:1px solid var(--line);border-radius:14px;padding:15px 17px;color:#ffeec2;font-size:.93rem;margin-bottom:16px}
+  .gate-note.show{display:block}
+  .dlrow{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:4px}
+  .dl-note{color:var(--muted);font-size:.88rem;margin-top:12px;min-height:1.3em}
+  .dl-note b{color:var(--gold2)}
+
+  /* phone preview */
+  .phonewrap{position:sticky;top:86px}
+  .phonelabel{text-align:center;color:var(--muted);font-size:.82rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px}
+  .phone{max-width:350px;margin:0 auto;border:10px solid #1b2436;border-radius:38px;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.55);background:#fff}
+  .pv{min-height:540px;display:flex;flex-direction:column;align-items:center;text-align:center;padding:30px 22px 20px;position:relative}
+  .pv-free{background:linear-gradient(180deg,#fff8ec,#ffeef4);color:#33272b}
+  .pv-free .pv-cake{font-size:3rem}
+  .pv-small{font-size:.7rem;font-weight:800;letter-spacing:.3em;color:#c27a1d;margin-top:8px}
+  .pv-free h4{font-family:'Fraunces',serif;font-size:1.9rem;line-height:1.15;margin:6px 0 4px;color:#5b2333}
+  .pv-photo{width:150px;height:150px;object-fit:cover;border-radius:50%;border:4px solid #f3c96b;margin:12px 0 4px;box-shadow:0 10px 24px rgba(0,0,0,.18)}
+  .pv-msg{font-size:.95rem;color:#5c4a4a;margin-top:10px;white-space:pre-wrap}
+  .pv-from{margin-top:14px;font-size:.9rem;color:#8a6d3b}
+  .pv-pin{margin-top:auto;padding-top:16px;font-size:.76rem;color:#a08c7a}
+  .pv-wm{margin-top:8px;border-top:1px solid rgba(0,0,0,.09);padding-top:10px;font-size:.68rem;color:#9a8b83}
+  .pv-premium{background:radial-gradient(600px 300px at 50% -80px, rgba(212,175,55,.25), transparent 60%),linear-gradient(180deg,#0a1428,#060b18);color:var(--ink)}
+  .pv-premium .pv-cake{font-size:3rem}
+  .pv-premium .pv-small{color:var(--gold2)}
+  .pv-premium h4{font-family:'Fraunces',serif;font-size:2rem;line-height:1.15;margin:6px 0 4px;background:linear-gradient(100deg,var(--gold2),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .pv-premium .pv-photo{border-color:var(--gold)}
+  .pv-letter{margin-top:14px;background:rgba(255,255,255,.045);border:1px solid var(--line);border-radius:14px;padding:15px 16px;font-size:.92rem;color:#dbe6f5;white-space:pre-wrap;text-align:left;width:100%}
+  .pv-premium .pv-from{color:var(--gold2)}
+  .pv-premium .pv-pin{color:#7186a3}
+
+  /* ---------- premium bar ---------- */
+  .premiumbar{display:none;background:linear-gradient(120deg,#14264a,#0d1830);border:1px solid var(--gold);border-radius:16px;padding:16px 20px;margin-bottom:26px;align-items:center;gap:12px;flex-wrap:wrap}
+  .premiumbar.show{display:flex}
+  .premiumbar b{color:var(--gold2)}
+  .premiumbar span{color:var(--muted);font-size:.9rem}
+
+  /* ---------- paywall modal ---------- */
+  .modalback{position:fixed;inset:0;z-index:200;background:rgba(3,5,11,.78);backdrop-filter:blur(6px);display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;padding:22px 14px}
+  .modalback[hidden]{display:none}
+  .modal{background:linear-gradient(180deg,#101d38,#0a1428);border:1px solid var(--line);border-radius:24px;max-width:640px;width:100%;padding:30px 26px 28px;position:relative;box-shadow:0 40px 90px rgba(0,0,0,.6)}
+  .modal h3{font-family:'Fraunces',serif;font-weight:900;font-size:1.65rem;margin:14px 0 8px;line-height:1.2}
+  .modal .mp{color:var(--muted);font-size:.95rem}
+  .mx{position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:50%;border:1px solid var(--line2);background:rgba(255,255,255,.05);color:var(--ink);font-size:1.2rem;cursor:pointer;line-height:1}
+  .packs{display:grid;gap:16px;margin:22px 0 6px}
+  @media(min-width:560px){.packs{grid-template-columns:1fr 1fr}}
+  .pack{background:rgba(255,255,255,.035);border:1px solid var(--line2);border-radius:18px;padding:22px 20px;position:relative}
+  .pack.hot{border-color:var(--gold);background:linear-gradient(180deg,#16233d,#0d1830)}
+  .pack .flag{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--gold2),var(--gold));color:#191304;font-size:.7rem;font-weight:800;letter-spacing:.08em;padding:5px 13px;border-radius:999px;white-space:nowrap}
+  .pack .ptier{font-size:.76rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .pack .pamt{font-family:'Fraunces',serif;font-weight:900;font-size:2.1rem;margin:6px 0 2px}
+  .pack.hot .pamt{color:var(--gold2)}
+  .pack .pamt small{font-size:.9rem;font-family:'Inter',sans-serif;font-weight:600;color:var(--muted)}
+  .pack ul{list-style:none;margin-top:12px;display:grid;gap:8px}
+  .pack li{font-size:.9rem;color:#ccd9ec;padding-left:24px;position:relative}
+  .pack li::before{content:"✓";position:absolute;left:0;color:var(--gold);font-weight:800}
+  .steps2{margin:18px 0 4px;padding-left:20px;color:#ccd9ec;font-size:.93rem;display:grid;gap:7px}
+  .modal .btn-wa{display:block;margin-top:18px}
+  .codebox{margin-top:24px;border-top:1px solid var(--line2);padding-top:20px}
+  .codebox label{display:block;font-weight:800;font-size:.92rem;margin-bottom:9px}
+  .coderow{display:flex;gap:10px;flex-wrap:wrap}
+  .coderow input{flex:1;min-width:180px;background:#0a1730;border:1px solid var(--line2);border-radius:12px;color:var(--ink);font:inherit;font-size:1rem;letter-spacing:.08em;padding:13px 15px;outline:none;text-transform:uppercase}
+  .coderow input:focus{border-color:var(--gold)}
+  .cmsg{font-size:.9rem;margin-top:11px;min-height:1.35em}
+  .cmsg.err{color:#ff8f9e}
+  .cmsg.ok{color:#7fe3a8}
+  .cnote{color:var(--muted);font-size:.8rem;margin-top:8px}
+
+  /* ---------- steps ---------- */
+  .cols{display:grid;gap:20px}
+  @media(min-width:820px){.cols{grid-template-columns:repeat(3,1fr)}}
+  .step{background:rgba(255,255,255,.035);border:1px solid var(--line2);border-radius:var(--radius);padding:26px 24px}
+  .step .n{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--gold2),var(--gold));color:#191304;font-family:'Fraunces',serif;font-weight:900;font-size:1.2rem;display:grid;place-items:center;margin-bottom:14px}
+  .step h3{font-family:'Fraunces',serif;font-size:1.2rem;margin-bottom:6px}
+  .step p{color:var(--muted);font-size:.93rem}
+
+  footer{border-top:1px solid var(--line2);padding:26px 0 34px;text-align:center;color:var(--muted);font-size:.88rem}
+  footer b{color:var(--ink)}
+  footer a{color:var(--gold2);text-decoration:none}
+  .hidden{display:none!important}
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="index.html"><span class="mark"><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M7.2 20.2c4.9 1.6 9.7-1.7 10.6-7.1" stroke="#f0d47a" stroke-width="2.3" stroke-linecap="round"/><path d="M5.8 15.6c3.8 4.5 9.7 5 13.9 1.1" stroke="#d4af37" stroke-width="2.3" stroke-linecap="round"/><path d="M9.4 4.6c1.9 3.1 4.4 4.5 7.2 4" stroke="#f0d47a" stroke-width="2.3" stroke-linecap="round"/><circle cx="12.2" cy="11.2" r="2.5" fill="#f0d47a"/></svg></span>Mint<em>Nest</em>&nbsp;Studio</a>
+    <nav class="links">
+      <a href="index.html#demos">Live demos</a>
+      <a href="#gallery">Templates</a>
+      <a href="#maker">Maker</a>
+      <a href="#" id="navUnlock">Unlock premium</a>
+    </nav>
+    <span class="spacer"></span>
+    <span class="pill" id="hdrPill" hidden>Premium active ✓</span>
+    <a class="cta" href="index.html">← Back to hub</a>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<div class="hero" id="top">
+  <div class="wrap">
+    <span class="kick"><i></i> Template Studio</span>
+    <h1>Create your own surprise page — <span class="gold">free, in minutes.</span></h1>
+    <p>Pick a template, add a name and your message, set a secret PIN — then download one single page file and share it with anyone. Free to start; premium unlocks photos and the rich designs whenever you are ready.</p>
+    <div class="btns">
+      <a class="btn btn-gold" href="#maker">Start free</a>
+      <a class="btn btn-ghost" href="#gallery">See the templates</a>
+    </div>
+  </div>
+</div>
+
+<!-- ================= GALLERY ================= -->
+<section id="gallery">
+  <div class="wrap">
+    <div class="shead">
+      <span class="kick"><i></i> Template gallery</span>
+      <h2>Every template, out in the open</h2>
+      <p>Premium templates are shown to everyone — never hidden. Tap a locked one to see the one-time unlock options.</p>
+    </div>
+
+    <div class="premiumbar" id="premiumBar">
+      <b>Premium active ✓</b><span id="premiumBarText">Your premium templates are unlocked on this device.</span>
+    </div>
+
+    <div class="tgrid">
+      <!-- FREE: Birthday Classic -->
+      <article class="tcard" data-template="birthday-classic">
+        <div class="thumb">
+          <svg viewBox="0 0 320 190" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <defs><linearGradient id="gClassic" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff6e6"/><stop offset="1" stop-color="#ffe3ee"/></linearGradient></defs>
+            <rect width="320" height="190" fill="url(#gClassic)"/>
+            <circle cx="42" cy="42" r="15" fill="#f6a8c1"/><circle cx="282" cy="34" r="12" fill="#a8cdf6"/>
+            <rect x="34" y="56" width="2.5" height="26" fill="#c9a86a"/><rect x="281" y="45" width="2.5" height="24" fill="#c9a86a"/>
+            <rect x="118" y="128" width="84" height="26" rx="5" fill="#8a4b2d"/>
+            <rect x="128" y="106" width="64" height="24" rx="5" fill="#a85f3a"/>
+            <rect x="140" y="88" width="40" height="20" rx="4" fill="#c47a4b"/>
+            <rect x="133" y="76" width="4" height="13" fill="#e2543e"/><rect x="158" y="72" width="4" height="17" fill="#e2543e"/><rect x="183" y="76" width="4" height="13" fill="#e2543e"/>
+            <circle cx="135" cy="71" r="4.5" fill="#ffb340"/><circle cx="160" cy="66" r="5" fill="#ffb340"/><circle cx="185" cy="71" r="4.5" fill="#ffb340"/>
+            <circle cx="70" cy="150" r="4" fill="#e2543e"/><circle cx="250" cy="140" r="4" fill="#5b8dd9"/><circle cx="228" cy="164" r="3.4" fill="#e2a63d"/><circle cx="95" cy="168" r="3.4" fill="#7ab648"/>
+          </svg>
+          <span class="badge badge-free">FREE</span>
+        </div>
+        <div class="tbody">
+          <h3>Birthday Surprise — Classic</h3>
+          <p>A clean, cheerful birthday page: name, your wish message and a secret PIN lock. Ready to make right now, free.</p>
+          <button class="topen" data-use="free">Use this template →</button>
+        </div>
+      </article>
+
+      <!-- PREMIUM: Birthday Premium -->
+      <article class="tcard premium-card" data-template="birthday-premium" data-premium="birthday">
+        <div class="thumb">
+          <svg viewBox="0 0 320 190" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <defs><linearGradient id="gPrem" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0a1428"/><stop offset="1" stop-color="#060b18"/></linearGradient></defs>
+            <rect width="320" height="190" fill="url(#gPrem)"/>
+            <circle cx="160" cy="34" r="52" fill="#d4af37" opacity=".12"/>
+            <path d="M160 12l3.4 7 7.6 1-5.5 5.3 1.3 7.6L160 27.4l-6.8 3.5 1.3-7.6L149 18l7.6-1z" fill="#f0d47a"/>
+            <rect x="116" y="130" width="88" height="26" rx="5" fill="#3a2a12"/>
+            <rect x="127" y="108" width="66" height="24" rx="5" fill="#54401c"/>
+            <rect x="139" y="90" width="42" height="20" rx="4" fill="#6e5526"/>
+            <rect x="132" y="78" width="4" height="13" fill="#f0d47a"/><rect x="158" y="74" width="4" height="17" fill="#f0d47a"/><rect x="184" y="78" width="4" height="13" fill="#f0d47a"/>
+            <circle cx="134" cy="73" r="4.5" fill="#ffd766"/><circle cx="160" cy="68" r="5" fill="#ffd766"/><circle cx="186" cy="73" r="4.5" fill="#ffd766"/>
+            <rect x="0" y="160" width="320" height="1.5" fill="#d4af37" opacity=".5"/>
+            <circle cx="52" cy="52" r="3" fill="#f0d47a"/><circle cx="272" cy="60" r="3" fill="#f0d47a"/><circle cx="238" cy="150" r="2.6" fill="#f0d47a"/><circle cx="76" cy="146" r="2.6" fill="#f0d47a"/>
+          </svg>
+          <span class="badge badge-premium">👑 PREMIUM</span>
+          <div class="lockveil"><span class="lockbig">🔒</span><b>Premium template</b></div>
+        </div>
+        <div class="tbody">
+          <h3>Birthday Surprise — Premium</h3>
+          <p>The full celebration page in dark &amp; gold: glowing hero, cake section and a letter-style message block. No watermark.</p>
+          <button class="topen goldbtn" data-unlock>👑 Unlock to use</button>
+        </div>
+      </article>
+
+      <!-- PREMIUM showcase: Anniversary -->
+      <article class="tcard premium-card" data-template="anniversary" data-premium="showcase">
+        <div class="thumb">
+          <svg viewBox="0 0 320 190" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <defs><linearGradient id="gAnn" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2b0f1c"/><stop offset="1" stop-color="#17060f"/></linearGradient></defs>
+            <rect width="320" height="190" fill="url(#gAnn)"/>
+            <path d="M160 138c-34-24-46-40-46-55a17 17 0 0 1 30-11 17 17 0 0 1 32 0 17 17 0 0 1 30 11c0 15-12 31-46 55z" fill="#8e2a4a"/>
+            <circle cx="138" cy="98" r="21" fill="none" stroke="#f0d47a" stroke-width="5"/>
+            <circle cx="182" cy="98" r="21" fill="none" stroke="#d4af37" stroke-width="5"/>
+            <circle cx="52" cy="40" r="2.6" fill="#f0d47a"/><circle cx="272" cy="46" r="2.6" fill="#f0d47a"/><circle cx="240" cy="150" r="2.2" fill="#e8a0b4"/><circle cx="80" cy="156" r="2.2" fill="#e8a0b4"/>
+          </svg>
+          <span class="badge badge-premium">👑 PREMIUM</span>
+          <div class="lockveil"><span class="lockbig">🔒</span><b>Premium template</b></div>
+        </div>
+        <div class="tbody">
+          <h3>Anniversary Love Page</h3>
+          <p>A romantic page for your person: your story, photos and a letter that opens with a secret word only they know.</p>
+          <button class="topen goldbtn" data-unlock>👑 Unlock to use</button>
+        </div>
+      </article>
+
+      <!-- PREMIUM showcase: Wedding -->
+      <article class="tcard premium-card" data-template="wedding" data-premium="showcase">
+        <div class="thumb">
+          <svg viewBox="0 0 320 190" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <defs><linearGradient id="gWed" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f7f1e3"/><stop offset="1" stop-color="#eee0c6"/></linearGradient></defs>
+            <rect width="320" height="190" fill="url(#gWed)"/>
+            <path d="M84 168V92a76 60 0 0 1 152 0v76" fill="none" stroke="#b98a2f" stroke-width="5"/>
+            <circle cx="140" cy="128" r="17" fill="none" stroke="#b98a2f" stroke-width="4.5"/>
+            <circle cx="180" cy="128" r="17" fill="none" stroke="#d4af37" stroke-width="4.5"/>
+            <path d="M160 30l3 6 6.6.9-4.8 4.6 1.2 6.5L160 45l-6 3 1.2-6.5-4.8-4.6 6.6-.9z" fill="#d4af37"/>
+            <circle cx="52" cy="150" r="3" fill="#b98a2f"/><circle cx="268" cy="150" r="3" fill="#b98a2f"/>
+          </svg>
+          <span class="badge badge-premium">👑 PREMIUM</span>
+          <div class="lockveil"><span class="lockbig">🔒</span><b>Premium template</b></div>
+        </div>
+        <div class="tbody">
+          <h3>Wedding Invitation Page</h3>
+          <p>An elegant digital invitation: couple names, date and venue, a photo and an RSVP note — one link to share with every guest.</p>
+          <button class="topen goldbtn" data-unlock>👑 Unlock to use</button>
+        </div>
+      </article>
+
+      <!-- PREMIUM showcase: Baby -->
+      <article class="tcard premium-card" data-template="baby" data-premium="showcase">
+        <div class="thumb">
+          <svg viewBox="0 0 320 190" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <defs><linearGradient id="gBaby" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#101f3d"/><stop offset="1" stop-color="#0a1428"/></linearGradient></defs>
+            <rect width="320" height="190" fill="url(#gBaby)"/>
+            <path d="M196 34a42 42 0 1 0 18 78 52 52 0 0 1-18-78z" fill="#f0d47a"/>
+            <path d="M96 52l2.4 5.4 5.9.8-4.3 4.1 1 5.8-5.2-2.8-5.2 2.8 1-5.8-4.3-4.1 5.9-.8z" fill="#a8cdf6"/>
+            <path d="M238 108l2 4.6 5 .7-3.6 3.5.9 4.9-4.5-2.4-4.5 2.4.9-4.9-3.6-3.5 5-.7z" fill="#f6a8c1"/>
+            <circle cx="70" cy="128" r="2.6" fill="#fff"/><circle cx="130" cy="156" r="2.2" fill="#fff"/><circle cx="272" cy="160" r="2.4" fill="#fff"/>
+          </svg>
+          <span class="badge badge-premium">👑 PREMIUM</span>
+          <div class="lockveil"><span class="lockbig">🔒</span><b>Premium template</b></div>
+        </div>
+        <div class="tbody">
+          <h3>Baby Welcome Page</h3>
+          <p>Announce your new arrival with one sweet page: baby's name, first photo, and a message for family near and far.</p>
+          <button class="topen goldbtn" data-unlock>👑 Unlock to use</button>
+        </div>
+      </article>
+
+      <!-- PREMIUM SERVICE: done-for-you picture editing (order on WhatsApp, no editor tool) -->
+      <article class="tcard premium-card" data-template="picture-editing" data-premium="service">
+        <div class="thumb">
+          <svg viewBox="0 0 320 190" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <defs><linearGradient id="gSvc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#16233d"/><stop offset="1" stop-color="#0a1428"/></linearGradient></defs>
+            <rect width="320" height="190" fill="url(#gSvc)"/>
+            <rect x="86" y="18" width="148" height="154" rx="10" fill="#0d1830" stroke="#d4af37" stroke-width="4"/>
+            <circle cx="160" cy="74" r="20" fill="#9db0c8"/>
+            <path d="M128 128c4-20 16-28 32-28s28 8 32 28z" fill="#9db0c8"/>
+            <rect x="86" y="136" width="148" height="36" fill="#d4af37"/>
+            <text x="160" y="159" text-anchor="middle" font-family="Georgia,serif" font-size="15" font-weight="bold" fill="#191304">Happy Birthday</text>
+            <circle cx="52" cy="48" r="13" fill="#e2543e"/><rect x="51" y="60" width="2" height="20" fill="#c9b892"/>
+            <circle cx="272" cy="42" r="11" fill="#5b8dd9"/><rect x="271" y="52" width="2" height="18" fill="#c9b892"/>
+            <rect x="238" y="128" width="34" height="16" rx="3" fill="#8a4b2d"/>
+            <rect x="243" y="118" width="24" height="11" rx="3" fill="#a85f3a"/>
+            <circle cx="255" cy="112" r="3.6" fill="#ffd766"/>
+          </svg>
+          <span class="badge badge-premium">👑 PREMIUM SERVICE</span>
+        </div>
+        <div class="tbody">
+          <h3>Birthday Theme Picture Editing — done for you</h3>
+          <p>Send us your photo on WhatsApp, we edit it with a birthday cake theme and send it back — then add it to your premium page.</p>
+          <a class="topen goldbtn" style="text-decoration:none;text-align:center;" href="https://wa.me/923338739929?text=Hi!%20I%20want%20a%20birthday%20theme%20picture%20edit." target="_blank" rel="noopener">Order on WhatsApp →</a>
+        </div>
+      </article>
+    </div>
+    <p class="gnote">The Premium Birthday maker below is fully live today. Anniversary, Wedding and Baby makers are being added to the Studio — unlocking today includes them as they arrive.</p>
+  </div>
+</section>
+
+<!-- ================= MAKER ================= -->
+<section id="maker" style="padding-top:8px">
+  <div class="wrap">
+    <div class="shead">
+      <span class="kick"><i></i> The maker</span>
+      <h2>Build your birthday page</h2>
+      <p>Fill in the details, watch the live preview, then download your page as one single file you can send to anyone.</p>
+    </div>
+
+    <div class="maker-grid">
+      <div>
+        <div class="tabs">
+          <button class="tab active" id="tabFree" type="button">Birthday — Classic<span class="sub">Free · with watermark</span></button>
+          <button class="tab" id="tabPremium" type="button">Birthday — Premium 👑<span class="sub">Dark &amp; gold · no watermark</span></button>
+        </div>
+
+        <div class="gate-note" id="premiumGate">This is a <b>premium template</b>. Unlock it once with a one-time payment — no monthly fees — and it stays active on this device.</div>
+
+        <form id="makerForm" autocomplete="off">
+          <div class="ffield">
+            <label for="fName">Birthday person's name</label>
+            <input type="text" id="fName" placeholder="e.g. Hamza" maxlength="40">
+          </div>
+          <div class="ffield">
+            <label for="fFrom">Your name <small>(who is this page from?)</small></label>
+            <input type="text" id="fFrom" placeholder="e.g. Waseem" maxlength="40">
+          </div>
+          <div class="ffield">
+            <label for="fMsg">Your wish message</label>
+            <textarea id="fMsg" placeholder="Write the message they will read when the surprise opens…" maxlength="600"></textarea>
+          </div>
+          <div class="ffield">
+            <label for="fPin">Secret PIN word <small>(they type this to open the surprise — leave empty to use their first name)</small></label>
+            <input type="text" id="fPin" placeholder="e.g. hamza" maxlength="24">
+          </div>
+          <div class="gate-note show" id="photoFreeNote" style="cursor:pointer;">Want your photo on the page? <b>Photos are a Premium feature 👑</b> — tap here to see the unlock options.</div>
+          <div class="ffield hidden" id="photoField">
+            <label for="fPhoto">Photo <small id="photoNote">(premium ✓ — embedded in your downloaded page only, nothing is uploaded anywhere)</small></label>
+            <input type="file" id="fPhoto" accept="image/*">
+          </div>
+        </form>
+
+        <div class="dlrow">
+          <button class="btn btn-gold" id="btnDownload" type="button">Download my page — Free</button>
+          <button class="btn btn-ghost hidden" id="btnUnlock2" type="button">👑 Unlock premium</button>
+        </div>
+        <p class="dl-note" id="dlNote"></p>
+      </div>
+
+      <div class="phonewrap">
+        <div class="phonelabel">Live preview</div>
+        <div class="phone">
+          <div class="pv pv-free" id="pvFree">
+            <div class="pv-cake">🎂</div>
+            <div class="pv-small">HAPPY BIRTHDAY</div>
+            <h4 data-pv="name">Your Person</h4>
+            <img class="pv-photo" data-pv="photo" alt="Birthday photo preview" hidden>
+            <p class="pv-msg" data-pv="msg">Your wish message will appear here, word for word.</p>
+            <div class="pv-from">With love, <b data-pv="from">You</b></div>
+            <div class="pv-pin" data-pv="pin">No PIN set yet</div>
+            <div class="pv-wm">Made with MintNest Studio — mintneststudio.github.io/mintnest-demos</div>
+          </div>
+          <div class="pv pv-premium hidden" id="pvPremium">
+            <div class="pv-cake">🎂</div>
+            <div class="pv-small">HAPPY BIRTHDAY</div>
+            <h4 data-pv="name">Your Person</h4>
+            <img class="pv-photo" data-pv="photo" alt="Birthday photo preview" hidden>
+            <div class="pv-letter" data-pv="msg">Your wish message will appear here, word for word.</div>
+            <div class="pv-from">— <b data-pv="from">You</b></div>
+            <div class="pv-pin" data-pv="pin">No PIN set yet</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HOW IT WORKS ================= -->
+<section style="padding-top:8px">
+  <div class="wrap">
+    <div class="shead">
+      <span class="kick"><i></i> How it works</span>
+      <h2>Three steps, one lovely page</h2>
+    </div>
+    <div class="cols">
+      <div class="step"><div class="n">1</div><h3>Pick &amp; personalise</h3><p>Choose a template above and add the name and message — premium also adds a photo. The preview updates as you type.</p></div>
+      <div class="step"><div class="n">2</div><h3>Download one file</h3><p>Your page downloads as a single HTML file — no accounts, no hosting, nothing else to install.</p></div>
+      <div class="step"><div class="n">3</div><h3>Share it anywhere</h3><p>Send the file on WhatsApp or anywhere else. They open it, type the secret PIN, and the surprise is theirs.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap"><b>MintNest Studio</b> — Template Studio · WhatsApp: <a href="https://wa.me/923338739929" target="_blank" rel="noopener">+92 333 8739929</a> · <a href="mailto:mintnestsofficial@gmail.com">mintnestsofficial@gmail.com</a><br>Free pages carry a small “Made with MintNest Studio” line. Premium is a one-time payment — no subscriptions.</div>
+</footer>
+
+<!-- ================= PAYWALL ================= -->
+<div class="modalback" id="paywall" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="pwTitle">
+    <button class="mx" id="pwClose" type="button" aria-label="Close">×</button>
+    <span class="kick">👑 Premium templates</span>
+    <h3 id="pwTitle">Unlock premium — one payment, yours to keep</h3>
+    <p class="mp">Both packages are <b>one-time</b> payments. No monthly fees, no subscriptions. Your unlock code works on one device — the one you activate it on.</p>
+    <div class="packs">
+      <div class="pack">
+        <div class="ptier">Starter</div>
+        <div class="pamt">Rs 500 <small>one-time</small></div>
+        <ul>
+          <li>Unlocks the premium templates</li>
+          <li>Premium Birthday maker — no watermark</li>
+          <li>Your code works on 1 device</li>
+        </ul>
+      </div>
+      <div class="pack hot">
+        <span class="flag">Best value</span>
+        <div class="ptier">Unlimited</div>
+        <div class="pamt">Rs 1,000 <small>one-time</small></div>
+        <ul>
+          <li>Everything in Starter</li>
+          <li>Unlimited pages — make as many as you like</li>
+          <li>All future templates included</li>
+          <li>Your code works on 1 device</li>
+        </ul>
+      </div>
+    </div>
+    <ol class="steps2">
+      <li>Message us on WhatsApp and pay your package via <b>JazzCash</b> or <b>EasyPaisa</b> — we will confirm the account number on chat.</li>
+      <li>Send a screenshot of your payment receipt on the same WhatsApp chat.</li>
+      <li>We send your personal unlock code — enter it below and premium opens on this device.</li>
+    </ol>
+    <a class="btn btn-wa" href="https://wa.me/923338739929?text=Hi!%20I%20want%20to%20unlock%20MintNest%20Template%20Studio%20premium.%20Please%20share%20the%20JazzCash%2FEasyPaisa%20account%20number." target="_blank" rel="noopener">💬 WhatsApp +92 333 8739929 — get my code</a>
+    <div class="codebox">
+      <label for="codeIn">I have a code</label>
+      <div class="coderow">
+        <input id="codeIn" type="text" placeholder="MN_-______" autocomplete="off" spellcheck="false">
+        <button class="btn btn-gold" id="codeApply" type="button">Apply code</button>
+      </div>
+      <p class="cmsg" id="codeMsg"></p>
+      <p class="cnote">Codes are device-bound: each code activates on the first device it is used on and cannot be shared. Demo note: in this version, codes and device binding are stored in this browser only (localStorage) — there is no account or server check.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+"use strict";
+/* ================= unlock codes & device binding (demo-grade, localStorage only) ================= */
+var CODES = {
+  "MN5-QRMRBJ": "500", "MN5-LAXTMH": "500", "MN5-ERQHEU": "500",
+  "MN1-76LRQL": "1000", "MN1-U84N78": "1000", "MN1-5OR3TB": "1000"
+};
+function lsGet(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }
+function lsSet(k, v){ try { localStorage.setItem(k, v); } catch(e){} }
+function deviceId(){
+  var id = lsGet("mn_device_id");
+  if(!id){
+    id = "dev-" + Math.random().toString(36).slice(2, 10) + Date.now().toString(36);
+    lsSet("mn_device_id", id);
+  }
+  return id;
+}
+var myDevice = deviceId();
+function unlockedTier(){ return lsGet("mn_unlocked"); }        /* "500" | "1000" | null */
+function isUnlocked(){ return !!unlockedTier(); }
+
+/* ================= element refs ================= */
+function $(id){ return document.getElementById(id); }
+var paywall = $("paywall"), codeIn = $("codeIn"), codeMsg = $("codeMsg");
+var tabFree = $("tabFree"), tabPremium = $("tabPremium");
+var pvFree = $("pvFree"), pvPremium = $("pvPremium");
+var btnDownload = $("btnDownload"), btnUnlock2 = $("btnUnlock2"), dlNote = $("dlNote");
+var premiumGate = $("premiumGate"), premiumBar = $("premiumBar"), premiumBarText = $("premiumBarText"), hdrPill = $("hdrPill");
+var fName = $("fName"), fFrom = $("fFrom"), fMsg = $("fMsg"), fPin = $("fPin"), fPhoto = $("fPhoto"), photoNote = $("photoNote");
+
+/* ================= paywall ================= */
+function openPaywall(){
+  codeMsg.textContent = ""; codeMsg.className = "cmsg";
+  paywall.hidden = false;
+  document.body.style.overflow = "hidden";
+}
+function closePaywall(){
+  paywall.hidden = true;
+  document.body.style.overflow = "";
+}
+$("pwClose").addEventListener("click", closePaywall);
+paywall.addEventListener("click", function(e){ if(e.target === paywall) closePaywall(); });
+document.addEventListener("keydown", function(e){ if(e.key === "Escape" && !paywall.hidden) closePaywall(); });
+$("navUnlock").addEventListener("click", function(e){ e.preventDefault(); if(isUnlocked()){ $("maker").scrollIntoView({behavior:"smooth"}); } else { openPaywall(); } });
+btnUnlock2.addEventListener("click", openPaywall);
+
+/* ================= code apply ================= */
+function setCodeMsg(text, cls){ codeMsg.textContent = text; codeMsg.className = "cmsg " + (cls || ""); }
+$("codeApply").addEventListener("click", applyCode);
+codeIn.addEventListener("keydown", function(e){ if(e.key === "Enter"){ e.preventDefault(); applyCode(); } });
+function applyCode(){
+  var raw = (codeIn.value || "").trim().toUpperCase();
+  if(!raw){ setCodeMsg("Please enter your code first.", "err"); return; }
+  var t = CODES[raw];
+  if(!t){ setCodeMsg("This code is not valid. Please check it — or WhatsApp us if you have just paid.", "err"); return; }
+  var bind = {};
+  try { bind = JSON.parse(lsGet("mn_code_binding") || "{}"); } catch(e){ bind = {}; }
+  if(bind[raw] && bind[raw] !== myDevice){
+    setCodeMsg("This code is already active on another device. Each code works on one device only — WhatsApp us if this is your code.", "err");
+    return;
+  }
+  bind[raw] = myDevice;
+  lsSet("mn_code_binding", JSON.stringify(bind));
+  lsSet("mn_unlocked", t);
+  setCodeMsg("Premium unlocked ✓ — the " + (t === "1000" ? "Unlimited" : "Starter") + " plan is now active on this device.", "ok");
+  refreshPremiumUI();
+  setTimeout(closePaywall, 1100);
+}
+
+/* ================= premium UI state ================= */
+var mode = "free";   /* "free" | "premium" */
+function refreshPremiumUI(){
+  var un = isUnlocked(), t = unlockedTier();
+  document.querySelectorAll("[data-premium]").forEach(function(card){
+    if(card.getAttribute("data-premium") === "service") return;   /* WhatsApp order card: never rewritten */
+    var btn = card.querySelector(".topen");
+    if(un){
+      card.classList.add("open");
+      if(card.getAttribute("data-premium") === "birthday"){
+        btn.textContent = "Use this template →";
+        btn.setAttribute("data-use", "premium");
+        btn.removeAttribute("data-unlock");
+        btn.classList.remove("goldbtn");
+      } else {
+        btn.textContent = "Unlocked ✓";
+        btn.removeAttribute("data-unlock");
+        btn.setAttribute("data-soon", "1");
+      }
+    }
+  });
+  if(un){
+    premiumBar.classList.add("show");
+    premiumBarText.textContent = (t === "1000" ? "Unlimited plan (Rs 1,000)" : "Starter plan (Rs 500)") + " — premium templates are unlocked on this device, and your pages carry no watermark.";
+    hdrPill.hidden = false;
+    $("navUnlock").textContent = "Premium active ✓";
+  }
+  /* photo upload exists ONLY inside the Premium maker (owner rule) — the field
+     itself is hidden in free mode and shown by setMode() for premium. */
+  if(mode === "premium" && un){
+    premiumGate.classList.remove("show");
+    btnUnlock2.classList.add("hidden");
+    btnDownload.textContent = "Download Premium page — no watermark";
+  }
+  updatePreview();
+}
+
+/* gallery buttons */
+document.querySelectorAll(".topen").forEach(function(btn){
+  btn.addEventListener("click", function(){
+    if(btn.hasAttribute("data-unlock")){ openPaywall(); return; }
+    if(btn.hasAttribute("data-soon")){
+      btn.textContent = "Unlocked ✓ — maker coming soon";
+      return;
+    }
+    var use = btn.getAttribute("data-use");
+    if(use){ setMode(use); $("maker").scrollIntoView({ behavior: "smooth" }); }
+  });
+});
+
+/* ================= maker: modes, preview, photo ================= */
+function setMode(m){
+  if(m === "premium" && !isUnlocked()){
+    openPaywall();
+    premiumGate.classList.add("show");
+    btnUnlock2.classList.remove("hidden");
+    return;   /* stay on free until unlocked */
+  }
+  mode = m;
+  tabFree.classList.toggle("active", m === "free");
+  tabPremium.classList.toggle("active", m === "premium");
+  pvFree.classList.toggle("hidden", m !== "free");
+  pvPremium.classList.toggle("hidden", m !== "premium");
+  $("photoField").classList.toggle("hidden", m !== "premium");
+  $("photoFreeNote").classList.toggle("hidden", m === "premium");
+  if(m === "premium"){
+    premiumGate.classList.remove("show");
+    btnUnlock2.classList.add("hidden");
+    btnDownload.textContent = "Download Premium page — no watermark";
+  } else {
+    btnDownload.textContent = "Download my page — Free";
+  }
+  updatePreview();
+}
+tabFree.addEventListener("click", function(){ setMode("free"); });
+tabPremium.addEventListener("click", function(){ setMode("premium"); });
+
+function esc(s){
+  return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){
+    return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+  });
+}
+function collect(){
+  var name = fName.value.trim(), from = fFrom.value.trim(), msg = fMsg.value.trim(), pin = fPin.value.trim().toLowerCase();
+  if(!pin){ pin = (name.split(/\s+/)[0] || "surprise").toLowerCase().replace(/[^a-z0-9]/g, "") || "surprise"; }
+  return { name: name, from: from, msg: msg, pin: pin };
+}
+var photoData = "";
+fPhoto.addEventListener("change", function(){
+  var f = fPhoto.files && fPhoto.files[0];
+  if(!f){ photoData = ""; updatePreview(); return; }
+  var r = new FileReader();
+  r.onload = function(){ photoData = String(r.result || ""); updatePreview(); };
+  r.readAsDataURL(f);
+});
+$("photoFreeNote").addEventListener("click", openPaywall);
+
+function updatePreview(){
+  var d = collect();
+  document.querySelectorAll("[data-pv='name']").forEach(function(el){ el.textContent = d.name || "Your Person"; });
+  document.querySelectorAll("[data-pv='from']").forEach(function(el){ el.textContent = d.from || "You"; });
+  document.querySelectorAll("[data-pv='msg']").forEach(function(el){ el.textContent = d.msg || "Your wish message will appear here, word for word."; });
+  document.querySelectorAll("[data-pv='pin']").forEach(function(el){
+    el.textContent = "Opens with the secret PIN: " + d.pin;
+  });
+  document.querySelectorAll("[data-pv='photo']").forEach(function(img){
+    if(photoData && mode === "premium"){ img.src = photoData; img.hidden = false; }
+    else { img.removeAttribute("src"); img.hidden = true; }
+  });
+}
+[fName, fFrom, fMsg, fPin].forEach(function(el){ el.addEventListener("input", updatePreview); });
+
+/* ================= generated pages ================= */
+function lockBlock(d, dark){
+  var bg = dark ? "#060b18" : "#fff6e6", fg = dark ? "#eef2f8" : "#4a3436", sub = dark ? "#9db0c8" : "#8a6d5b";
+  var btn = dark
+    ? "background:linear-gradient(135deg,#f0d47a,#d4af37);color:#191304;"
+    : "background:#e2543e;color:#fff;";
+  return "" +
+  '<div id="lock" style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;background:' + bg + ';color:' + fg + ';font-family:Georgia,serif;">' +
+    '<div style="font-size:3rem;">🔒</div>' +
+    '<h1 style="font-size:1.7rem;margin:12px 0 6px;">A surprise is locked for you, ' + esc(d.name || "friend") + '</h1>' +
+    '<p style="color:' + sub + ';margin:0 0 18px;font-family:Verdana,sans-serif;font-size:.95rem;">Enter the secret PIN word to open it.</p>' +
+    '<div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;">' +
+      '<input id="pinIn" type="text" placeholder="Secret PIN" autocomplete="off" style="padding:13px 15px;border-radius:12px;border:1px solid #c9b892;font-size:1rem;text-align:center;letter-spacing:.06em;">' +
+      '<button onclick="tryPin()" style="padding:13px 22px;border:0;border-radius:12px;font-weight:bold;font-size:1rem;cursor:pointer;' + btn + '">Unlock</button>' +
+    '</div>' +
+    '<p id="pinErr" style="color:#e2543e;min-height:1.4em;margin-top:12px;font-family:Verdana,sans-serif;font-size:.9rem;"></p>' +
+  '</div>';
+}
+function lockScript(d){
+  return '<script>var PIN=' + JSON.stringify(d.pin) + ';' +
+  'function tryPin(){var v=document.getElementById("pinIn").value.trim().toLowerCase();' +
+  'if(v===PIN){document.getElementById("lock").style.display="none";document.getElementById("page").style.display="block";}' +
+  'else{document.getElementById("pinErr").textContent="Wrong PIN — try again.";}}' +
+  'document.getElementById("pinIn").addEventListener("keydown",function(e){if(e.key==="Enter")tryPin();});<\/script>';
+}
+function buildFree(d){
+  var photo = "";   /* free pages: no photo (premium feature) */
+  return '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">' +
+  '<meta name="viewport" content="width=device-width, initial-scale=1.0">' +
+  '<title>Happy Birthday ' + esc(d.name || "") + '</title></head>' +
+  '<body style="margin:0;background:#fff8ec;font-family:Verdana,sans-serif;">' +
+  lockBlock(d, false) +
+  '<div id="page" style="display:none;max-width:560px;margin:0 auto;padding:42px 22px 30px;text-align:center;color:#33272b;">' +
+    '<div style="font-size:3.2rem;">🎂</div>' +
+    '<div style="font-size:.72rem;font-weight:bold;letter-spacing:.3em;color:#c27a1d;margin-top:8px;">HAPPY BIRTHDAY</div>' +
+    '<h1 style="font-family:Georgia,serif;font-size:2.3rem;color:#5b2333;margin:8px 0 4px;">' + esc(d.name || "Your Person") + '</h1>' +
+    photo +
+    '<p style="font-size:1.02rem;color:#5c4a4a;white-space:pre-wrap;margin-top:16px;">' + esc(d.msg || "") + '</p>' +
+    '<p style="margin-top:18px;color:#8a6d3b;">With love, <b>' + esc(d.from || "You") + '</b></p>' +
+    '<div style="margin-top:34px;border-top:1px solid rgba(0,0,0,.1);padding-top:12px;font-size:.72rem;color:#9a8b83;">Made with MintNest Studio — mintneststudio.github.io/mintnest-demos</div>' +
+  '</div>' +
+  lockScript(d) +
+  '</body></html>';
+}
+function buildPremium(d){
+  var photo = photoData ? '<img src="' + photoData + '" alt="Photo" style="width:170px;height:170px;object-fit:cover;border-radius:50%;border:4px solid #d4af37;margin:16px 0 4px;box-shadow:0 14px 30px rgba(0,0,0,.45);">' : "";
+  return '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">' +
+  '<meta name="viewport" content="width=device-width, initial-scale=1.0">' +
+  '<title>Happy Birthday ' + esc(d.name || "") + '</title></head>' +
+  '<body style="margin:0;background:#060b18;font-family:Verdana,sans-serif;">' +
+  lockBlock(d, true) +
+  '<div id="page" style="display:none;max-width:600px;margin:0 auto;padding:46px 22px 40px;text-align:center;color:#eef2f8;background:radial-gradient(600px 300px at 50% -60px, rgba(212,175,55,.22), transparent 60%);">' +
+    '<div style="font-size:3.2rem;">🎂</div>' +
+    '<div style="font-size:.72rem;font-weight:bold;letter-spacing:.3em;color:#f0d47a;margin-top:8px;">HAPPY BIRTHDAY</div>' +
+    '<h1 style="font-family:Georgia,serif;font-size:2.6rem;margin:10px 0 4px;color:#f0d47a;">' + esc(d.name || "Your Person") + '</h1>' +
+    photo +
+    '<div style="margin:22px auto 0;max-width:480px;background:rgba(255,255,255,.05);border:1px solid rgba(212,175,55,.35);border-radius:16px;padding:20px 22px;text-align:left;">' +
+      '<div style="font-size:.7rem;letter-spacing:.24em;color:#f0d47a;font-weight:bold;margin-bottom:10px;">A LETTER FOR YOU</div>' +
+      '<p style="font-size:1rem;line-height:1.65;color:#dbe6f5;white-space:pre-wrap;margin:0;">' + esc(d.msg || "") + '</p>' +
+      '<p style="margin:16px 0 0;color:#f0d47a;">— <b>' + esc(d.from || "You") + '</b></p>' +
+    '</div>' +
+    '<p style="margin-top:30px;font-size:.85rem;color:#9db0c8;">Made for ' + esc(d.name || "you") + ', with love.</p>' +
+  '</div>' +
+  lockScript(d) +
+  '</body></html>';
+}
+
+/* ================= download ================= */
+btnDownload.addEventListener("click", function(){
+  if(mode === "premium" && !isUnlocked()){ openPaywall(); return; }
+  var d = collect();
+  var html = (mode === "premium") ? buildPremium(d) : buildFree(d);
+  var blob = new Blob([html], { type: "text/html" });
+  var a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "birthday-surprise-for-" + ((d.name || "you").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "") || "you") + ".html";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(function(){ URL.revokeObjectURL(a.href); }, 4000);
+  dlNote.innerHTML = "Downloaded ✓ — send the file to " + esc(d.name || "them") + ". It opens with the PIN: <b>" + esc(d.pin) + "</b>" + (mode === "free" ? " · Free pages carry the MintNest Studio line at the bottom." : " · Premium page — no watermark.");
+});
+
+/* ================= init ================= */
+refreshPremiumUI();
+updatePreview();
+</script>
+</body>
+</html>
