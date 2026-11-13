@@ -6,82 +6,83 @@
 <title>Template Studio — Create Your Own Page, Free · MintNest Studio</title>
 <meta name="description" content="Make your own surprise page in minutes: pick a template, add a name, photo and message, set a secret PIN and download your page. Free templates with more premium designs to unlock.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#060b18; --bg2:#0a1428; --panel:#0e1a30; --panel2:#0b1626;
-    --ink:#eef2f8; --muted:#9db0c8; --line:rgba(212,175,55,.18); --line2:rgba(255,255,255,.08);
-    --gold:#d4af37; --gold2:#f0d47a;
-    --radius:20px;
+    --bg:#ffffff; --bg2:#f6f7f9; --panel:#ffffff; --panel2:#ffffff;
+    --ink:#131a26; --muted:#46536a; --line:#e3e7ee; --line2:#e3e7ee;
+    --gold:#2456c8; --gold2:#1d47a8;
+    --radius:14px;
+    --field:#ffffff;
+    --amber-bg:#fff7e0; --amber-ink:#8a6d00; --amber-line:#e8d48a;
+    --shadow:0 1px 3px rgba(16,24,40,.08);
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;overflow-x:hidden}
   a{color:inherit}
   .wrap{max-width:1180px;margin:0 auto;padding:0 22px}
-  ::selection{background:var(--gold);color:#1a1405}
+  ::selection{background:var(--gold);color:#fff}
   button{font:inherit}
 
   /* ---------- header ---------- */
-  header{position:sticky;top:0;z-index:90;background:rgba(6,11,24,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line2)}
-  .nav{display:flex;align-items:center;gap:18px;padding:9px 0;flex-wrap:wrap}
-  .logo{display:flex;align-items:center;gap:11px;text-decoration:none;font-family:'Fraunces',serif;font-weight:900;font-size:1.14rem;letter-spacing:.2px}
-  .logo .mark{width:32px;height:32px;border-radius:12px;background:linear-gradient(145deg,#12294d,#1d4e89);display:grid;place-items:center;box-shadow:0 6px 18px rgba(10,25,55,.6), inset 0 0 0 1px rgba(212,175,55,.5)}
+  header{position:sticky;top:0;z-index:90;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line2)}
+  .nav{display:flex;align-items:center;gap:18px;padding-top:9px;padding-bottom:9px;flex-wrap:wrap}
+  .logo{display:flex;align-items:center;gap:11px;text-decoration:none;font-family:'Inter',system-ui,sans-serif;font-weight:900;font-size:1.14rem;letter-spacing:.2px}
+  .logo .mark{width:32px;height:32px;border-radius:12px;background:var(--gold);display:grid;place-items:center;box-shadow:none}
   .logo em{font-style:normal;color:var(--gold)}
   .nav .links{display:none;gap:22px;margin-left:auto}
   @media(min-width:860px){.nav .links{display:flex}}
   .nav .links a{text-decoration:none;font-weight:600;font-size:.94rem;color:var(--muted)}
   .nav .links a:hover{color:var(--gold2)}
-  .pill{display:inline-flex;align-items:center;gap:7px;background:rgba(212,175,55,.13);border:1px solid var(--gold);color:var(--gold2);font-weight:800;font-size:.8rem;padding:7px 14px;border-radius:999px}
+  .pill{display:inline-flex;align-items:center;gap:7px;background:var(--amber-bg);border:1px solid var(--amber-line);color:var(--amber-ink);font-weight:800;font-size:.8rem;padding:7px 14px;border-radius:999px}
   .pill[hidden]{display:none}
-  .nav .cta{margin-left:auto;background:linear-gradient(135deg,var(--gold),#b98a2f);color:#191304;font-weight:800;font-size:.92rem;text-decoration:none;padding:10px 18px;border-radius:999px;box-shadow:0 8px 22px rgba(212,175,55,.35)}
+  .nav .cta{margin-left:auto;background:var(--gold);color:#fff;font-weight:700;font-size:.92rem;text-decoration:none;padding:10px 18px;border-radius:10px;box-shadow:none}
   @media(min-width:860px){.nav .cta{margin-left:0}}
   .nav .spacer{margin-left:auto}
   @media(min-width:860px){.nav .spacer{display:none}}
 
   /* ---------- hero ---------- */
-  .hero{position:relative;padding:44px 0 8px;text-align:center;background:
-    radial-gradient(720px 380px at 15% -60px, rgba(59,110,196,.26), transparent 65%),
-    radial-gradient(820px 420px at 88% -40px, rgba(212,175,55,.16), transparent 65%),
-    linear-gradient(180deg, var(--bg2), var(--bg))}
-  .kick{display:inline-flex;align-items:center;gap:8px;background:rgba(212,175,55,.10);border:1px solid var(--line);color:var(--gold2);font-weight:700;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;padding:7px 15px;border-radius:999px}
-  .kick i{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 10px var(--gold)}
-  .hero h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.9rem,4.6vw,2.8rem);line-height:1.08;max-width:820px;margin:20px auto 14px}
-  .hero h1 .gold{background:linear-gradient(100deg,var(--gold2),var(--gold) 55%,#9a7b24);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero{position:relative;padding:44px 0 8px;text-align:center;background:var(--bg)}
+  .kick{display:inline-flex;align-items:center;gap:8px;background:#eef3fd;border:1px solid var(--line);color:var(--gold);font-weight:700;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;padding:7px 15px;border-radius:999px}
+  .kick i{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:none}
+  .hero h1{font-family:'Inter',system-ui,sans-serif;font-weight:900;font-size:clamp(1.9rem,4.6vw,2.8rem);line-height:1.08;max-width:820px;margin:20px auto 14px}
+  .hero h1 .gold{color:var(--gold)}
   .hero p{color:var(--muted);font-size:clamp(1rem,2.2vw,1.13rem);max-width:620px;margin:0 auto 26px}
-  .btn{display:inline-block;text-decoration:none;font-weight:800;font-size:.98rem;padding:14px 26px;border-radius:999px;border:0;cursor:pointer;transition:transform .18s ease, box-shadow .18s ease;text-align:center}
-  .btn:hover{transform:translateY(-2px)}
-  .btn-gold{background:linear-gradient(135deg,var(--gold2),var(--gold) 60%,#a37f27);color:#191304;box-shadow:0 12px 30px rgba(212,175,55,.35)}
-  .btn-ghost{border:1.5px solid rgba(255,255,255,.28);color:var(--ink);background:rgba(255,255,255,.03)}
-  .btn-wa{background:#1faa55;color:#fff;box-shadow:0 12px 30px rgba(31,170,85,.3)}
+  .btn{display:inline-block;text-decoration:none;font-weight:700;font-size:.98rem;padding:13px 24px;border-radius:10px;border:0;cursor:pointer;transition:background .15s ease, border-color .15s ease;text-align:center}
+  .btn-gold:hover{background:var(--gold2)}
+  .btn-gold{background:var(--gold);color:#fff;box-shadow:none}
+  .btn-ghost{border:1px solid var(--line);color:var(--ink);background:#fff}
+  .btn-wa{background:var(--gold);color:#fff;box-shadow:none}
   .hero .btns{display:flex;gap:13px;justify-content:center;flex-wrap:wrap}
 
   section{padding:56px 0}
+  section#how, section#gallery{background:var(--bg2)}
   .shead{text-align:center;max-width:680px;margin:0 auto 36px}
   .shead .kick{margin-bottom:14px}
-  .shead h2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.8rem,4.2vw,2.5rem);line-height:1.12}
+  .shead h2{font-family:'Inter',system-ui,sans-serif;font-weight:900;font-size:clamp(1.8rem,4.2vw,2.5rem);line-height:1.12}
   .shead p{color:var(--muted);margin-top:10px}
 
   /* ---------- template gallery ---------- */
   .tgrid{display:grid;gap:22px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
-  .tcard{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line2);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:transform .22s ease, border-color .22s ease, box-shadow .22s ease}
-  .tcard:hover{transform:translateY(-5px);border-color:var(--line);box-shadow:0 24px 46px rgba(0,0,0,.45)}
-  .tcard.premium-card{border-color:rgba(212,175,55,.45)}
+  .tcard{background:var(--panel);box-shadow:var(--shadow);border:1px solid var(--line2);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:transform .22s ease, border-color .22s ease, box-shadow .22s ease}
+  .tcard:hover{transform:translateY(-3px);border-color:#c9d4e6;box-shadow:0 12px 32px rgba(16,24,40,.10)}
+  .tcard.premium-card{border-color:var(--amber-line)}
   .thumb{position:relative;height:190px;overflow:hidden}
   .thumb svg{position:absolute;inset:0;width:100%;height:100%}
   .badge{position:absolute;top:12px;left:12px;z-index:3;font-size:.7rem;font-weight:800;letter-spacing:.12em;padding:6px 12px;border-radius:999px}
-  .badge-free{background:#1faa55;color:#fff}
-  .badge-premium{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#191304;box-shadow:0 6px 18px rgba(212,175,55,.4)}
-  .lockveil{position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,rgba(4,7,15,.18),rgba(4,7,15,.55));display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:#ffeec2;text-align:center;padding:12px}
-  .lockveil .lockbig{font-size:2rem;filter:drop-shadow(0 4px 10px rgba(0,0,0,.6))}
+  .badge-free{background:#eef3fd;color:var(--gold);border:1px solid var(--line)}
+  .badge-premium{background:var(--amber-bg);color:var(--amber-ink);border:1px solid var(--amber-line);box-shadow:none}
+  .lockveil{position:absolute;inset:0;z-index:2;background:rgba(255,255,255,.42);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:var(--amber-ink);text-align:center;padding:12px}
+  .lockveil .lockbig{font-size:2rem;filter:none}
   .lockveil b{font-size:.86rem;letter-spacing:.04em}
   .tcard.open .lockveil{display:none}
   .tbody{padding:19px 20px 21px;display:flex;flex-direction:column;gap:6px;flex:1}
-  .tbody h3{font-family:'Fraunces',serif;font-size:1.26rem;font-weight:700}
+  .tbody h3{font-family:'Inter',system-ui,sans-serif;font-size:1.26rem;font-weight:700}
   .tbody p{color:var(--muted);font-size:.92rem;flex:1}
-  .topen{margin-top:10px;background:rgba(255,255,255,.05);border:1px solid var(--line2);color:var(--ink);font-weight:800;font-size:.92rem;padding:12px 16px;border-radius:12px;cursor:pointer;transition:border-color .18s ease, background .18s ease}
+  .topen{margin-top:10px;background:var(--bg2);border:1px solid var(--line2);color:var(--ink);font-weight:800;font-size:.92rem;padding:12px 16px;border-radius:12px;cursor:pointer;transition:border-color .18s ease, background .18s ease}
   .topen:hover{border-color:var(--gold)}
-  .topen.goldbtn{background:linear-gradient(135deg,var(--gold2),var(--gold) 60%,#a37f27);color:#191304;border:0}
+  .topen.goldbtn{background:var(--amber-bg);color:var(--amber-ink);border:1px solid var(--amber-line)}
   .topen[disabled]{opacity:.75;cursor:default}
   .gnote{text-align:center;color:var(--muted);font-size:.9rem;margin-top:22px}
 
@@ -89,17 +90,17 @@
   .maker-grid{display:grid;gap:30px;align-items:start}
   @media(min-width:920px){.maker-grid{grid-template-columns:1fr 400px}}
   .tabs{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap}
-  .tab{flex:1;min-width:150px;border:1px solid var(--line2);background:rgba(255,255,255,.04);color:var(--muted);font-weight:800;font-size:.95rem;padding:13px 14px;border-radius:14px;cursor:pointer}
-  .tab.active{background:linear-gradient(135deg,var(--gold2),var(--gold) 60%,#a37f27);color:#191304;border:0}
+  .tab{flex:1;min-width:150px;border:1px solid var(--line2);background:#fff;color:var(--muted);font-weight:800;font-size:.95rem;padding:13px 14px;border-radius:14px;cursor:pointer}
+  .tab.active{background:var(--gold);color:#fff;border:1px solid var(--gold)}
   .tab .sub{display:block;font-size:.74rem;font-weight:600;opacity:.85;margin-top:2px}
   .ffield{margin-bottom:16px}
   .ffield label{display:block;font-weight:700;font-size:.9rem;margin-bottom:7px}
   .ffield label small{color:var(--muted);font-weight:500}
-  .ffield input[type=text], .ffield textarea{width:100%;background:#0a1730;border:1px solid var(--line2);border-radius:12px;color:var(--ink);font:inherit;font-size:.98rem;padding:13px 15px;outline:none;transition:border-color .15s ease}
+  .ffield input[type=text], .ffield textarea{width:100%;background:var(--field);border:1px solid var(--line2);border-radius:12px;color:var(--ink);font:inherit;font-size:.98rem;padding:13px 15px;outline:none;transition:border-color .15s ease}
   .ffield input[type=text]:focus, .ffield textarea:focus{border-color:var(--gold)}
   .ffield textarea{min-height:96px;resize:vertical}
-  .ffield input[type=file]{width:100%;background:#0a1730;border:1px dashed rgba(212,175,55,.4);border-radius:12px;color:var(--muted);font:inherit;font-size:.9rem;padding:12px 14px}
-  .gate-note{display:none;background:rgba(212,175,55,.09);border:1px solid var(--line);border-radius:14px;padding:15px 17px;color:#ffeec2;font-size:.93rem;margin-bottom:16px}
+  .ffield input[type=file]{width:100%;background:#fff;border:1px dashed #c4cede;border-radius:12px;color:var(--muted);font:inherit;font-size:.9rem;padding:12px 14px}
+  .gate-note{display:none;background:var(--amber-bg);border:1px solid var(--amber-line);border-radius:14px;padding:15px 17px;color:var(--amber-ink);font-size:.93rem;margin-bottom:16px}
   .gate-note.show{display:block}
   .dlrow{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:4px}
   .dl-note{color:var(--muted);font-size:.88rem;margin-top:12px;min-height:1.3em}
@@ -108,12 +109,12 @@
   /* phone preview */
   .phonewrap{position:sticky;top:86px}
   .phonelabel{text-align:center;color:var(--muted);font-size:.82rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px}
-  .phone{max-width:350px;margin:0 auto;border:10px solid #1b2436;border-radius:38px;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.55);background:#fff}
+  .phone{max-width:350px;margin:0 auto;border:10px solid #1b2436;border-radius:38px;overflow:hidden;box-shadow:0 18px 40px rgba(16,24,40,.22);background:#fff}
   .pv{min-height:540px;display:flex;flex-direction:column;align-items:center;text-align:center;padding:30px 22px 20px;position:relative}
-  .pv-free{background:linear-gradient(180deg,#fff8ec,#ffeef4);color:#33272b}
+  .pv-free{background:#fff8ec;color:#33272b}
   .pv-free .pv-cake{font-size:3rem}
   .pv-small{font-size:.7rem;font-weight:800;letter-spacing:.3em;color:#c27a1d;margin-top:8px}
-  .pv-free h4{font-family:'Fraunces',serif;font-size:1.9rem;line-height:1.15;margin:6px 0 4px;color:#5b2333}
+  .pv-free h4{font-family:'Inter',system-ui,sans-serif;font-size:1.9rem;line-height:1.15;margin:6px 0 4px;color:#5b2333}
   .pv-photo{width:150px;height:150px;object-fit:cover;border-radius:50%;border:4px solid #f3c96b;margin:12px 0 4px;box-shadow:0 10px 24px rgba(0,0,0,.18)}
   .pv-msg{font-size:.95rem;color:#5c4a4a;margin-top:10px;white-space:pre-wrap}
   .pv-from{margin-top:14px;font-size:.9rem;color:#8a6d3b}
@@ -122,65 +123,95 @@
   .pv-premium{background:radial-gradient(600px 300px at 50% -80px, rgba(212,175,55,.25), transparent 60%),linear-gradient(180deg,#0a1428,#060b18);color:var(--ink)}
   .pv-premium .pv-cake{font-size:3rem}
   .pv-premium .pv-small{color:var(--gold2)}
-  .pv-premium h4{font-family:'Fraunces',serif;font-size:2rem;line-height:1.15;margin:6px 0 4px;background:linear-gradient(100deg,var(--gold2),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .pv-premium h4{font-family:'Inter',system-ui,sans-serif;font-size:2rem;line-height:1.15;margin:6px 0 4px;background:linear-gradient(100deg,var(--gold2),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
   .pv-premium .pv-photo{border-color:var(--gold)}
   .pv-letter{margin-top:14px;background:rgba(255,255,255,.045);border:1px solid var(--line);border-radius:14px;padding:15px 16px;font-size:.92rem;color:#dbe6f5;white-space:pre-wrap;text-align:left;width:100%}
   .pv-premium .pv-from{color:var(--gold2)}
   .pv-premium .pv-pin{color:#7186a3}
 
   /* ---------- premium bar ---------- */
-  .premiumbar{display:none;background:linear-gradient(120deg,#14264a,#0d1830);border:1px solid var(--gold);border-radius:16px;padding:16px 20px;margin-bottom:26px;align-items:center;gap:12px;flex-wrap:wrap}
+  .premiumbar{display:none;background:var(--amber-bg);border:1px solid var(--amber-line);border-radius:16px;padding:16px 20px;margin-bottom:26px;align-items:center;gap:12px;flex-wrap:wrap}
   .premiumbar.show{display:flex}
-  .premiumbar b{color:var(--gold2)}
+  .premiumbar b{color:var(--amber-ink)}
   .premiumbar span{color:var(--muted);font-size:.9rem}
 
   /* ---------- paywall modal ---------- */
-  .modalback{position:fixed;inset:0;z-index:200;background:rgba(3,5,11,.78);backdrop-filter:blur(6px);display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;padding:22px 14px}
+  .modalback{position:fixed;inset:0;z-index:200;background:rgba(19,26,38,.45);backdrop-filter:blur(6px);display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;padding:22px 14px}
   .modalback[hidden]{display:none}
-  .modal{background:linear-gradient(180deg,#101d38,#0a1428);border:1px solid var(--line);border-radius:24px;max-width:640px;width:100%;padding:30px 26px 28px;position:relative;box-shadow:0 40px 90px rgba(0,0,0,.6)}
-  .modal h3{font-family:'Fraunces',serif;font-weight:900;font-size:1.65rem;margin:14px 0 8px;line-height:1.2}
+  .modal{background:#fff;border:1px solid var(--line);border-radius:20px;max-width:640px;width:100%;padding:30px 26px 28px;position:relative;box-shadow:0 24px 60px rgba(16,24,40,.20)}
+  .modal h3{font-family:'Inter',system-ui,sans-serif;font-weight:900;font-size:1.65rem;margin:14px 0 8px;line-height:1.2}
   .modal .mp{color:var(--muted);font-size:.95rem}
-  .mx{position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:50%;border:1px solid var(--line2);background:rgba(255,255,255,.05);color:var(--ink);font-size:1.2rem;cursor:pointer;line-height:1}
+  .mx{position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:50%;border:1px solid var(--line2);background:#fff;color:var(--ink);font-size:1.2rem;cursor:pointer;line-height:1}
   .packs{display:grid;gap:16px;margin:22px 0 6px}
   @media(min-width:560px){.packs{grid-template-columns:1fr 1fr}}
-  .pack{background:rgba(255,255,255,.035);border:1px solid var(--line2);border-radius:18px;padding:22px 20px;position:relative}
-  .pack.hot{border-color:var(--gold);background:linear-gradient(180deg,#16233d,#0d1830)}
-  .pack .flag{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--gold2),var(--gold));color:#191304;font-size:.7rem;font-weight:800;letter-spacing:.08em;padding:5px 13px;border-radius:999px;white-space:nowrap}
+  .pack{background:var(--bg2);border:1px solid var(--line2);border-radius:18px;padding:22px 20px;position:relative}
+  .pack.hot{border-color:var(--gold);background:#fbfcfe}
+  .pack .flag{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--amber-bg);color:var(--amber-ink);border:1px solid var(--amber-line);font-size:.7rem;font-weight:800;letter-spacing:.08em;padding:5px 13px;border-radius:999px;white-space:nowrap}
   .pack .ptier{font-size:.76rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-  .pack .pamt{font-family:'Fraunces',serif;font-weight:900;font-size:2.1rem;margin:6px 0 2px}
+  .pack .pamt{font-family:'Inter',system-ui,sans-serif;font-weight:900;font-size:2.1rem;margin:6px 0 2px}
   .pack.hot .pamt{color:var(--gold2)}
   .pack .pamt small{font-size:.9rem;font-family:'Inter',sans-serif;font-weight:600;color:var(--muted)}
   .pack ul{list-style:none;margin-top:12px;display:grid;gap:8px}
-  .pack li{font-size:.9rem;color:#ccd9ec;padding-left:24px;position:relative}
+  .pack li{font-size:.9rem;color:var(--muted);padding-left:24px;position:relative}
   .pack li::before{content:"✓";position:absolute;left:0;color:var(--gold);font-weight:800}
-  .steps2{margin:18px 0 4px;padding-left:20px;color:#ccd9ec;font-size:.93rem;display:grid;gap:7px}
+  .steps2{margin:18px 0 4px;padding-left:20px;color:var(--muted);font-size:.93rem;display:grid;gap:7px}
   .modal .btn-wa{display:block;margin-top:18px}
   .codebox{margin-top:24px;border-top:1px solid var(--line2);padding-top:20px}
   .codebox label{display:block;font-weight:800;font-size:.92rem;margin-bottom:9px}
   .coderow{display:flex;gap:10px;flex-wrap:wrap}
-  .coderow input{flex:1;min-width:180px;background:#0a1730;border:1px solid var(--line2);border-radius:12px;color:var(--ink);font:inherit;font-size:1rem;letter-spacing:.08em;padding:13px 15px;outline:none;text-transform:uppercase}
+  .coderow input{flex:1;min-width:180px;background:var(--field);border:1px solid var(--line2);border-radius:12px;color:var(--ink);font:inherit;font-size:1rem;letter-spacing:.08em;padding:13px 15px;outline:none;text-transform:uppercase}
   .coderow input:focus{border-color:var(--gold)}
   .cmsg{font-size:.9rem;margin-top:11px;min-height:1.35em}
-  .cmsg.err{color:#ff8f9e}
-  .cmsg.ok{color:#7fe3a8}
+  .cmsg.err{color:#d92d20}
+  .cmsg.ok{color:#12805c}
   .cnote{color:var(--muted);font-size:.8rem;margin-top:8px}
 
   /* ---------- steps ---------- */
   .cols{display:grid;gap:20px}
   @media(min-width:820px){.cols{grid-template-columns:repeat(3,1fr)}}
-  .step{background:rgba(255,255,255,.035);border:1px solid var(--line2);border-radius:var(--radius);padding:26px 24px}
-  .step .n{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--gold2),var(--gold));color:#191304;font-family:'Fraunces',serif;font-weight:900;font-size:1.2rem;display:grid;place-items:center;margin-bottom:14px}
-  .step h3{font-family:'Fraunces',serif;font-size:1.2rem;margin-bottom:6px}
+  .step{background:#fff;box-shadow:var(--shadow);border:1px solid var(--line2);border-radius:var(--radius);padding:26px 24px}
+  .step .n{width:44px;height:44px;border-radius:50%;background:var(--gold);color:#fff;font-family:'Inter',system-ui,sans-serif;font-weight:900;font-size:1.2rem;display:grid;place-items:center;margin-bottom:14px}
+  .step h3{font-family:'Inter',system-ui,sans-serif;font-size:1.2rem;margin-bottom:6px}
   .step p{color:var(--muted);font-size:.93rem}
 
-  .ffield select{width:100%;background:#0a1730;border:1px solid var(--line2);border-radius:12px;color:var(--ink);font:inherit;font-size:.98rem;padding:13px 15px;outline:none}
+  .ffield select{width:100%;background:var(--field);border:1px solid var(--line2);border-radius:12px;color:var(--ink);font:inherit;font-size:.98rem;padding:13px 15px;outline:none}
   .ffield select:focus{border-color:var(--gold)}
   .genrow{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px}
-  .genrow select{flex:1;min-width:170px;background:#0a1730;border:1px solid var(--line2);border-radius:12px;color:var(--ink);font:inherit;font-size:.95rem;padding:11px 13px;outline:none}
+  .genrow select{flex:1;min-width:170px;background:var(--field);border:1px solid var(--line2);border-radius:12px;color:var(--ink);font:inherit;font-size:.95rem;padding:11px 13px;outline:none}
   .genrow select:focus{border-color:var(--gold)}
-  .genbtn{background:rgba(212,175,55,.14);border:1px solid var(--gold);color:var(--gold2);font-weight:800;font-size:.9rem;padding:11px 18px;border-radius:12px;cursor:pointer;white-space:nowrap}
-  .genbtn:hover{background:rgba(212,175,55,.24)}
+  .genbtn{background:#eef3fd;border:1px solid var(--gold);color:var(--gold);font-weight:800;font-size:.9rem;padding:11px 18px;border-radius:12px;cursor:pointer;white-space:nowrap}
+  .genbtn:hover{background:#dbe7fb}
   .pv-note{max-width:350px;margin:12px auto 0;text-align:center;color:var(--muted);font-size:.85rem}
+
+
+  /* ---------- v3: how strip ---------- */
+  .howstrip{padding:36px 0 4px}
+
+  /* ---------- v3: free vs premium ---------- */
+  .vs-grid{display:grid;gap:20px}
+  @media(min-width:820px){.vs-grid{grid-template-columns:1fr 1fr}}
+  .vs-card{background:#fff;box-shadow:var(--shadow);border:1px solid var(--line2);border-radius:22px;padding:28px 24px;display:flex;flex-direction:column}
+  .vs-card.premium{border-color:var(--amber-line);box-shadow:var(--shadow)}
+  .vs-card .vtag{align-self:flex-start;font-size:.72rem;font-weight:800;letter-spacing:.12em;padding:6px 13px;border-radius:999px}
+  .vtag-free{background:#eef3fd;color:var(--gold);border:1px solid var(--line)}
+  .vtag-premium{background:var(--amber-bg);color:var(--amber-ink);border:1px solid var(--amber-line)}
+  .vs-card h3{font-family:'Inter',system-ui,sans-serif;font-size:1.55rem;margin:12px 0 2px}
+  .vs-card .vprice{color:var(--gold2);font-weight:800;font-size:.95rem}
+  .vs-card ul{list-style:none;margin:16px 0 22px;display:grid;gap:9px;flex:1}
+  .vs-card li{padding-left:26px;position:relative;color:var(--muted);font-size:.94rem}
+  .vs-card li::before{content:"✓";position:absolute;left:0;color:var(--gold);font-weight:800}
+  .vs-card li.no{color:var(--muted)}
+  .vs-card li.no::before{content:"—";color:var(--muted)}
+  .vs-card .btn{text-align:center}
+
+  /* ---------- v3: live demo overlay ---------- */
+  .demo-overlay{position:fixed;inset:0;z-index:300;background:var(--bg2);display:flex;flex-direction:column}
+  .demo-overlay[hidden]{display:none}
+  .demo-bar{display:flex;align-items:center;gap:12px;padding:10px 14px;background:#fff;border-bottom:1px solid var(--line);color:var(--ink);font-size:.95rem;flex-wrap:wrap}
+  .demo-bar .dpin{background:#eef3fd;border:1px solid var(--line);color:var(--gold);border-radius:999px;padding:5px 13px;font-weight:700;font-size:.86rem}
+  .demo-bar .dhint{color:var(--muted);font-size:.86rem}
+  .demo-close{margin-left:auto;background:#fff;border:1px solid var(--line2);color:var(--ink);font-weight:800;padding:9px 16px;border-radius:999px;cursor:pointer;font:inherit}
+  .demo-frame{flex:1;width:100%;border:0;background:#fff}
 
   footer{border-top:1px solid var(--line2);padding:26px 0 34px;text-align:center;color:var(--muted);font-size:.88rem}
   footer b{color:var(--ink)}
@@ -193,7 +224,7 @@
 <!-- ================= HEADER ================= -->
 <header>
   <div class="wrap nav">
-    <a class="logo" href="index.html"><span class="mark"><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M7.2 20.2c4.9 1.6 9.7-1.7 10.6-7.1" stroke="#f0d47a" stroke-width="2.3" stroke-linecap="round"/><path d="M5.8 15.6c3.8 4.5 9.7 5 13.9 1.1" stroke="#d4af37" stroke-width="2.3" stroke-linecap="round"/><path d="M9.4 4.6c1.9 3.1 4.4 4.5 7.2 4" stroke="#f0d47a" stroke-width="2.3" stroke-linecap="round"/><circle cx="12.2" cy="11.2" r="2.5" fill="#f0d47a"/></svg></span>Mint<em>Nest</em>&nbsp;Studio</a>
+    <a class="logo" href="index.html"><span class="mark"><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M7.2 20.2c4.9 1.6 9.7-1.7 10.6-7.1" stroke="#ffffff" stroke-width="2.3" stroke-linecap="round"/><path d="M5.8 15.6c3.8 4.5 9.7 5 13.9 1.1" stroke="#ffffff" stroke-width="2.3" stroke-linecap="round"/><path d="M9.4 4.6c1.9 3.1 4.4 4.5 7.2 4" stroke="#ffffff" stroke-width="2.3" stroke-linecap="round"/><circle cx="12.2" cy="11.2" r="2.5" fill="#ffffff"/></svg></span>Mint<em>Nest</em>&nbsp;Studio</a>
     <nav class="links">
       <a href="index.html#demos">Live demos</a>
       <a href="#gallery">Templates</a>
@@ -210,14 +241,69 @@
 <div class="hero" id="top">
   <div class="wrap">
     <span class="kick"><i></i> Template Studio</span>
-    <h1>Create your own surprise page — <span class="gold">free, in minutes.</span></h1>
+    <h1>A surprise page they'll <span class="gold">never forget.</span></h1>
     <p>Pick a template, add a name and your message, set a secret PIN — then download one single page file and share it with anyone. Free to start; premium unlocks photos and the rich designs whenever you are ready.</p>
     <div class="btns">
-      <a class="btn btn-gold" href="#maker">Start free</a>
+      <button class="btn btn-gold demo-open" type="button">▶ Try the Live Demo</button>
+      <a class="btn btn-ghost" href="#maker">Start free</a>
       <a class="btn btn-ghost" href="#gallery">See the templates</a>
     </div>
   </div>
 </div>
+
+<!-- ================= HOW IT WORKS ================= -->
+<section class="howstrip" id="how">
+  <div class="wrap">
+    <div class="shead">
+      <span class="kick"><i></i> How it works</span>
+      <h2>From zero to surprise, in three steps</h2>
+    </div>
+    <div class="cols">
+      <div class="step"><div class="n">1</div><h3>Pick a template</h3><p>Birthday, Anniversary, Wedding, Baby Welcome — or a special birthday page for your girlfriend, boyfriend, bestie or sister.</p></div>
+      <div class="step"><div class="n">2</div><h3>Add a name — wishes are ready-written</h3><p>Type their name and yours, set a secret PIN. The wishes and letters are already written for you — tap Generate, or write your own.</p></div>
+      <div class="step"><div class="n">3</div><h3>Download &amp; share the page</h3><p>One single file. Send it on WhatsApp or anywhere — they open it with the PIN and the whole surprise unfolds.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FREE VS PREMIUM ================= -->
+<section id="compare" style="padding-top:26px">
+  <div class="wrap">
+    <div class="shead">
+      <span class="kick"><i></i> Free vs Premium</span>
+      <h2>Start free. Go premium when you want the photo.</h2>
+      <p>The free page is the full surprise — premium simply adds your photo and removes the watermark.</p>
+    </div>
+    <div class="vs-grid">
+      <div class="vs-card">
+        <span class="vtag vtag-free">FREE</span>
+        <h3>Birthday — Classic</h3>
+        <div class="vprice">Rs 0 · free forever</div>
+        <ul>
+          <li>Full surprise flow — PIN lock, teddy loading, cake &amp; gift</li>
+          <li>Ready-written wishes &amp; letters — nothing to write</li>
+          <li>Every relationship preset: girlfriend, boyfriend, bestie, sister &amp; more</li>
+          <li class="no">No photo on the page</li>
+          <li>Small “Made with MintNest Studio” watermark</li>
+        </ul>
+        <a class="btn btn-ghost" href="#maker" id="btnStartFree">Start Free</a>
+      </div>
+      <div class="vs-card premium">
+        <span class="vtag vtag-premium">👑 PREMIUM</span>
+        <h3>Birthday — Premium</h3>
+        <div class="vprice">One-time · from Rs 500 · yours to keep</div>
+        <ul>
+          <li>Everything in Free</li>
+          <li>Your photo on the page — glowing hero + gallery</li>
+          <li>No watermark, anywhere</li>
+          <li>The richest dark &amp; gold design</li>
+          <li>Unlocks once on this device — no monthly fees</li>
+        </ul>
+        <button class="btn btn-gold" id="btnCompareUnlock" type="button">Unlock Premium — from Rs 500</button>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ================= GALLERY ================= -->
 <section id="gallery">
@@ -226,6 +312,7 @@
       <span class="kick"><i></i> Template gallery</span>
       <h2>Every template, out in the open</h2>
       <p>Premium templates are shown to everyone — never hidden. Tap a locked one to see the one-time unlock options.</p>
+      <p style="margin-top:18px"><button class="btn btn-gold demo-open" type="button">▶ Try the Live Demo</button></p>
     </div>
 
     <div class="premiumbar" id="premiumBar">
@@ -290,8 +377,8 @@
             <defs><linearGradient id="gAnn" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2b0f1c"/><stop offset="1" stop-color="#17060f"/></linearGradient></defs>
             <rect width="320" height="190" fill="url(#gAnn)"/>
             <path d="M160 138c-34-24-46-40-46-55a17 17 0 0 1 30-11 17 17 0 0 1 32 0 17 17 0 0 1 30 11c0 15-12 31-46 55z" fill="#8e2a4a"/>
-            <circle cx="138" cy="98" r="21" fill="none" stroke="#f0d47a" stroke-width="5"/>
-            <circle cx="182" cy="98" r="21" fill="none" stroke="#d4af37" stroke-width="5"/>
+            <circle cx="138" cy="98" r="21" fill="none" stroke="#ffffff" stroke-width="5"/>
+            <circle cx="182" cy="98" r="21" fill="none" stroke="#ffffff" stroke-width="5"/>
             <circle cx="52" cy="40" r="2.6" fill="#f0d47a"/><circle cx="272" cy="46" r="2.6" fill="#f0d47a"/><circle cx="240" cy="150" r="2.2" fill="#e8a0b4"/><circle cx="80" cy="156" r="2.2" fill="#e8a0b4"/>
           </svg>
           <span class="badge badge-premium">👑 PREMIUM</span>
@@ -312,7 +399,7 @@
             <rect width="320" height="190" fill="url(#gWed)"/>
             <path d="M84 168V92a76 60 0 0 1 152 0v76" fill="none" stroke="#b98a2f" stroke-width="5"/>
             <circle cx="140" cy="128" r="17" fill="none" stroke="#b98a2f" stroke-width="4.5"/>
-            <circle cx="180" cy="128" r="17" fill="none" stroke="#d4af37" stroke-width="4.5"/>
+            <circle cx="180" cy="128" r="17" fill="none" stroke="#ffffff" stroke-width="4.5"/>
             <path d="M160 30l3 6 6.6.9-4.8 4.6 1.2 6.5L160 45l-6 3 1.2-6.5-4.8-4.6 6.6-.9z" fill="#d4af37"/>
             <circle cx="52" cy="150" r="3" fill="#b98a2f"/><circle cx="268" cy="150" r="3" fill="#b98a2f"/>
           </svg>
@@ -347,13 +434,99 @@
         </div>
       </article>
 
+      <!-- PRESET: Birthday for Girlfriend -->
+      <article class="tcard" data-template="birthday-girlfriend">
+        <div class="thumb">
+          <svg viewBox="0 0 320 190" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <defs><linearGradient id="gGf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a1030"/><stop offset="1" stop-color="#20060f"/></linearGradient></defs>
+            <rect width="320" height="190" fill="url(#gGf)"/>
+            <path d="M160 128c-30-21-41-35-41-49a15 15 0 0 1 27-10 15 15 0 0 1 28 0 15 15 0 0 1 27 10c0 14-11 28-41 49z" fill="#e2547a"/>
+            <rect x="126" y="146" width="68" height="18" rx="4" fill="#6e2340"/>
+            <rect x="136" y="132" width="48" height="15" rx="4" fill="#8e2f52"/>
+            <circle cx="146" cy="126" r="3.6" fill="#ffd766"/><circle cx="174" cy="126" r="3.6" fill="#ffd766"/>
+            <circle cx="52" cy="44" r="3" fill="#f6a8c1"/><circle cx="272" cy="52" r="3" fill="#f6a8c1"/><circle cx="238" cy="156" r="2.4" fill="#f0d47a"/><circle cx="78" cy="160" r="2.4" fill="#f0d47a"/>
+          </svg>
+          <span class="badge badge-free">FREE</span>
+        </div>
+        <div class="tbody">
+          <h3>Birthday for Girlfriend 💕</h3>
+          <p>A romantic-ready birthday page: sweet wishes and a love letter are pre-filled for her — just add her name and set the PIN.</p>
+          <button class="topen" data-preset="girlfriend">Make this page →</button>
+        </div>
+      </article>
+
+      <!-- PRESET: Birthday for Boyfriend -->
+      <article class="tcard" data-template="birthday-boyfriend">
+        <div class="thumb">
+          <svg viewBox="0 0 320 190" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <defs><linearGradient id="gBf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#12325c"/><stop offset="1" stop-color="#060b18"/></linearGradient></defs>
+            <rect width="320" height="190" fill="url(#gBf)"/>
+            <path d="M160 128c-30-21-41-35-41-49a15 15 0 0 1 27-10 15 15 0 0 1 28 0 15 15 0 0 1 27 10c0 14-11 28-41 49z" fill="#5b8dd9"/>
+            <rect x="126" y="146" width="68" height="18" rx="4" fill="#274a75"/>
+            <rect x="136" y="132" width="48" height="15" rx="4" fill="#356199"/>
+            <circle cx="146" cy="126" r="3.6" fill="#ffd766"/><circle cx="174" cy="126" r="3.6" fill="#ffd766"/>
+            <circle cx="52" cy="44" r="3" fill="#a8cdf6"/><circle cx="272" cy="52" r="3" fill="#a8cdf6"/><circle cx="238" cy="156" r="2.4" fill="#f0d47a"/><circle cx="78" cy="160" r="2.4" fill="#f0d47a"/>
+          </svg>
+          <span class="badge badge-free">FREE</span>
+        </div>
+        <div class="tbody">
+          <h3>Birthday for Boyfriend 💙</h3>
+          <p>For him: strong, sweet wishes and a ready letter that says what is hard to say out loud. Add his name, set the PIN, send it.</p>
+          <button class="topen" data-preset="boyfriend">Make this page →</button>
+        </div>
+      </article>
+
+      <!-- PRESET: Birthday for Bestie -->
+      <article class="tcard" data-template="birthday-bestie">
+        <div class="thumb">
+          <svg viewBox="0 0 320 190" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <defs><linearGradient id="gBe" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a2408"/><stop offset="1" stop-color="#170d02"/></linearGradient></defs>
+            <rect width="320" height="190" fill="url(#gBe)"/>
+            <path d="M160 38l7.5 15.2 16.8 2.4-12.2 11.9 2.9 16.7L160 76.4l-15 7.8 2.9-16.7-12.2-11.9 16.8-2.4z" fill="#f0d47a"/>
+            <rect x="118" y="138" width="84" height="24" rx="5" fill="#8a4b2d"/>
+            <rect x="129" y="117" width="62" height="22" rx="5" fill="#a85f3a"/>
+            <rect x="133" y="105" width="4" height="12" fill="#e2543e"/><rect x="158" y="101" width="4" height="16" fill="#e2543e"/><rect x="183" y="105" width="4" height="12" fill="#e2543e"/>
+            <circle cx="135" cy="100" r="4.4" fill="#ffb340"/><circle cx="160" cy="95" r="5" fill="#ffb340"/><circle cx="185" cy="100" r="4.4" fill="#ffb340"/>
+            <circle cx="58" cy="60" r="4" fill="#e2543e"/><circle cx="266" cy="66" r="4" fill="#5b8dd9"/><circle cx="240" cy="160" r="3.4" fill="#7ab648"/><circle cx="84" cy="164" r="3.4" fill="#e2a63d"/>
+          </svg>
+          <span class="badge badge-free">FREE</span>
+        </div>
+        <div class="tbody">
+          <h3>Birthday for Bestie 🎉</h3>
+          <p>Maximum fun, zero mercy: loud wishes and a bestie letter full of inside-joke energy. Pre-filled and ready to personalise.</p>
+          <button class="topen" data-preset="bestie">Make this page →</button>
+        </div>
+      </article>
+
+      <!-- PRESET: Birthday for Sister -->
+      <article class="tcard" data-template="birthday-sister">
+        <div class="thumb">
+          <svg viewBox="0 0 320 190" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <defs><linearGradient id="gSi" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a1350"/><stop offset="1" stop-color="#150722"/></linearGradient></defs>
+            <rect width="320" height="190" fill="url(#gSi)"/>
+            <circle cx="160" cy="66" r="10" fill="#f0d47a"/>
+            <circle cx="160" cy="44" r="9" fill="#e8a0d8"/><circle cx="179" cy="57" r="9" fill="#c084e8"/><circle cx="173" cy="79" r="9" fill="#e8a0d8"/><circle cx="147" cy="79" r="9" fill="#c084e8"/><circle cx="141" cy="57" r="9" fill="#e8a0d8"/>
+            <rect x="122" y="140" width="76" height="21" rx="5" fill="#5b2a72"/>
+            <rect x="133" y="121" width="54" height="20" rx="5" fill="#74468f"/>
+            <circle cx="147" cy="115" r="3.8" fill="#ffd766"/><circle cx="173" cy="115" r="3.8" fill="#ffd766"/>
+            <circle cx="54" cy="48" r="2.8" fill="#e8a0d8"/><circle cx="270" cy="44" r="2.8" fill="#c084e8"/><circle cx="242" cy="158" r="2.4" fill="#f0d47a"/><circle cx="80" cy="162" r="2.4" fill="#f0d47a"/>
+          </svg>
+          <span class="badge badge-free">FREE</span>
+        </div>
+        <div class="tbody">
+          <h3>Birthday for Sister 🌸</h3>
+          <p>For your first friend and forever confidante: warm sister wishes and a sweet letter, pre-filled — just add her name.</p>
+          <button class="topen" data-preset="sister">Make this page →</button>
+        </div>
+      </article>
+
       <!-- PREMIUM SERVICE: done-for-you picture editing (order on WhatsApp, no editor tool) -->
       <article class="tcard premium-card" data-template="picture-editing" data-premium="service">
         <div class="thumb">
           <svg viewBox="0 0 320 190" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
             <defs><linearGradient id="gSvc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#16233d"/><stop offset="1" stop-color="#0a1428"/></linearGradient></defs>
             <rect width="320" height="190" fill="url(#gSvc)"/>
-            <rect x="86" y="18" width="148" height="154" rx="10" fill="#0d1830" stroke="#d4af37" stroke-width="4"/>
+            <rect x="86" y="18" width="148" height="154" rx="10" fill="#0d1830" stroke="#ffffff" stroke-width="4"/>
             <circle cx="160" cy="74" r="20" fill="#9db0c8"/>
             <path d="M128 128c4-20 16-28 32-28s28 8 32 28z" fill="#9db0c8"/>
             <rect x="86" y="136" width="148" height="36" fill="#d4af37"/>
@@ -420,6 +593,9 @@
                 <option value="friend">For Friend</option>
                 <option value="mother">For Mother</option>
                 <option value="father">For Father</option>
+                <option value="girlfriend">For Girlfriend</option>
+                <option value="boyfriend">For Boyfriend</option>
+                <option value="bestie">For Bestie</option>
               </select>
               <button class="genbtn" id="btnGenWish" type="button">✨ Generate wish</button>
             </div>
@@ -432,6 +608,8 @@
                 <option value="0">Heartfelt Long</option>
                 <option value="1" selected>Sweet &amp; Simple</option>
                 <option value="2">Short &amp; Loving</option>
+                <option value="3">Romantic &amp; Sweet</option>
+                <option value="4">Bestie Fun</option>
               </select>
               <button class="genbtn" id="btnUseLetter" type="button">💌 Use this letter</button>
             </div>
@@ -499,25 +677,21 @@
   </div>
 </section>
 
-<!-- ================= HOW IT WORKS ================= -->
-<section style="padding-top:8px">
-  <div class="wrap">
-    <div class="shead">
-      <span class="kick"><i></i> How it works</span>
-      <h2>Three steps, one lovely page</h2>
-    </div>
-    <div class="cols">
-      <div class="step"><div class="n">1</div><h3>Pick &amp; personalise</h3><p>Choose a template above and add the name and message — premium also adds a photo. The preview updates as you type.</p></div>
-      <div class="step"><div class="n">2</div><h3>Download one file</h3><p>Your page downloads as a single HTML file — no accounts, no hosting, nothing else to install.</p></div>
-      <div class="step"><div class="n">3</div><h3>Share it anywhere</h3><p>Send the file on WhatsApp or anywhere else. They open it, type the secret PIN, and the surprise is theirs.</p></div>
-    </div>
-  </div>
-</section>
-
 <!-- ================= FOOTER ================= -->
 <footer>
   <div class="wrap"><b>MintNest Studio</b> — Template Studio · WhatsApp: <a href="https://wa.me/923338739929" target="_blank" rel="noopener">+92 333 8739929</a> · <a href="mailto:mintnestsofficial@gmail.com">mintnestsofficial@gmail.com</a><br>Free pages carry a small “Made with MintNest Studio” line. Premium is a one-time payment — no subscriptions.</div>
 </footer>
+
+<!-- ================= LIVE DEMO OVERLAY ================= -->
+<div class="demo-overlay" id="demoOverlay" hidden>
+  <div class="demo-bar">
+    <b>▶ Live Demo</b>
+    <span class="dpin">PIN: <b>ayesha</b></span>
+    <span class="dhint">Type the PIN inside the page, watch it load, then scroll the whole demo.</span>
+    <button class="demo-close" id="demoClose" type="button">✕ Close</button>
+  </div>
+  <iframe class="demo-frame" id="demoFrame" title="Live demo — birthday surprise page"></iframe>
+</div>
 
 <!-- ================= PAYWALL ================= -->
 <div class="modalback" id="paywall" hidden>
@@ -762,12 +936,29 @@ var WISHES = {
     "Happy Birthday, {name}! Your strength is our shelter and your guidance is our compass. May you be rewarded with health, peace and many proud moments this year.",
     "To {name}: thank you for every lesson, every sacrifice and every quiet act of love. Today we celebrate the person who made everything possible. Happy Birthday!",
     "Happy Birthday, {name}! May this year bring you rest where you need it, pride in what you built, and joy in the family that loves you more than words can say."
+  ],
+  girlfriend: [
+    "Happy Birthday to the most beautiful part of my every day, {name}. May this year spoil you with even a fraction of the happiness you pour into my life — though I plan to handle most of that spoiling myself.",
+    "To {name}, on your birthday: thank you for your laugh, your kindness and the way you make ordinary days feel like little celebrations. I hope today makes you feel exactly as loved as you truly are.",
+    "Happy Birthday, {name}! Another year of you is another year of my favourite person existing — and I intend to celebrate that properly. Cake, smiles and all of my attention: yours, all day long."
+  ],
+  boyfriend: [
+    "Happy Birthday, {name} — to the man who makes every plan better and every bad day lighter. May this year bring you the success you work so hard for, and I will be right beside you for all of it.",
+    "To {name} on your special day: thank you for being my calm, my laugh and my favourite person to tease. I hope your year is as wonderful as the heart you hide underneath all that cool.",
+    "Happy Birthday to my favourite human, {name}. Another year stronger, kinder and somehow even more handsome. Here is to your dreams — I believe in every single one of them."
+  ],
+  bestie: [
+    "HAPPY BIRTHDAY, {name}!! To my partner in crime, my unpaid therapist and the only person who laughs at my jokes before the punchline — today we celebrate YOU. Maximum cake, zero mercy.",
+    "To {name}: siblings are given, besties are chosen — and I chose spectacularly. Happy Birthday! May your year be full of inside jokes nobody else will ever understand.",
+    "Happy Birthday, bestie {name}! Officially one year more iconic. Thank you for every rescue, every secret kept and every snack shared. Now — party like we planned it for months."
   ]
 };
 var LETTERS = [
   { label: "Heartfelt Long", body: "My dear {name},\n\nToday everyone will wish you the usual things — cake, gifts and a happy birthday. But my wish for you is bigger than usual, so here it is, and it is only for you.\n\nI am genuinely proud of the person you are — your kindness, your strength, and the way you make ordinary days feel lighter just by being in them. My prayer for you this year is simple and it is big: may you be blessed with health that never fails you, success you have truly earned, and a happiness so steady that even hard days cannot shake it.\n\nAnd remember this, today and every day after: whatever life brings, you never walk alone. I am standing right behind you — in your celebrations, and even more in your struggles.\n\nHappy Birthday, {name}. This year is yours — go and take it." },
   { label: "Sweet & Simple", body: "Dear {name},\n\nHappy Birthday! Today is all about you, so I will keep this short and sweet: thank you for being exactly who you are. Your smile, your kindness and your big heart make life better for everyone lucky enough to know you.\n\nMay this year bring you good health, true happiness, and every single thing you wished for when the candles went out." },
-  { label: "Short & Loving", body: "Dear {name},\n\nJust a short letter for a very special person: Happy Birthday! May your day be filled with cake, laughter and the people you love most — and may the year ahead be your happiest one yet.\n\nYou are loved more than you know, today and always." }
+  { label: "Short & Loving", body: "Dear {name},\n\nJust a short letter for a very special person: Happy Birthday! May your day be filled with cake, laughter and the people you love most — and may the year ahead be your happiest one yet.\n\nYou are loved more than you know, today and always." },
+  { label: "Romantic & Sweet", body: "My dearest {name},\n\nSome people write letters because they have something to say. I am writing because one day a year is not nearly enough to celebrate you — but it is a good place to start.\n\nThank you for your smile that fixes bad days, your heart that makes room for everyone, and simply for being you. My wish for your birthday is that this year treats you as gently as you treat the people you love — and that I get to be standing next to you for every good part of it.\n\nHappy Birthday, {name}. You are so loved — today, tomorrow, and on all the ordinary days in between." },
+  { label: "Bestie Fun", body: "Dear {name},\n\nOFFICIAL BESTIE BIRTHDAY NOTICE: You are now one year older, one year bolder, and — somehow — still my favourite disaster. This letter confirms that I remain fully committed to sharing my food with you, laughing at your 3 a.m. stories, and defending your honour in every group chat.\n\nIn return, you owe me cake. A lot of cake.\n\nHappy Birthday, legend. May your year be as extra as you are — and may we stay this ridiculous together forever." }
 ];
 var GIFTS = [
   "Inside this box there is no toy and no gadget — there is something better: a promise. Whatever this year brings — big dreams, hard days and everything in between — you will never face any of it alone. I am in your corner, today and always. 💛",
@@ -1405,10 +1596,65 @@ btnDownload.addEventListener("click", function(){
   dlNote.innerHTML = "Downloaded ✓ — send the file to " + esc(d.name || "them") + ". It opens with the PIN: <b>" + esc(d.pin) + "</b>" + (mode === "free" ? " · Free pages carry the MintNest Studio line at the bottom." : " · Premium page — no watermark.");
 });
 
+/* ================= v3: relationship presets ================= */
+var PRESETS = {
+  girlfriend: { cat: "girlfriend", letter: 3 },
+  boyfriend: { cat: "boyfriend", letter: 3 },
+  bestie: { cat: "bestie", letter: 4 },
+  sister: { cat: "sister", letter: 1 }
+};
+function applyPreset(key){
+  var p = PRESETS[key];
+  if(!p) return;
+  /* presets run on whichever maker is live: premium if unlocked, else free */
+  if(isUnlocked() && mode !== "premium") setMode("premium");
+  fWishCat.value = p.cat;
+  if(WISHES[p.cat]) fWish.value = fieldTokens(randomOf(WISHES[p.cat]));
+  var L = LETTERS[p.letter] || LETTERS[1];
+  fLetterSel.value = String(p.letter);
+  fLetter.value = fieldTokens(L.body);
+  updatePreview();
+  $("maker").scrollIntoView({ behavior: "smooth" });
+}
+document.querySelectorAll("[data-preset]").forEach(function(btn){
+  btn.addEventListener("click", function(){ applyPreset(btn.getAttribute("data-preset")); });
+});
+
+/* ================= v3: live demo overlay (sample page from the real generator) ================= */
+var demoOverlay = $("demoOverlay"), demoFrame = $("demoFrame");
+function openDemo(){
+  var d = {
+    name: "Ayesha", from: "Your Best Friend", pin: "ayesha",
+    wish: fillTokens(randomOf(WISHES.heartfelt), "Ayesha", "Your Best Friend"),
+    letter: fillTokens(LETTERS[0].body, "Ayesha", "Your Best Friend"),
+    gift: GIFTS[0]
+  };
+  demoFrame.srcdoc = buildPage(d, "free");
+  demoOverlay.hidden = false;
+  document.body.style.overflow = "hidden";
+}
+function closeDemo(){
+  demoOverlay.hidden = true;
+  demoFrame.removeAttribute("srcdoc");
+  if(paywall.hidden) document.body.style.overflow = "";
+}
+document.querySelectorAll(".demo-open").forEach(function(b){ b.addEventListener("click", openDemo); });
+$("demoClose").addEventListener("click", closeDemo);
+document.addEventListener("keydown", function(e){ if(e.key === "Escape" && !demoOverlay.hidden) closeDemo(); });
+
+/* ================= v3: comparison buttons ================= */
+$("btnStartFree").addEventListener("click", function(){ setMode("free"); });
+$("btnCompareUnlock").addEventListener("click", openPaywall);
+
 /* ================= init ================= */
 prefillTexts();
 refreshPremiumUI();
 updatePreview();
+/* deep link from the hub: create.html#preset-girlfriend (etc.) applies the preset */
+(function(){
+  var m = /^#preset-(girlfriend|boyfriend|bestie|sister)$/.exec(window.location.hash || "");
+  if(m) applyPreset(m[1]);
+})();
 </script>
 </body>
 </html>

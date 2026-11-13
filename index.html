@@ -6,13 +6,16 @@
 <title>MintNest Studio — Website Design for Local Businesses · Live Demos from $60</title>
 <meta name="description" content="Premium, mobile-first websites for restaurants, cafés, shops and local services. Browse 23 live working demos, see your own business name on a demo in seconds, and pay only after you approve the preview. One-time prices from $60.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#060b18; --bg2:#0a1428; --panel:#0e1a30; --panel2:#0b1626;
-    --ink:#eef2f8; --muted:#9db0c8; --line:rgba(212,175,55,.18); --line2:rgba(255,255,255,.08);
-    --gold:#d4af37; --gold2:#f0d47a; --mint:#d4af37; --mint-d:#1d4e89;
-    --radius:20px;
+    --bg:#ffffff; --bg2:#f6f7f9; --panel:#ffffff; --panel2:#ffffff;
+    --ink:#131a26; --muted:#46536a; --line:#e3e7ee; --line2:#e3e7ee;
+    --gold:#2456c8; --gold2:#1d47a8; --mint:#2456c8; --mint-d:#2456c8;
+    --radius:14px;
+    --accent-deep:#eef3fd; --accent2:#2456c8;
+    --amber-bg:#fff7e0; --amber-ink:#8a6d00; --amber-line:#e8d48a;
+    --shadow:0 1px 3px rgba(16,24,40,.08);
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -20,67 +23,80 @@
   img{max-width:100%;display:block}
   a{color:inherit}
   .wrap{max-width:1180px;margin:0 auto;padding:0 22px}
-  ::selection{background:var(--gold);color:#1a1405}
+  ::selection{background:var(--gold);color:#fff}
 
   /* ---------- header ---------- */
-  header{position:sticky;top:0;z-index:80;background:rgba(6,11,24,.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line2)}
-  .nav{display:flex;align-items:center;gap:26px;padding:9px 0}
-  .logo{display:flex;align-items:center;gap:11px;text-decoration:none;font-family:'Fraunces',serif;font-weight:900;font-size:1.14rem;letter-spacing:.2px}
-  .logo .mark{width:32px;height:32px;border-radius:12px;background:linear-gradient(145deg,#12294d,#1d4e89);display:grid;place-items:center;box-shadow:0 6px 18px rgba(10,25,55,.6), inset 0 0 0 1px rgba(212,175,55,.5)}
+  header{position:sticky;top:0;z-index:80;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line2)}
+  .nav{display:flex;align-items:center;gap:26px;padding-top:9px;padding-bottom:9px}
+  .logo{display:flex;align-items:center;gap:11px;text-decoration:none;font-family:'Inter',system-ui,sans-serif;font-weight:900;font-size:1.14rem;letter-spacing:.2px}
+  .logo .mark{width:32px;height:32px;border-radius:12px;background:var(--gold);display:grid;place-items:center;box-shadow:none}
   .logo em{font-style:normal;color:var(--gold)}
   .nav .links{display:none;gap:24px;margin-left:auto}
   @media(min-width:860px){.nav .links{display:flex}}
   .nav .links a{text-decoration:none;font-weight:600;font-size:.94rem;color:var(--muted)}
   .nav .links a:hover{color:var(--gold2)}
-  .nav .cta{margin-left:auto;background:linear-gradient(135deg,var(--gold),#b98a2f);color:#191304;font-weight:800;font-size:.92rem;text-decoration:none;padding:10px 18px;border-radius:999px;box-shadow:0 8px 22px rgba(212,175,55,.35)}
+  .nav .cta{margin-left:auto;background:var(--gold);color:#fff;font-weight:700;font-size:.92rem;text-decoration:none;padding:10px 18px;border-radius:10px;box-shadow:none;white-space:nowrap}
   @media(min-width:860px){.nav .cta{margin-left:0}}
+  .logo{white-space:nowrap}
+  .menubtn{display:none}
+
+  /* ---------- mobile header: slim bar + hamburger ---------- */
+  @media(max-width:859px){
+    .nav{flex-wrap:wrap;gap:8px;padding-top:8px;padding-bottom:8px}
+    .logo{order:1;font-size:.93rem;gap:8px}
+    .logo .mark{width:28px;height:28px;border-radius:10px}
+    .nav .cta{order:2;margin-left:auto;font-size:0;padding:8px 12px;line-height:1.2}
+    .nav .cta::after{content:"Try a demo →";font-size:.82rem;font-weight:800}
+    .menubtn{order:3;display:grid;place-items:center;width:38px;height:38px;border-radius:10px;border:1px solid var(--line2);background:#fff;color:var(--ink);font-size:1.05rem;cursor:pointer;padding:0}
+    .nav .links{order:4;flex-basis:100%;flex-direction:column;gap:0;margin:2px 0 4px}
+    .nav .links.open{display:flex}
+    .nav .links a{padding:11px 4px;border-top:1px solid var(--line2);font-size:.95rem}
+  }
 
   /* ---------- hero ---------- */
-  .hero{position:relative;padding:42px 0 30px;text-align:center;background:
-    radial-gradient(720px 380px at 15% -60px, rgba(59,110,196,.26), transparent 65%),
-    radial-gradient(820px 420px at 88% -40px, rgba(212,175,55,.16), transparent 65%),
-    linear-gradient(180deg, var(--bg2), var(--bg))}
-  .hero::after{content:"";position:absolute;inset:auto 0 0 0;height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent)}
-  .kick{display:inline-flex;align-items:center;gap:8px;background:rgba(212,175,55,.10);border:1px solid var(--line);color:var(--gold2);font-weight:700;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;padding:7px 15px;border-radius:999px}
-  .kick i{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 10px var(--gold)}
-  .hero h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.95rem,4.6vw,2.85rem);line-height:1.05;max-width:880px;margin:22px auto 18px}
-  .hero h1 .gold{background:linear-gradient(100deg,var(--gold2),var(--gold) 55%,#9a7b24);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero{position:relative;padding:42px 0 30px;text-align:center;background:var(--bg)}
+  .hero::after{content:"";position:absolute;inset:auto 0 0 0;height:1px;background:var(--line)}
+  .kick{display:inline-flex;align-items:center;gap:8px;background:#eef3fd;border:1px solid var(--line);color:var(--gold);font-weight:700;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;padding:7px 15px;border-radius:999px}
+  .kick i{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:none}
+  .hero h1{font-family:'Inter',system-ui,sans-serif;font-weight:900;font-size:clamp(1.95rem,4.6vw,2.85rem);line-height:1.05;max-width:880px;margin:22px auto 18px}
+  .hero h1 .gold{color:var(--gold)}
   .hero p{color:var(--muted);font-size:clamp(1rem,2.2vw,1.16rem);max-width:640px;margin:0 auto 30px}
   .hero .btns{display:flex;gap:13px;justify-content:center;flex-wrap:wrap}
-  .btn{display:inline-block;text-decoration:none;font-weight:800;font-size:.98rem;padding:14px 26px;border-radius:999px;transition:transform .18s ease, box-shadow .18s ease}
-  .btn:hover{transform:translateY(-2px)}
-  .btn-gold{background:linear-gradient(135deg,var(--gold2),var(--gold) 60%,#a37f27);color:#191304;box-shadow:0 12px 30px rgba(212,175,55,.35)}
-  .btn-ghost{border:1.5px solid rgba(255,255,255,.28);color:var(--ink);background:rgba(255,255,255,.03)}
+  .btn{display:inline-block;text-decoration:none;font-weight:700;font-size:.98rem;padding:13px 24px;border-radius:10px;transition:background .15s ease, border-color .15s ease}
+  .btn-gold:hover{background:var(--gold2)}
+  .btn-gold{background:var(--gold);color:#fff;box-shadow:none}
+  .btn-ghost{border:1px solid var(--line);color:var(--ink);background:#fff}
   .stats{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:28px}
-  .stat{background:rgba(255,255,255,.04);border:1px solid var(--line2);border-radius:14px;padding:10px 20px;min-width:132px}
-  .stat b{display:block;font-family:'Fraunces',serif;font-size:1.35rem;color:var(--gold2)}
+  .stat{background:var(--bg2);border:1px solid var(--line2);border-radius:14px;padding:10px 20px;min-width:132px}
+  .stat b{display:block;font-family:'Inter',system-ui,sans-serif;font-size:1.35rem;color:var(--gold2)}
   .stat span{font-size:.78rem;font-weight:600;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
 
   /* ---------- sections ---------- */
   section{padding:78px 0}
+  section#surprise, section#pricing{background:var(--bg2)}
   .shead{text-align:center;max-width:680px;margin:0 auto 42px}
   .shead .kick{margin-bottom:14px}
-  .shead h2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.9rem,4.4vw,2.7rem);line-height:1.12}
+  .shead h2{font-family:'Inter',system-ui,sans-serif;font-weight:900;font-size:clamp(1.9rem,4.4vw,2.7rem);line-height:1.12}
   .shead p{color:var(--muted);margin-top:10px}
 
   /* ---------- demo grid ---------- */
   .chips{display:flex;gap:9px;justify-content:center;flex-wrap:wrap;margin-bottom:34px}
-  .chip{border:1px solid var(--line2);background:rgba(255,255,255,.04);color:var(--muted);font:inherit;font-weight:700;font-size:.9rem;padding:10px 18px;border-radius:999px;cursor:pointer}
+  .chip{border:1px solid var(--line2);background:#fff;color:var(--muted);font:inherit;font-weight:700;font-size:.9rem;padding:10px 18px;border-radius:999px;cursor:pointer}
   .chip.active{background:var(--mint-d);border-color:var(--gold);color:#fff}
   .grid{display:grid;gap:22px;grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
-  .dcard{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line2);border-radius:var(--radius);overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .22s ease, border-color .22s ease, box-shadow .22s ease}
-  .dcard:hover{transform:translateY(-6px);border-color:var(--line);box-shadow:0 26px 50px rgba(0,0,0,.45)}
+  .dcard{background:var(--panel);box-shadow:var(--shadow);border:1px solid var(--line2);border-radius:var(--radius);overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .22s ease, border-color .22s ease, box-shadow .22s ease}
+  .dcard:hover{transform:translateY(-3px);border-color:#c9d4e6;box-shadow:0 12px 32px rgba(16,24,40,.10)}
   .dthumb{position:relative;height:178px;overflow:hidden;display:grid;place-items:center}
   .dthumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
   .dcard:hover .dthumb img{transform:scale(1.07)}
-  .dthumb::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(3,7,16,.55))}
-  .dthumb .mono{font-family:'Fraunces',serif;font-size:4.2rem;font-weight:900;color:rgba(255,255,255,.9)}
-  .live{position:absolute;top:12px;left:12px;z-index:2;display:inline-flex;align-items:center;gap:6px;background:rgba(4,8,18,.72);backdrop-filter:blur(4px);color:#ffe9a8;font-size:.68rem;font-weight:800;letter-spacing:.12em;padding:5px 10px;border-radius:999px}
-  .live i{width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 8px var(--gold)}
-  .dcat{position:absolute;bottom:12px;left:12px;z-index:2;background:rgba(4,8,18,.72);backdrop-filter:blur(4px);color:#fff;font-size:.72rem;font-weight:700;padding:5px 11px;border-radius:999px}
+  .dthumb::after{content:"";position:absolute;inset:0;background:rgba(19,26,38,.07)}
+  .dthumb .mono{font-family:'Inter',system-ui,sans-serif;font-size:4.2rem;font-weight:900;color:rgba(255,255,255,.9)}
+  .live{position:absolute;top:12px;left:12px;z-index:2;display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--line);color:var(--ink);font-size:.68rem;font-weight:800;letter-spacing:.12em;padding:5px 10px;border-radius:999px}
+  .live i{width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:none}
+  .dcat{position:absolute;bottom:12px;left:12px;z-index:2;background:#fff;border:1px solid var(--line);color:var(--ink);font-size:.72rem;font-weight:700;padding:5px 11px;border-radius:999px}
   .dbody{padding:19px 20px 21px;display:flex;flex-direction:column;gap:6px;flex:1}
   .dwhere{font-size:.74rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
-  .dbody h3{font-family:'Fraunces',serif;font-size:1.28rem;font-weight:700}
+  .dbody h3{font-family:'Inter',system-ui,sans-serif;font-size:1.28rem;font-weight:700}
   .dbody p{color:var(--muted);font-size:.92rem;flex:1}
   .dopen{font-weight:800;font-size:.9rem;color:var(--mint)}
   .dopen b{transition:margin .18s ease}
@@ -88,45 +104,55 @@
   .hidden{display:none!important}
 
   /* ---------- customizer banner ---------- */
-  .banner{background:linear-gradient(120deg,#0a1c38,#1d4e89 55%,#2f6db3);border:1px solid var(--line);border-radius:26px;padding:44px 34px;text-align:center;position:relative;overflow:hidden}
-  .banner::before{content:"";position:absolute;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(212,175,55,.28),transparent 65%);top:-260px;right:-120px}
-  .banner h2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.8rem,4vw,2.5rem);position:relative}
-  .banner p{color:#cfddf2;max-width:560px;margin:12px auto 24px;position:relative}
+  .banner{background:var(--accent-deep);border:1px solid var(--line);border-radius:26px;padding:44px 34px;text-align:center;position:relative;overflow:hidden}
+  .banner::before{display:none}
+  .banner h2{font-family:'Inter',system-ui,sans-serif;font-weight:900;font-size:clamp(1.8rem,4vw,2.5rem);position:relative}
+  .banner p{color:var(--muted);max-width:560px;margin:12px auto 24px;position:relative}
   .banner .btn{position:relative}
 
   /* ---------- steps & why ---------- */
   .cols{display:grid;gap:20px}
   @media(min-width:820px){.cols{grid-template-columns:repeat(3,1fr)}.cols4{grid-template-columns:repeat(4,1fr)}}
-  .step{background:rgba(255,255,255,.035);border:1px solid var(--line2);border-radius:var(--radius);padding:26px 24px}
-  .step .n{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--gold2),var(--gold));color:#191304;font-family:'Fraunces',serif;font-weight:900;font-size:1.2rem;display:grid;place-items:center;margin-bottom:14px}
-  .step h3{font-family:'Fraunces',serif;font-size:1.2rem;margin-bottom:6px}
+  .step{background:#fff;box-shadow:var(--shadow);border:1px solid var(--line2);border-radius:var(--radius);padding:26px 24px}
+  .step .n{width:44px;height:44px;border-radius:50%;background:var(--gold);color:#fff;font-family:'Inter',system-ui,sans-serif;font-weight:900;font-size:1.2rem;display:grid;place-items:center;margin-bottom:14px}
+  .step h3{font-family:'Inter',system-ui,sans-serif;font-size:1.2rem;margin-bottom:6px}
   .step p{color:var(--muted);font-size:.93rem}
-  .why .step .n{background:rgba(212,175,55,.13);color:var(--gold2);border:1px solid rgba(212,175,55,.4);font-size:1.05rem}
+  .why .step .n{background:#eef3fd;color:var(--gold);border:1px solid var(--line);font-size:1.05rem}
 
   /* ---------- pricing ---------- */
-  .price{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line2);border-radius:24px;padding:32px 28px;display:flex;flex-direction:column}
+  .price{background:#fff;box-shadow:var(--shadow);border:1px solid var(--line2);border-radius:24px;padding:32px 28px;display:flex;flex-direction:column}
   .price .tier{font-size:.78rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-  .price .amt{font-family:'Fraunces',serif;font-weight:900;font-size:2.7rem;margin:8px 0 2px}
+  .price .amt{font-family:'Inter',system-ui,sans-serif;font-weight:900;font-size:2.7rem;margin:8px 0 2px}
   .price .amt small{font-size:.95rem;font-family:'Inter',sans-serif;font-weight:600;color:var(--muted)}
   .price ul{list-style:none;margin:18px 0 24px;display:grid;gap:10px;flex:1}
-  .price li{color:#ccd9ec;font-size:.94rem;padding-left:26px;position:relative}
+  .price li{color:var(--muted);font-size:.94rem;padding-left:26px;position:relative}
   .price li::before{content:"✓";position:absolute;left:0;color:var(--mint);font-weight:800}
   .price .btn{text-align:center}
-  .price.hot{border-color:var(--gold);background:linear-gradient(180deg,#16233d,#0d1830);box-shadow:0 30px 60px rgba(0,0,0,.5), 0 0 0 1px rgba(212,175,55,.35);position:relative}
+  .price.hot{border-color:var(--gold);background:#fbfcfe;box-shadow:var(--shadow);position:relative}
   .price.hot .amt{color:var(--gold2)}
-  .price .flag{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--gold2),var(--gold));color:#191304;font-size:.74rem;font-weight:800;letter-spacing:.08em;padding:6px 14px;border-radius:999px;white-space:nowrap}
+  .price .flag{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--amber-bg);color:var(--amber-ink);border:1px solid var(--amber-line);font-size:.74rem;font-weight:800;letter-spacing:.08em;padding:6px 14px;border-radius:999px;white-space:nowrap}
 
   /* ---------- contact / footer ---------- */
   .contact{text-align:center}
   .contact .btns{display:flex;gap:13px;justify-content:center;flex-wrap:wrap;margin-top:26px}
-  .btn-wa{background:#1faa55;color:#04160a;box-shadow:0 12px 30px rgba(31,170,85,.3)}
-  .btn-mail{background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.25);color:var(--ink)}
+  .btn-wa{background:var(--gold);color:#fff;box-shadow:none}
+  .btn-mail{background:#fff;border:1px solid var(--line);color:var(--ink)}
   .fine{margin-top:16px;color:var(--muted);font-size:.88rem}
   .fine a{color:var(--gold2);font-weight:600}
   footer{border-top:1px solid var(--line2);padding:26px 0 34px;text-align:center;color:var(--muted);font-size:.88rem}
   footer b{color:var(--ink)}
 
-  .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease, transform .6s ease}
+  /* ---------- surprise pages ---------- */
+  .dthumb .big-emoji{font-size:4.3rem;position:relative;z-index:1;filter:drop-shadow(0 8px 14px rgba(16,24,40,.25))}
+  .mini-grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));margin-top:22px}
+  .mcard{display:flex;align-items:center;gap:13px;background:#fff;box-shadow:var(--shadow);border:1px solid var(--line2);border-radius:16px;padding:16px 18px;text-decoration:none;transition:transform .2s ease, border-color .2s ease}
+  .mcard:hover{transform:translateY(-3px);border-color:var(--line)}
+  .mcard .memo{font-size:1.85rem;line-height:1}
+  .mcard b{display:block;font-size:1rem;font-family:'Inter',system-ui,sans-serif}
+  .mcard small{color:var(--muted);font-size:.82rem}
+  .mcard .mgo{margin-left:auto;color:var(--gold);font-weight:800}
+
+  .reveal{opacity:1;transform:none;transition:none}
   .reveal.in{opacity:1;transform:none}
   @media (prefers-reduced-motion: reduce){.reveal{opacity:1;transform:none;transition:none} html{scroll-behavior:auto}}
 </style>
@@ -135,9 +161,10 @@
 
 <header>
   <div class="wrap nav">
-    <a class="logo" href="index.html"><span class="mark"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 15c2 4 5 6 8 6s6-2 8-6c-2.5 1.2-5.2 1.8-8 1.8S6.5 16.2 4 15Z" stroke="#d4af37" stroke-width="1.7" stroke-linejoin="round"/><path d="M5.5 12.5C8 14 10 14.7 12 14.7s4-.7 6.5-2.2M7 9.8c1.8 1 3.4 1.5 5 1.5s3.2-.5 5-1.5" stroke="#d4af37" stroke-width="1.5" stroke-linecap="round"/><path d="M12 8.5c0-2 .8-3.4 2.6-4.4.3 2-.6 3.6-2.6 4.4Z" fill="#34d399"/><circle cx="12" cy="17.6" r="1.6" fill="#f0d47a"/></svg></span>MintNest&nbsp;<em>Studio</em></a>
+    <a class="logo" href="index.html"><span class="mark"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 15c2 4 5 6 8 6s6-2 8-6c-2.5 1.2-5.2 1.8-8 1.8S6.5 16.2 4 15Z" stroke="#ffffff" stroke-width="1.7" stroke-linejoin="round"/><path d="M5.5 12.5C8 14 10 14.7 12 14.7s4-.7 6.5-2.2M7 9.8c1.8 1 3.4 1.5 5 1.5s3.2-.5 5-1.5" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/><path d="M12 8.5c0-2 .8-3.4 2.6-4.4.3 2-.6 3.6-2.6 4.4Z" fill="#ffffff"/><circle cx="12" cy="17.6" r="1.6" fill="#ffffff"/></svg></span>MintNest&nbsp;<em>Studio</em></a>
     <nav class="links"><a href="#demos">Live demos</a><a href="create.html">Template Studio</a><a href="#how">How it works</a><a href="#pricing">Pricing</a><a href="#contact">Contact</a></nav>
     <a class="cta" href="customize.html">See your name on a demo</a>
+    <button class="menubtn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
   </div>
 </header>
 
@@ -148,8 +175,8 @@
     <h1>Your business deserves a website that works as hard as <span class="gold">you do.</span></h1>
     <p>Premium, mobile-first websites for restaurants, cafés, shops and local services — designed, built and launched for you. No monthly fees. You approve the preview before you pay a cent.</p>
     <div class="btns">
-      <a class="btn btn-gold" href="#demos">Browse the live demos</a>
-      <a class="btn btn-ghost" href="create.html">Create your own page — free</a>
+      <a class="btn btn-gold" href="create.html">🎂 Create a Birthday Surprise Page — Free</a>
+      <a class="btn btn-ghost" href="#demos">Browse the live demos</a>
       <a class="btn btn-ghost" href="customize.html">Create my demo — free</a>
     </div>
     <div class="stats">
@@ -163,126 +190,37 @@
   </div>
 </div>
 
-<!-- ================= DEMOS ================= -->
-<section id="demos">
+<!-- ================= SURPRISE PAGES ================= -->
+<section id="surprise" style="padding-top:54px">
   <div class="wrap">
     <div class="shead reveal">
-      <span class="kick"><i></i> The portfolio</span>
-      <h2>23 live demos. Pick the one that feels like your business.</h2>
-      <p>Every demo below is a complete, working website — not a picture. Open one, scroll it, try the menu and the call buttons.</p>
+      <span class="kick"><i></i> Surprise pages</span>
+      <h2>A magical page for someone special 🎉</h2>
+      <p>Pick an occasion, add their name — the wishes are already written for you — and download a page with a secret PIN lock, candles to blow, a hidden gift and a letter. Free to start.</p>
     </div>
-    <div class="chips" id="chips">
-      <button class="chip active" data-filter="all">All demos</button>
-      <button class="chip" data-filter="food">Food &amp; Drink</button>
-      <button class="chip" data-filter="beauty health">Beauty &amp; Health</button>
-      <button class="chip" data-filter="stores">Shops</button>
-      <button class="chip" data-filter="services">Local Services</button>
-      <button class="chip" data-filter="web">Web UI &amp; Logins</button>
+    <div class="grid">
+      <a class="dcard reveal" href="create.html#gallery">
+        <div class="dthumb" style="background:#fdf0f3"><span class="big-emoji">🎂</span><span class="live"><i></i>FREE</span><span class="dcat">Birthday</span></div>
+        <div class="dbody"><div class="dwhere">For anyone · Ready now</div><h3>Birthday Surprise Page</h3><p>The full celebration: PIN lock, teddy loading, an interactive cake, a gift to open and a letter with their name on it.</p><span class="dopen">Make one free <b>→</b></span></div>
+      </a>
+      <a class="dcard reveal" href="create.html#gallery">
+        <div class="dthumb" style="background:#f7eef3"><span class="big-emoji">💍</span><span class="live"><i></i>👑 PREMIUM</span><span class="dcat">Anniversary</span></div>
+        <div class="dbody"><div class="dwhere">For your person · Premium</div><h3>Anniversary Love Page</h3><p>A romantic page for your story: photos, memories and a letter that opens with a secret word only they know.</p><span class="dopen">See the template <b>→</b></span></div>
+      </a>
+      <a class="dcard reveal" href="create.html#gallery">
+        <div class="dthumb" style="background:#f7f3e8"><span class="big-emoji">💒</span><span class="live"><i></i>👑 PREMIUM</span><span class="dcat">Wedding</span></div>
+        <div class="dbody"><div class="dwhere">For the big day · Premium</div><h3>Wedding Invitation Page</h3><p>An elegant digital invitation: couple names, date and venue, a photo and an RSVP note — one link for every guest.</p><span class="dopen">See the template <b>→</b></span></div>
+      </a>
+      <a class="dcard reveal" href="create.html#gallery">
+        <div class="dthumb" style="background:#eef5fd"><span class="big-emoji">👶</span><span class="live"><i></i>👑 PREMIUM</span><span class="dcat">Baby Welcome</span></div>
+        <div class="dbody"><div class="dwhere">New arrival · Premium</div><h3>Baby Welcome Page</h3><p>Announce your new arrival with one sweet page: baby's name, first photo and a message for family near and far.</p><span class="dopen">See the template <b>→</b></span></div>
+      </a>
     </div>
-    <div class="grid" id="grid">
-    <a class="dcard reveal" href="demos/restaurant.html" data-cat="food">
-      <div class="dthumb" style="background:linear-gradient(135deg,#3f1d1d,#7f1d2d)"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=70" alt="Elegant restaurant interior" loading="lazy"><span class="live"><i></i>LIVE</span><span class="dcat">Restaurant</span></div>
-      <div class="dbody"><div class="dwhere">Chicago · Fine Dining</div><h3>Luigi's Trattoria</h3><p>Fine-dining Italian restaurant with full menu, gallery, reviews and a reservations call-to-action.</p><span class="dopen">Open demo <b>→</b></span></div>
-    </a>
-    <a class="dcard reveal" href="demos/cafe-bakery.html" data-cat="food">
-      <div class="dthumb" style="background:linear-gradient(135deg,#92400e,#f59e0b)"><img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=900&q=70" alt="Cosy café interior" loading="lazy"><span class="live"><i></i>LIVE</span><span class="dcat">Café &amp; Bakery</span></div>
-      <div class="dbody"><div class="dwhere">Toronto · Café &amp; Pies</div><h3>The Corner Crust Café</h3><p>Bright, friendly café and pie bakery with daily specials, coffee menu and whole-pie ordering.</p><span class="dopen">Open demo <b>→</b></span></div>
-    </a>
-    <a class="dcard reveal" href="demos/diner.html" data-cat="food">
-      <div class="dthumb" style="background:linear-gradient(135deg,#7c2d12,#dc2626)"><img src="https://images.unsplash.com/photo-1579208030886-b937da0925dc?auto=format&fit=crop&w=900&q=70" alt="Fish and chips with lemon" loading="lazy"><span class="live"><i></i>LIVE</span><span class="dcat">Diner · Fish &amp; Chips</span></div>
-      <div class="dbody"><div class="dwhere">London · Classic Chippy</div><h3>The Golden Catch</h3><p>Classic London chippy in bold retro style — full menu with prices, opening hours and click-to-call.</p><span class="dopen">Open demo <b>→</b></span></div>
-    </a>
-    <a class="dcard reveal" href="demos/barbershop.html" data-cat="beauty">
-      <div class="dthumb" style="background:linear-gradient(135deg,#111827,#374151)"><img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=900&q=70" alt="Barber cutting hair" loading="lazy"><span class="live"><i></i>LIVE</span><span class="dcat">Barbershop</span></div>
-      <div class="dbody"><div class="dwhere">Brooklyn · Grooming</div><h3>Sharp &amp; Co. Barbers</h3><p>Dark, bold barbershop site with services and price list, barber profiles and a book-now button.</p><span class="dopen">Open demo <b>→</b></span></div>
-    </a>
-    <a class="dcard reveal" href="demos/salon.html" data-cat="beauty">
-      <div class="dthumb" style="background:linear-gradient(135deg,#9f1239,#fb7185)"><img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=900&q=70" alt="Stylist working in a beauty salon" loading="lazy"><span class="live"><i></i>LIVE</span><span class="dcat">Salon &amp; Spa</span></div>
-      <div class="dbody"><div class="dwhere">Toronto · Hair, Nails &amp; Facials</div><h3>Velvet Rose Salon &amp; Spa</h3><p>Premium salon &amp; spa site with a service price menu, stylist profiles and a book-now button that fills chairs.</p><span class="dopen">Open demo <b>→</b></span></div>
-    </a>
-    <a class="dcard reveal" href="demos/dental.html" data-cat="health">
-      <div class="dthumb" style="background:linear-gradient(135deg,#0369a1,#38bdf8)"><img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=900&q=70" alt="Modern dental clinic" loading="lazy"><span class="live"><i></i>LIVE</span><span class="dcat">Dental Clinic</span></div>
-      <div class="dbody"><div class="dwhere">Austin · Family Dentistry</div><h3>BrightSmile Dental Clinic</h3><p>Friendly dental clinic site: treatments with prices, dentist profiles and easy appointment requests.</p><span class="dopen">Open demo <b>→</b></span></div>
-    </a>
-    <a class="dcard reveal" href="demos/store.html" data-cat="stores">
-      <div class="dthumb" style="background:linear-gradient(135deg,#b4551f,#78350f)"><img src="https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&fit=crop&w=900&q=70" alt="Handmade candles in amber jars" loading="lazy"><span class="live"><i></i>LIVE</span><span class="dcat">Online Store</span></div>
-      <div class="dbody"><div class="dwhere">Online Shop · Handmade Goods</div><h3>Ember &amp; Oak</h3><p>A complete little online store: product grid with ratings, a working cart and a checkout — selling while you sleep.</p><span class="dopen">Open demo <b>→</b></span></div>
-    </a>
-    <a class="dcard reveal" href="demos/landing.html" data-cat="web">
-      <div class="dthumb" style="background:linear-gradient(135deg,#9d4e63,#e8a0b4)"><img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=900&q=70" alt="Skincare product bottle" loading="lazy"><span class="live"><i></i>LIVE</span><span class="dcat">Landing Page</span></div>
-      <div class="dbody"><div class="dwhere">Online Product · Subscription</div><h3>GlowBox</h3><p>A product landing page built to sell: hero offer, proof numbers, pricing tiers and an FAQ that closes the sale.</p><span class="dopen">Open demo <b>→</b></span></div>
-    </a>
-    <a class="dcard reveal" href="demos/contact.html" data-cat="web">
-      <div class="dthumb" style="background:linear-gradient(135deg,#0e5a52,#14b8a6)"><img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=900&q=70" alt="Dentist treating a patient" loading="lazy"><span class="live"><i></i>LIVE</span><span class="dcat">Contact Form</span></div>
-      <div class="dbody"><div class="dwhere">Local Service · Dental Clinic</div><h3>BrightSmile Dental</h3><p>A contact page that turns visitors into enquiries: clear details, opening hours and a form people actually finish.</p><span class="dopen">Open demo <b>→</b></span></div>
-    </a>
-    <a class="dcard reveal" href="demos/login.html" data-cat="web">
-      <div class="dthumb" style="background:linear-gradient(135deg,#312e81,#7c3aed)"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=70" alt="Analytics dashboard on a screen" loading="lazy"><span class="live"><i></i>LIVE</span><span class="dcat">Login · Glass</span></div>
-      <div class="dbody"><div class="dwhere">Web App UI · Sign In</div><h3>TaskFlow</h3><p>A modern glassmorphism login page for apps and dashboards — proof your product UI can look premium too.</p><span class="dopen">Open demo <b>→</b></span></div>
-    </a>
-    <a class="dcard reveal" href="demos/gym.html" data-cat="services">
-      <div class="dthumb" style="background:linear-gradient(135deg,#111827,#ea580c)"><img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=900&q=70" alt="Gym with rows of dumbbells" loading="lazy"><span class="live"><i></i>LIVE</span><span class="dcat">Gym &amp; Fitness</span></div>
-      <div class="dbody"><div class="dwhere">Chicago · Gym &amp; Classes</div><h3>IronCore Fitness</h3><p>High-energy gym site with membership plans, a weekly class timetable and a free-trial offer.</p><span class="dopen">Open demo <b>→</b></span></div>
-    </a>
-    <a class="dcard reveal" href="demos/realestate.html" data-cat="services">
-      <div class="dthumb" style="background:linear-gradient(135deg,#1e3a5f,#b45309)"><img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=900&q=70" alt="Suburban home for sale" loading="lazy"><span class="live"><i></i>LIVE</span><span class="dcat">Real Estate</span></div>
-      <div class="dbody"><div class="dwhere">London · Homes for Sale</div><h3>HarborView Estates</h3><p>Smart estate-agent site with featured homes for sale, agent profiles and a free valuation offer.</p><span class="dopen">Open demo <b>→</b></span></div>
-    </a>
-    <a class="dcard reveal" href="demos/autoshop.html" data-cat="services">
-      <div class="dthumb" style="background:linear-gradient(135deg,#1f2937,#64748b)"><img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=900&q=70" alt="Car engine bay" loading="lazy"><span class="live"><i></i>LIVE</span><span class="dcat">Auto Repair</span></div>
-      <div class="dbody"><div class="dwhere">Houston · Car Workshop</div><h3>Precision Auto Repair</h3><p>No-nonsense car workshop site: repair prices up front, a warranty promise and online booking.</p><span class="dopen">Open demo <b>→</b></span></div>
-    </a>
-    <a class="dcard reveal" href="demos/lawfirm.html" data-cat="services">
-      <div class="dthumb" style="background:linear-gradient(135deg,#172554,#475569)"><img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=900&q=70" alt="Law office pillars" loading="lazy"><span class="live"><i></i>LIVE</span><span class="dcat">Law Firm</span></div>
-      <div class="dbody"><div class="dwhere">London · Solicitors</div><h3>Sterling &amp; Co. Solicitors</h3><p>Calm, credible solicitors' site with practice areas, fixed-fee notes and a free consultation offer.</p><span class="dopen">Open demo <b>→</b></span></div>
-    </a>
-    <a class="dcard reveal" href="demos/photography.html" data-cat="services">
-      <div class="dthumb" style="background:linear-gradient(135deg,#78350f,#f59e0b)"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=70" alt="Wedding couple at golden hour" loading="lazy"><span class="live"><i></i>LIVE</span><span class="dcat">Photography</span></div>
-      <div class="dbody"><div class="dwhere">New York · Weddings &amp; Family</div><h3>Golden Hour Studio</h3><p>Gallery-first photography studio site with wedding packages, prices and booking enquiries.</p><span class="dopen">Open demo <b>→</b></span></div>
-    </a>
-    <a class="dcard reveal" href="demos/hotel.html" data-cat="services">
-      <div class="dthumb" style="background:linear-gradient(135deg,#14532d,#84cc16)"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=900&q=70" alt="Boutique hotel with pool" loading="lazy"><span class="live"><i></i>LIVE</span><span class="dcat">Hotel &amp; B&amp;B</span></div>
-      <div class="dbody"><div class="dwhere">Niagara-on-the-Lake · Boutique Inn</div><h3>The Maple Leaf Inn</h3><p>Cosy inn website with rooms, nightly rates and direct booking — no commission-hungry platforms in between.</p><span class="dopen">Open demo <b>→</b></span></div>
-    </a>
-    <a class="dcard reveal" href="demos/pets.html" data-cat="services">
-      <div class="dthumb" style="background:linear-gradient(135deg,#9a3412,#fbbf24)"><img src="https://images.unsplash.com/photo-1450778869180-41d0601e046e?auto=format&fit=crop&w=900&q=70" alt="Happy dog with its owner" loading="lazy"><span class="live"><i></i>LIVE</span><span class="dcat">Pet Care</span></div>
-      <div class="dbody"><div class="dwhere">Chicago · Grooming &amp; Vet Care</div><h3>Paws &amp; Claws</h3><p>Pet grooming, boarding and vet-care site with a clear price list and appointment booking.</p><span class="dopen">Open demo <b>→</b></span></div>
-    </a>
-    <a class="dcard reveal" href="demos/academy.html" data-cat="services">
-      <div class="dthumb" style="background:linear-gradient(135deg,#1e40af,#60a5fa)"><img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=900&q=70" alt="Students learning in a classroom" loading="lazy"><span class="live"><i></i>LIVE</span><span class="dcat">Academy</span></div>
-      <div class="dbody"><div class="dwhere">London · Tuition &amp; Coaching</div><h3>BrightFuture Academy</h3><p>Tuition centre site with courses, monthly fees, student results and a free demo-class signup.</p><span class="dopen">Open demo <b>→</b></span></div>
-    </a>
-    <a class="dcard reveal" href="demos/homeservices.html" data-cat="services">
-      <div class="dthumb" style="background:linear-gradient(135deg,#134e4a,#0f766e)"><img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=900&q=70" alt="Electrician fixing wiring" loading="lazy"><span class="live"><i></i>LIVE</span><span class="dcat">Home Services</span></div>
-      <div class="dbody"><div class="dwhere">Toronto · Plumber &amp; Electrician</div><h3>FixIt Fast</h3><p>A 24/7 plumber &amp; electrician site built for emergencies: clear call-out prices and one-tap calling.</p><span class="dopen">Open demo <b>→</b></span></div>
-    </a>
-    <a class="dcard reveal" href="demos/wedding.html" data-cat="services">
-      <div class="dthumb" style="background:linear-gradient(135deg,#881337,#fda4af)"><img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=900&q=70" alt="Wedding venue set for a ceremony" loading="lazy"><span class="live"><i></i>LIVE</span><span class="dcat">Wedding Venue</span></div>
-      <div class="dbody"><div class="dwhere">Napa Valley · Weddings &amp; Events</div><h3>The Rosewood Gardens</h3><p>Romantic venue site with photo galleries, wedding packages and date enquiries.</p><span class="dopen">Open demo <b>→</b></span></div>
-    </a>
-    <a class="dcard reveal" href="demos/login-split.html" data-cat="web">
-      <div class="dthumb" style="background:linear-gradient(135deg,#0284c7,#38bdf8)"><span class="mono">C</span><span class="live"><i></i>LIVE</span><span class="dcat">Login · Split</span></div>
-      <div class="dbody"><div class="dwhere">Web App UI · Sign In</div><h3>CloudDesk</h3><p>A clean split-screen sign-in page — brand panel on one side, simple form on the other. Calm and professional.</p><span class="dopen">Open demo <b>→</b></span></div>
-    </a>
-    <a class="dcard reveal" href="demos/login-dark.html" data-cat="web">
-      <div class="dthumb" style="background:linear-gradient(135deg,#0f172a,#155e75)"><span class="mono">N</span><span class="live"><i></i>LIVE</span><span class="dcat">Login · Dark Neon</span></div>
-      <div class="dbody"><div class="dwhere">Web App UI · Sign In</div><h3>NeonVault</h3><p>A dark neon sign-in page for apps that want a bold, techy first impression.</p><span class="dopen">Open demo <b>→</b></span></div>
-    </a>
-    <a class="dcard reveal" href="demos/login-3d.html" data-cat="web">
-      <div class="dthumb" style="background:linear-gradient(135deg,#f59e0b,#ef4444)"><span class="mono">O</span><span class="live"><i></i>LIVE</span><span class="dcat">Login · 3D Card</span></div>
-      <div class="dbody"><div class="dwhere">Web App UI · Sign In</div><h3>OrbitPay</h3><p>A playful 3D-card sign-in page with depth and soft shadows — a login users actually enjoy.</p><span class="dopen">Open demo <b>→</b></span></div>
-    </a>
-    </div>
-  </div>
-</section>
-
-<!-- ================= CUSTOMIZER BANNER ================= -->
-<section style="padding-top:0">
-  <div class="wrap">
-    <div class="banner reveal">
-      <h2>Now put <span style="color:var(--gold2)">your name</span> on one.</h2>
-      <p>Type your business name, pick a style and a colour — and watch a real demo website appear with your details on it. Free, instant, no sign-up.</p>
-      <a class="btn btn-gold" href="customize.html">Build my demo →</a>
+    <div class="mini-grid">
+      <a class="mcard reveal" href="create.html#preset-girlfriend"><span class="memo">💕</span><span><b>For Girlfriend</b><small>Birthday page, wishes ready</small></span><span class="mgo">→</span></a>
+      <a class="mcard reveal" href="create.html#preset-boyfriend"><span class="memo">💙</span><span><b>For Boyfriend</b><small>Birthday page, wishes ready</small></span><span class="mgo">→</span></a>
+      <a class="mcard reveal" href="create.html#preset-bestie"><span class="memo">🎉</span><span><b>For Bestie</b><small>Birthday page, wishes ready</small></span><span class="mgo">→</span></a>
+      <a class="mcard reveal" href="create.html#preset-sister"><span class="memo">🌸</span><span><b>For Sister</b><small>Birthday page, wishes ready</small></span><span class="mgo">→</span></a>
     </div>
   </div>
 </section>
@@ -295,7 +233,7 @@
       <h2>From demo to your website, in three steps</h2>
     </div>
     <div class="cols">
-      <div class="step reveal"><div class="n">1</div><h3>Pick a demo you like</h3><p>Browse the live demos above, or build one with your own name in the demo builder. Tell me which style feels right for your business.</p></div>
+      <div class="step reveal"><div class="n">1</div><h3>Pick a demo you like</h3><p>Browse the business demos at the end of this page, or build one with your own name in the demo builder. Tell me which style feels right for your business.</p></div>
       <div class="step reveal"><div class="n">2</div><h3>I build your free preview</h3><p>Your real name, menu, prices, photos and opening hours — built as a homepage preview first, so you see exactly what you are getting.</p></div>
       <div class="step reveal"><div class="n">3</div><h3>Approve, pay, launch</h3><p>Only pay when you love the preview. Then I finish the full site and put it live. One-time price — no monthly fees, ever.</p></div>
     </div>
@@ -371,6 +309,130 @@
   </div>
 </section>
 
+<!-- ================= CUSTOMIZER BANNER ================= -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="banner reveal">
+      <h2>Now put <span style="color:var(--gold2)">your name</span> on one.</h2>
+      <p>Type your business name, pick a style and a colour — and watch a real demo website appear with your details on it. Free, instant, no sign-up.</p>
+      <a class="btn btn-gold" href="customize.html">Build my demo →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BUSINESS DEMOS ================= -->
+<section id="demos">
+  <div class="wrap">
+    <div class="shead reveal">
+      <span class="kick"><i></i> Business demos</span>
+      <h2>Business Website Demos</h2>
+      <p>Every demo below is a complete, working website — not a picture. Open one, scroll it, try the menu and the call buttons.</p>
+    </div>
+    <div class="chips" id="chips">
+      <button class="chip active" data-filter="all">All demos</button>
+      <button class="chip" data-filter="food">Food &amp; Drink</button>
+      <button class="chip" data-filter="beauty health">Beauty &amp; Health</button>
+      <button class="chip" data-filter="stores">Shops</button>
+      <button class="chip" data-filter="services">Local Services</button>
+      <button class="chip" data-filter="web">Web UI &amp; Logins</button>
+    </div>
+    <div class="grid" id="grid">
+    <a class="dcard reveal" href="demos/restaurant.html" data-cat="food">
+      <div class="dthumb" style="background:#3f1d1d"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=70" alt="Elegant restaurant interior" loading="lazy"><span class="live"><i></i>LIVE</span><span class="dcat">Restaurant</span></div>
+      <div class="dbody"><div class="dwhere">Chicago · Fine Dining</div><h3>Luigi's Trattoria</h3><p>Fine-dining Italian restaurant with full menu, gallery, reviews and a reservations call-to-action.</p><span class="dopen">Open demo <b>→</b></span></div>
+    </a>
+    <a class="dcard reveal" href="demos/cafe-bakery.html" data-cat="food">
+      <div class="dthumb" style="background:#92400e"><img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=900&q=70" alt="Cosy café interior" loading="lazy"><span class="live"><i></i>LIVE</span><span class="dcat">Café &amp; Bakery</span></div>
+      <div class="dbody"><div class="dwhere">Toronto · Café &amp; Pies</div><h3>The Corner Crust Café</h3><p>Bright, friendly café and pie bakery with daily specials, coffee menu and whole-pie ordering.</p><span class="dopen">Open demo <b>→</b></span></div>
+    </a>
+    <a class="dcard reveal" href="demos/diner.html" data-cat="food">
+      <div class="dthumb" style="background:#7c2d12"><img src="https://images.unsplash.com/photo-1579208030886-b937da0925dc?auto=format&fit=crop&w=900&q=70" alt="Fish and chips with lemon" loading="lazy"><span class="live"><i></i>LIVE</span><span class="dcat">Diner · Fish &amp; Chips</span></div>
+      <div class="dbody"><div class="dwhere">London · Classic Chippy</div><h3>The Golden Catch</h3><p>Classic London chippy in bold retro style — full menu with prices, opening hours and click-to-call.</p><span class="dopen">Open demo <b>→</b></span></div>
+    </a>
+    <a class="dcard reveal" href="demos/barbershop.html" data-cat="beauty">
+      <div class="dthumb" style="background:#111827"><img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=900&q=70" alt="Barber cutting hair" loading="lazy"><span class="live"><i></i>LIVE</span><span class="dcat">Barbershop</span></div>
+      <div class="dbody"><div class="dwhere">Brooklyn · Grooming</div><h3>Sharp &amp; Co. Barbers</h3><p>Dark, bold barbershop site with services and price list, barber profiles and a book-now button.</p><span class="dopen">Open demo <b>→</b></span></div>
+    </a>
+    <a class="dcard reveal" href="demos/salon.html" data-cat="beauty">
+      <div class="dthumb" style="background:#9f1239"><img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=900&q=70" alt="Stylist working in a beauty salon" loading="lazy"><span class="live"><i></i>LIVE</span><span class="dcat">Salon &amp; Spa</span></div>
+      <div class="dbody"><div class="dwhere">Toronto · Hair, Nails &amp; Facials</div><h3>Velvet Rose Salon &amp; Spa</h3><p>Premium salon &amp; spa site with a service price menu, stylist profiles and a book-now button that fills chairs.</p><span class="dopen">Open demo <b>→</b></span></div>
+    </a>
+    <a class="dcard reveal" href="demos/dental.html" data-cat="health">
+      <div class="dthumb" style="background:#0369a1"><img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=900&q=70" alt="Modern dental clinic" loading="lazy"><span class="live"><i></i>LIVE</span><span class="dcat">Dental Clinic</span></div>
+      <div class="dbody"><div class="dwhere">Austin · Family Dentistry</div><h3>BrightSmile Dental Clinic</h3><p>Friendly dental clinic site: treatments with prices, dentist profiles and easy appointment requests.</p><span class="dopen">Open demo <b>→</b></span></div>
+    </a>
+    <a class="dcard reveal" href="demos/store.html" data-cat="stores">
+      <div class="dthumb" style="background:#b4551f"><img src="https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&fit=crop&w=900&q=70" alt="Handmade candles in amber jars" loading="lazy"><span class="live"><i></i>LIVE</span><span class="dcat">Online Store</span></div>
+      <div class="dbody"><div class="dwhere">Online Shop · Handmade Goods</div><h3>Ember &amp; Oak</h3><p>A complete little online store: product grid with ratings, a working cart and a checkout — selling while you sleep.</p><span class="dopen">Open demo <b>→</b></span></div>
+    </a>
+    <a class="dcard reveal" href="demos/landing.html" data-cat="web">
+      <div class="dthumb" style="background:#9d4e63"><img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=900&q=70" alt="Skincare product bottle" loading="lazy"><span class="live"><i></i>LIVE</span><span class="dcat">Landing Page</span></div>
+      <div class="dbody"><div class="dwhere">Online Product · Subscription</div><h3>GlowBox</h3><p>A product landing page built to sell: hero offer, proof numbers, pricing tiers and an FAQ that closes the sale.</p><span class="dopen">Open demo <b>→</b></span></div>
+    </a>
+    <a class="dcard reveal" href="demos/contact.html" data-cat="web">
+      <div class="dthumb" style="background:#0e5a52"><img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=900&q=70" alt="Dentist treating a patient" loading="lazy"><span class="live"><i></i>LIVE</span><span class="dcat">Contact Form</span></div>
+      <div class="dbody"><div class="dwhere">Local Service · Dental Clinic</div><h3>BrightSmile Dental</h3><p>A contact page that turns visitors into enquiries: clear details, opening hours and a form people actually finish.</p><span class="dopen">Open demo <b>→</b></span></div>
+    </a>
+    <a class="dcard reveal" href="demos/login.html" data-cat="web">
+      <div class="dthumb" style="background:#312e81"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=70" alt="Analytics dashboard on a screen" loading="lazy"><span class="live"><i></i>LIVE</span><span class="dcat">Login · Glass</span></div>
+      <div class="dbody"><div class="dwhere">Web App UI · Sign In</div><h3>TaskFlow</h3><p>A modern glassmorphism login page for apps and dashboards — proof your product UI can look premium too.</p><span class="dopen">Open demo <b>→</b></span></div>
+    </a>
+    <a class="dcard reveal" href="demos/gym.html" data-cat="services">
+      <div class="dthumb" style="background:#111827"><img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=900&q=70" alt="Gym with rows of dumbbells" loading="lazy"><span class="live"><i></i>LIVE</span><span class="dcat">Gym &amp; Fitness</span></div>
+      <div class="dbody"><div class="dwhere">Chicago · Gym &amp; Classes</div><h3>IronCore Fitness</h3><p>High-energy gym site with membership plans, a weekly class timetable and a free-trial offer.</p><span class="dopen">Open demo <b>→</b></span></div>
+    </a>
+    <a class="dcard reveal" href="demos/realestate.html" data-cat="services">
+      <div class="dthumb" style="background:#1e3a5f"><img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=900&q=70" alt="Suburban home for sale" loading="lazy"><span class="live"><i></i>LIVE</span><span class="dcat">Real Estate</span></div>
+      <div class="dbody"><div class="dwhere">London · Homes for Sale</div><h3>HarborView Estates</h3><p>Smart estate-agent site with featured homes for sale, agent profiles and a free valuation offer.</p><span class="dopen">Open demo <b>→</b></span></div>
+    </a>
+    <a class="dcard reveal" href="demos/autoshop.html" data-cat="services">
+      <div class="dthumb" style="background:#1f2937"><img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=900&q=70" alt="Car engine bay" loading="lazy"><span class="live"><i></i>LIVE</span><span class="dcat">Auto Repair</span></div>
+      <div class="dbody"><div class="dwhere">Houston · Car Workshop</div><h3>Precision Auto Repair</h3><p>No-nonsense car workshop site: repair prices up front, a warranty promise and online booking.</p><span class="dopen">Open demo <b>→</b></span></div>
+    </a>
+    <a class="dcard reveal" href="demos/lawfirm.html" data-cat="services">
+      <div class="dthumb" style="background:#172554"><img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=900&q=70" alt="Law office pillars" loading="lazy"><span class="live"><i></i>LIVE</span><span class="dcat">Law Firm</span></div>
+      <div class="dbody"><div class="dwhere">London · Solicitors</div><h3>Sterling &amp; Co. Solicitors</h3><p>Calm, credible solicitors' site with practice areas, fixed-fee notes and a free consultation offer.</p><span class="dopen">Open demo <b>→</b></span></div>
+    </a>
+    <a class="dcard reveal" href="demos/photography.html" data-cat="services">
+      <div class="dthumb" style="background:#78350f"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=70" alt="Wedding couple at golden hour" loading="lazy"><span class="live"><i></i>LIVE</span><span class="dcat">Photography</span></div>
+      <div class="dbody"><div class="dwhere">New York · Weddings &amp; Family</div><h3>Golden Hour Studio</h3><p>Gallery-first photography studio site with wedding packages, prices and booking enquiries.</p><span class="dopen">Open demo <b>→</b></span></div>
+    </a>
+    <a class="dcard reveal" href="demos/hotel.html" data-cat="services">
+      <div class="dthumb" style="background:#14532d"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=900&q=70" alt="Boutique hotel with pool" loading="lazy"><span class="live"><i></i>LIVE</span><span class="dcat">Hotel &amp; B&amp;B</span></div>
+      <div class="dbody"><div class="dwhere">Niagara-on-the-Lake · Boutique Inn</div><h3>The Maple Leaf Inn</h3><p>Cosy inn website with rooms, nightly rates and direct booking — no commission-hungry platforms in between.</p><span class="dopen">Open demo <b>→</b></span></div>
+    </a>
+    <a class="dcard reveal" href="demos/pets.html" data-cat="services">
+      <div class="dthumb" style="background:#9a3412"><img src="https://images.unsplash.com/photo-1450778869180-41d0601e046e?auto=format&fit=crop&w=900&q=70" alt="Happy dog with its owner" loading="lazy"><span class="live"><i></i>LIVE</span><span class="dcat">Pet Care</span></div>
+      <div class="dbody"><div class="dwhere">Chicago · Grooming &amp; Vet Care</div><h3>Paws &amp; Claws</h3><p>Pet grooming, boarding and vet-care site with a clear price list and appointment booking.</p><span class="dopen">Open demo <b>→</b></span></div>
+    </a>
+    <a class="dcard reveal" href="demos/academy.html" data-cat="services">
+      <div class="dthumb" style="background:#1e40af"><img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=900&q=70" alt="Students learning in a classroom" loading="lazy"><span class="live"><i></i>LIVE</span><span class="dcat">Academy</span></div>
+      <div class="dbody"><div class="dwhere">London · Tuition &amp; Coaching</div><h3>BrightFuture Academy</h3><p>Tuition centre site with courses, monthly fees, student results and a free demo-class signup.</p><span class="dopen">Open demo <b>→</b></span></div>
+    </a>
+    <a class="dcard reveal" href="demos/homeservices.html" data-cat="services">
+      <div class="dthumb" style="background:#134e4a"><img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=900&q=70" alt="Electrician fixing wiring" loading="lazy"><span class="live"><i></i>LIVE</span><span class="dcat">Home Services</span></div>
+      <div class="dbody"><div class="dwhere">Toronto · Plumber &amp; Electrician</div><h3>FixIt Fast</h3><p>A 24/7 plumber &amp; electrician site built for emergencies: clear call-out prices and one-tap calling.</p><span class="dopen">Open demo <b>→</b></span></div>
+    </a>
+    <a class="dcard reveal" href="demos/wedding.html" data-cat="services">
+      <div class="dthumb" style="background:#881337"><img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=900&q=70" alt="Wedding venue set for a ceremony" loading="lazy"><span class="live"><i></i>LIVE</span><span class="dcat">Wedding Venue</span></div>
+      <div class="dbody"><div class="dwhere">Napa Valley · Weddings &amp; Events</div><h3>The Rosewood Gardens</h3><p>Romantic venue site with photo galleries, wedding packages and date enquiries.</p><span class="dopen">Open demo <b>→</b></span></div>
+    </a>
+    <a class="dcard reveal" href="demos/login-split.html" data-cat="web">
+      <div class="dthumb" style="background:#0284c7"><span class="mono">C</span><span class="live"><i></i>LIVE</span><span class="dcat">Login · Split</span></div>
+      <div class="dbody"><div class="dwhere">Web App UI · Sign In</div><h3>CloudDesk</h3><p>A clean split-screen sign-in page — brand panel on one side, simple form on the other. Calm and professional.</p><span class="dopen">Open demo <b>→</b></span></div>
+    </a>
+    <a class="dcard reveal" href="demos/login-dark.html" data-cat="web">
+      <div class="dthumb" style="background:#0f172a"><span class="mono">N</span><span class="live"><i></i>LIVE</span><span class="dcat">Login · Dark Neon</span></div>
+      <div class="dbody"><div class="dwhere">Web App UI · Sign In</div><h3>NeonVault</h3><p>A dark neon sign-in page for apps that want a bold, techy first impression.</p><span class="dopen">Open demo <b>→</b></span></div>
+    </a>
+    <a class="dcard reveal" href="demos/login-3d.html" data-cat="web">
+      <div class="dthumb" style="background:#f59e0b"><span class="mono">O</span><span class="live"><i></i>LIVE</span><span class="dcat">Login · 3D Card</span></div>
+      <div class="dbody"><div class="dwhere">Web App UI · Sign In</div><h3>OrbitPay</h3><p>A playful 3D-card sign-in page with depth and soft shadows — a login users actually enjoy.</p><span class="dopen">Open demo <b>→</b></span></div>
+    </a>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="wrap"><b>MintNest Studio</b> — website design by Muhammad Waseem · WhatsApp: +92 333 8739929 · mintnestsofficial@gmail.com<br>All demo businesses are fictional examples, built to show the design work.</div>
 </footer>
@@ -392,6 +454,23 @@
       });
     });
   });
+  /* mobile menu */
+  var menuBtn = document.getElementById("menuBtn");
+  var navLinks = document.querySelector(".nav .links");
+  if (menuBtn && navLinks) {
+    menuBtn.addEventListener("click", function(){
+      var open = navLinks.classList.toggle("open");
+      menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+      menuBtn.textContent = open ? "✕" : "☰";
+    });
+    navLinks.querySelectorAll("a").forEach(function(a){
+      a.addEventListener("click", function(){
+        navLinks.classList.remove("open");
+        menuBtn.setAttribute("aria-expanded", "false");
+        menuBtn.textContent = "☰";
+      });
+    });
+  }
   /* reveal on scroll */
   if ("IntersectionObserver" in window) {
     var io = new IntersectionObserver(function(entries){
@@ -405,35 +484,5 @@
 })();
 </script>
 
-<!-- swarm-rebuild -->
-<script>
-(function(){try{
-if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-var SEL=['header','.hero > *','section > *','.grid > *','.cards > *','.menu-grid > *','.gallery > *'];
-var seen=[],els=[];
-SEL.forEach(function(sel){document.querySelectorAll(sel).forEach(function(el){
-if(seen.indexOf(el)>-1)return;
-var root=el.closest?el.closest('[data-rbroot]'):null;
-if(root&&root!==el)return;
-if(el.classList&&el.classList.contains('reveal'))return;
-el.setAttribute('data-rbroot','1');seen.push(el);els.push(el);
-});});
-if(!els.length)return;
-var st=document.createElement('style');
-st.textContent='.rb-from{opacity:0!important;transform:translate(var(--rbx,0),var(--rby,26px)) rotate(var(--rbr,0deg)) scale(.93)!important;}.rb-in{opacity:1!important;transform:none!important;transition:opacity .6s ease,transform .6s cubic-bezier(.2,.85,.3,1.15)!important;}';
-document.head.appendChild(st);
-function prep(el){var dirs=[[-70,14,-6],[70,14,6],[0,-56,-4],[0,64,4],[-48,44,5],[48,44,-5]];var d=dirs[Math.floor(Math.random()*dirs.length)];el.style.setProperty('--rbx',d[0]+'px');el.style.setProperty('--rby',d[1]+'px');el.style.setProperty('--rbr',d[2]+'deg');el.classList.add('rb-from');}
-function play(el){setTimeout(function(){el.classList.add('rb-in');setTimeout(function(){el.classList.remove('rb-from');el.classList.remove('rb-in');el.style.removeProperty('--rbx');el.style.removeProperty('--rby');el.style.removeProperty('--rbr');},750);},20);}
-function sweep(){els.forEach(function(el){el.classList.remove('rb-from');el.classList.remove('rb-in');});}
-setTimeout(sweep,2600);
-var vh=window.innerHeight||800,first=[],rest=[];
-els.forEach(function(el){var r=el.getBoundingClientRect();if(r.top<vh*0.92&&r.bottom>0)first.push(el);else rest.push(el);});
-first.slice(0,16).forEach(function(el,i){prep(el);setTimeout(function(){play(el);},100*i+80);});
-if('IntersectionObserver' in window){
-var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var el=e.target;io.unobserve(el);prep(el);play(el);}});},{threshold:.08});
-rest.forEach(function(el){io.observe(el);});
-}
-}catch(err){}})();
-</script>
 </body>
 </html>
