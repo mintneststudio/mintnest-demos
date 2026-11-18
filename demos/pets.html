@@ -264,5 +264,35 @@ rest.forEach(function(el){io.observe(el);});
 .hero h1{font-size:clamp(1.7rem,5.2vw,2.35rem)!important;line-height:1.14!important}
 header .nav{padding-top:8px!important;padding-bottom:8px!important}
 </style>
+
+<script>
+/* MintNest live view tracking (2026-11-19) */
+(function(){
+  try{
+    var EP="https://www.wishlink.pp.ua/api/mntrack";
+    var dev=localStorage.getItem("mn_dev");
+    if(!dev){dev="mn-"+Math.random().toString(36).slice(2,10)+Date.now().toString(36);localStorage.setItem("mn_dev",dev);}
+    var page=(location.pathname.split("/").pop()||"hub").replace(/\.html$/,"");
+    if(!page||page==="index")page="hub";
+    var t0=Date.now();
+    function send(type,extra){
+      var b={type:type,device:dev,page:page,ref:document.referrer||""};
+      if(extra)for(var k in extra)b[k]=extra[k];
+      fetch(EP,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(b),keepalive:true}).catch(function(){});
+    }
+    function metrics(){
+      var s=Math.round((Date.now()-t0)/1000);
+      var h=document.documentElement;
+      var max=h.scrollHeight-window.innerHeight;
+      var sc=max>0?Math.min(100,Math.round((window.scrollY/max)*100)):100;
+      return {secs:s,scroll:sc};
+    }
+    send("visit");
+    setInterval(function(){send("ping",metrics());},30000);
+    window.addEventListener("pagehide",function(){send("ping",metrics());});
+    document.addEventListener("visibilitychange",function(){if(document.visibilityState==="hidden")send("ping",metrics());});
+  }catch(e){}
+})();
+</script>
 </body>
 </html>
