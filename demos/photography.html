@@ -85,6 +85,22 @@
   footer{border-top:1px solid var(--line);padding:26px 0 34px;text-align:center;color:#7a6c58;font-size:.88rem}
   footer a{color:var(--gold);font-weight:600;text-decoration:none}
 </style>
+
+<style>
+/* MintNest header fix (2026-11-18): mobile par brand + CTA + burger aik saaf line mein */
+header .nav{gap:10px}
+header .callbtn,header .bookbtn,header .ctabtn,header .cartbtn{white-space:nowrap;flex:none}
+@media(max-width:640px){
+  header .brand{font-size:1.02rem;line-height:1.15;min-width:0}
+  header .brand small{font-size:.54rem;letter-spacing:.12em}
+  header .callbtn,header .bookbtn,header .ctabtn,header .cartbtn{padding:8px 12px;font-size:.8rem}
+  header .burger{font-size:1.25rem;padding:4px 6px}
+  header .nav{padding-top:10px;padding-bottom:10px}
+}
+@media(max-width:400px){
+  header .callbtn,header .bookbtn,header .ctabtn,header .cartbtn{padding:7px 10px;font-size:.76rem}
+}
+</style>
 </head>
 <body>
 
