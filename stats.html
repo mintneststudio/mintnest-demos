@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>MintNest Studio — Demo Views Dashboard</title>
+<style>
+:root{--ink:#131a26;--mut:#5a6a7d;--line:#e3e8ef;--bg:#f6f7f9;--card:#fff;--navy:#0b1b33;--gold:#c9a227;--green:#1d9e57;--red:#c0392b}
+*{box-sizing:border-box} body{font-family:system-ui,Arial,sans-serif;background:var(--bg);margin:0;color:var(--ink)}
+header{background:var(--navy);color:#fff;padding:14px 16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+header .logo{font-weight:800;font-size:18px;letter-spacing:.02em} header .logo b{color:var(--gold)}
+header .sub{color:#b9c6d8;font-size:12.5px}
+.live{margin-left:auto;background:#12325e;border:1px solid #2a4a7f;color:#fff;border-radius:999px;padding:5px 12px;font-size:13px;font-weight:700}
+.live .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#37d67a;margin-right:6px;animation:pl 1.6s infinite}
+@keyframes pl{0%,100%{opacity:1}50%{opacity:.35}}
+main{max-width:1060px;margin:0 auto;padding:16px 14px 40px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.card .n{font-size:24px;font-weight:800} .card .l{color:var(--mut);font-size:12px;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:14px}
+.panel h2{font-size:15px;margin:0 0 10px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px} @media(max-width:720px){.grid2{grid-template-columns:1fr}}
+.row{display:flex;align-items:center;gap:8px;font-size:13.5px;padding:4px 0}
+.row .k{flex:0 0 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.row .bar{flex:1;background:#eef1f5;border-radius:6px;height:9px;overflow:hidden}
+.row .bar i{display:block;height:100%;background:var(--gold);border-radius:6px}
+.row .v{font-weight:700;min-width:34px;text-align:right}
+.bars{display:flex;align-items:flex-end;gap:6px;height:110px;padding-top:6px}
+.bars .b{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;height:100%;justify-content:flex-end}
+.bars .b i{display:block;width:70%;background:var(--navy);border-radius:5px 5px 0 0;min-height:3px}
+.bars .b span{font-size:10.5px;color:var(--mut)} .bars .b b{font-size:11.5px}
+.vcard{border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-bottom:10px;background:#fbfcfd}
+.vcard .top{display:flex;gap:8px;flex-wrap:wrap;align-items:baseline;font-size:13.5px}
+.vcard .ip{color:var(--mut);font-size:12px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px}
+.chip{background:#eef3fa;border:1px solid #d7e2f0;border-radius:999px;padding:3px 9px;font-size:11.5px}
+.mut{color:var(--mut)} .small{font-size:12px}
+button{background:var(--navy);color:#fff;border:0;border-radius:9px;padding:10px 16px;font-weight:700;font-size:14px;cursor:pointer}
+button.gold{background:var(--gold);color:#231a00}
+input{font-size:16px;padding:11px;border:1px solid #ccd5df;border-radius:9px;width:180px;text-align:center;letter-spacing:.3em}
+.gate{max-width:420px;margin:60px auto;background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;text-align:center}
+.err{color:var(--red);font-size:13px;min-height:18px}
+.foot{color:var(--mut);font-size:12px;text-align:center;margin-top:8px}
+a{color:#2456c8}
+</style></head><body>
+<header>
+  <div>
+    <div class="logo">Mint<b>Nest</b> Studio</div>
+    <div class="sub">Demo views dashboard — live tracking</div>
+  </div>
+  <div class="live" id="livePill" style="display:none"><span class="dot"></span><span id="liveN">0</span> live now</div>
+</header>
+
+<div class="gate" id="gate">
+  <h2 id="gateTitle">Dashboard PIN</h2>
+  <p class="mut small" id="gateText">Enter your PIN to see the demo views.</p>
+  <input id="pin" type="password" inputmode="numeric" maxlength="8" placeholder="••••" autocomplete="off">
+  <div style="height:10px"></div>
+  <button class="gold" id="gateBtn">Open dashboard</button>
+  <div class="err" id="gateErr"></div>
+</div>
+
+<main id="app" style="display:none">
+  <div class="cards" id="cards"></div>
+
+  <div class="panel"><h2>📈 Last 7 days</h2><div class="bars" id="chart7"></div></div>
+
+  <div class="grid2">
+    <div class="panel"><h2>🏆 Top demos — today</h2><div id="topToday"></div></div>
+    <div class="panel"><h2>🏆 Top demos — all time</h2><div id="topTotal"></div></div>
+  </div>
+
+  <div class="grid2">
+    <div class="panel"><h2>🌍 Countries (all time)</h2><div id="countries"></div></div>
+    <div class="panel"><h2>🔗 Sources (all time)</h2><div id="sources"></div></div>
+  </div>
+
+  <div class="grid2">
+    <div class="panel"><h2>📱 Devices (all time)</h2><div id="devices"></div></div>
+    <div class="panel"><h2>🕐 Today by hour (PKT)</h2><div id="hours"></div></div>
+  </div>
+
+  <div class="panel"><h2>👥 Visitors</h2><div id="visitors"></div></div>
+  <div class="panel"><h2>🤖 Bots &amp; AI crawlers</h2><div id="bots"></div></div>
+
+  <div style="text-align:center;margin:16px 0 6px"><button id="refreshBtn">↻ Refresh</button></div>
+  <div class="foot">Counting starts 19 Nov 2026 · Times in Pakistan time (PKT) · <span id="upd"></span></div>
+</main>
+
+<script>
+var EP = "https://www.wishlink.pp.ua/api/mntrack";
+var LABELS = {
+  hub:"Demo Hub (home)", customize:"Customizer",
+  restaurant:"Restaurant · Luigi's Trattoria", barbershop:"Barbershop", "cafe-bakery":"Café & Bakery",
+  dental:"Dental Clinic", diner:"Diner", gym:"Gym & Fitness", hotel:"Hotel", salon:"Beauty Salon",
+  store:"Online Store", wedding:"Wedding", academy:"Academy / Courses", autoshop:"Auto Repair",
+  homeservices:"Home Services", lawfirm:"Law Firm", pets:"Pet Services", photography:"Photography",
+  realestate:"Real Estate", landing:"Landing Page", contact:"Contact Page",
+  login:"Login · Classic", "login-dark":"Login · Dark", "login-3d":"Login · 3D", "login-split":"Login · Split"
+};
+var COUNTRY_NAMES = {PK:"Pakistan",IN:"India",US:"United States",GB:"United Kingdom",AE:"United Arab Emirates",SA:"Saudi Arabia",CA:"Canada",AU:"Australia",DE:"Germany",FR:"France",IT:"Italy",ES:"Spain",NL:"Netherlands",BD:"Bangladesh",LK:"Sri Lanka",NP:"Nepal",AF:"Afghanistan",IR:"Iran",IQ:"Iraq",TR:"Turkey",MY:"Malaysia",SG:"Singapore",QA:"Qatar",KW:"Kuwait",OM:"Oman",BH:"Bahrain",IE:"Ireland",SE:"Sweden",NO:"Norway",DK:"Denmark",CH:"Switzerland",AT:"Austria",BE:"Belgium",PL:"Poland",BR:"Brazil",MX:"Mexico",ZA:"South Africa",NG:"Nigeria",KE:"Kenya",EG:"Egypt",ID:"Indonesia",PH:"Philippines",TH:"Thailand",VN:"Vietnam",CN:"China",JP:"Japan",KR:"South Korea",RU:"Russia",UA:"Ukraine"};
+function flag(cc){
+  if(!cc || cc==="??" || cc.length!==2) return "🌐";
+  return String.fromCodePoint(127397+cc.charCodeAt(0)) + String.fromCodePoint(127397+cc.charCodeAt(1));
+}
+function cname(cc){ return COUNTRY_NAMES[cc] || (cc==="??" ? "Unknown" : cc); }
+function esc(s){ return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];}); }
+function fmtT(ts){ if(!ts) return "—"; var d=new Date(ts); return d.toLocaleString("en-GB",{timeZone:"Asia/Karachi",day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}); }
+function dur(s){ s=Math.round(s||0); if(s<60) return s+"s"; var m=Math.floor(s/60); if(m<60) return m+"m "+(s%60)+"s"; return Math.floor(m/60)+"h "+(m%60)+"m"; }
+function ago(ts){ var s=Math.max(0,(Date.now()-ts)/1000); if(s<90) return "abhi (live)"; if(s<3600) return Math.floor(s/60)+" min pehle"; if(s<86400) return Math.floor(s/3600)+" ghante pehle"; return Math.floor(s/86400)+" din pehle"; }
+
+var pin = sessionStorage.getItem("mn_pin") || "";
+var isSetup = false;
+
+function post(body){
+  return fetch(EP,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)}).then(function(r){return r.json().then(function(j){return {code:r.status,j:j};});});
+}
+function tryStats(p){
+  return post({type:"stats",pin:p}).then(function(res){
+    if(res.j && res.j.setup){ isSetup = true; showSetup(); return null; }
+    if(res.code===401) throw new Error("Wrong PIN");
+    if(res.code!==200) throw new Error("Server error");
+    return res.j;
+  });
+}
+function showSetup(){
+  document.getElementById("gateTitle").textContent = "Set your dashboard PIN";
+  document.getElementById("gateText").textContent = "Pehli dafa hai — apna 4–8 digit PIN bana lein. Yehi PIN agli dafa dashboard kholne ke kaam ayega.";
+  document.getElementById("gateBtn").textContent = "Set PIN & open";
+}
+document.getElementById("gateBtn").addEventListener("click", function(){
+  var v = document.getElementById("pin").value.trim();
+  var err = document.getElementById("gateErr");
+  if(!/^\d{4,8}$/.test(v)){ err.textContent = "PIN 4–8 digits ka hona chahiye."; return; }
+  err.textContent = "";
+  if(isSetup){
+    post({type:"setpin",pin:v}).then(function(res){
+      if(res.code!==200){ err.textContent = (res.j && res.j.error) || "PIN set nahi hua."; return; }
+      pin = v; sessionStorage.setItem("mn_pin", pin);
+      load();
+    }).catch(function(){ err.textContent = "Network error — dobara try karein."; });
+  } else {
+    pin = v;
+    load().catch(function(e){ err.textContent = e.message || "PIN ghalat hai."; });
+  }
+});
+document.getElementById("pin").addEventListener("keydown", function(e){ if(e.key==="Enter") document.getElementById("gateBtn").click(); });
+
+function rows(map, labelFn){
+  var keys = Object.keys(map||{}).sort(function(a,b){return map[b]-map[a];});
+  if(!keys.length) return '<div class="mut small">Abhi koi data nahi.</div>';
+  var max = Math.max.apply(null, keys.map(function(k){return map[k];}));
+  return keys.slice(0,12).map(function(k){
+    return '<div class="row"><div class="k">'+esc(labelFn?labelFn(k):k)+'</div><div class="bar"><i style="width:'+Math.max(3,Math.round(map[k]/max*100))+'%"></i></div><div class="v">'+map[k]+"</div></div>";
+  }).join("");
+}
+function render(s){
+  document.getElementById("gate").style.display = "none";
+  document.getElementById("app").style.display = "block";
+  var lp = document.getElementById("livePill");
+  lp.style.display = "block";
+  document.getElementById("liveN").textContent = s.live||0;
+  var t = s.today||{}, y = s.yesterday||{}, tot = s.total||{};
+  var cards = [
+    [t.visits||0, "Visits — today"],[t.uniques||0, "Unique visitors — today"],
+    [y.visits||0, "Visits — yesterday"],[s.monthVisits||0, "Visits — this month"],
+    [tot.visits||0, "Visits — all time"],[tot.uniques||0, "Unique visitors — all time"]
+  ];
+  document.getElementById("cards").innerHTML = cards.map(function(c){
+    return '<div class="card"><div class="n">'+c[0]+'</div><div class="l">'+c[1]+"</div></div>";
+  }).join("");
+  var max7 = Math.max(1, Math.max.apply(null,(s.last7||[]).map(function(d){return d.visits;})));
+  document.getElementById("chart7").innerHTML = (s.last7||[]).map(function(d){
+    var h = Math.max(3, Math.round(d.visits/max7*78));
+    return '<div class="b"><b>'+d.visits+'</b><i style="height:'+h+'px"></i><span>'+esc(d.d.slice(5))+"</span></div>";
+  }).join("");
+  document.getElementById("topToday").innerHTML = rows(t.pages, function(k){return LABELS[k]||k;});
+  document.getElementById("topTotal").innerHTML = rows(tot.pages, function(k){return LABELS[k]||k;});
+  document.getElementById("countries").innerHTML = rows(tot.countries, function(k){return flag(k)+" "+cname(k);});
+  document.getElementById("sources").innerHTML = rows(tot.sources);
+  document.getElementById("devices").innerHTML = rows(tot.devtypes);
+  var hrs = s.hours||{}; var hk = Object.keys(hrs).sort();
+  document.getElementById("hours").innerHTML = hk.length ? hk.map(function(h){
+    return '<div class="row"><div class="k">'+h+':00</div><div class="bar"><i style="width:'+Math.max(3,Math.round(hrs[h]/Math.max.apply(null,hk.map(function(x){return hrs[x];}))*100))+'%"></i></div><div class="v">'+hrs[h]+"</div></div>";
+  }).join("") : '<div class="mut small">Aaj abhi koi visit nahi.</div>';
+  var vs = s.visitors||[];
+  document.getElementById("visitors").innerHTML = vs.length ? vs.map(function(v){
+    var chips = Object.keys(v.pages||{}).sort(function(a,b){return (v.pages[b].v||0)-(v.pages[a].v||0);}).map(function(pg){
+      var e = v.pages[pg];
+      return '<span class="chip">'+esc(LABELS[pg]||pg)+" · "+(e.v||0)+" views · "+dur(e.s)+(e.sc?" · scroll "+e.sc+"%":"")+"</span>";
+    }).join("");
+    return '<div class="vcard"><div class="top"><b>'+flag(v.cc)+" "+esc(cname(v.cc))+(v.city?" · "+esc(v.city):"")+'</b><span class="ip">'+esc(v.ip||"")+'</span></div>'
+      + '<div class="small mut">'+esc([v.dtype,v.os,v.browser].filter(Boolean).join(" · "))+" · "+(v.visits||0)+" visits · "+(v.sessions||0)+" sessions · kul stay "+dur(v.totalSecs)+"</div>"
+      + '<div class="small mut">Pehli dafa: '+fmtT(v.first)+" · Aakhri: "+fmtT(v.last)+" ("+ago(v.last)+")</div>"
+      + (chips?'<div class="chips">'+chips+"</div>":"") + "</div>";
+  }).join("") : '<div class="mut small">Abhi koi visitor record nahi — counting aaj (19 Nov 2026) se shuru hai.</div>';
+  var bs = s.bots||[];
+  var botTotal = Object.keys((tot.bots)||{}).reduce(function(a,k){return a+tot.bots[k];},0);
+  document.getElementById("bots").innerHTML = (bs.length ? bs.map(function(b){
+    return '<div class="row"><div class="k">🤖 '+esc(b.name)+'</div><div class="v">'+(b.n||0)+'</div><div class="mut small">'+flag(b.cc)+" "+esc(cname(b.cc))+" · aakhri: "+fmtT(b.last)+"</div></div>";
+  }).join("") : '<div class="mut small">Abhi koi bot nahi aaya.</div>')
+    + '<div class="mut small" style="margin-top:6px">Kul bot visits (insanon se alag gini jati hain): '+botTotal+"</div>";
+  document.getElementById("upd").textContent = "Updated: " + new Date().toLocaleTimeString("en-GB",{timeZone:"Asia/Karachi"}) + " PKT";
+}
+function load(){
+  return tryStats(pin).then(function(s){
+    if(s) render(s);
+  });
+}
+document.getElementById("refreshBtn").addEventListener("click", function(){ load(); });
+setInterval(function(){ if(pin && document.getElementById("app").style.display!=="none") load().catch(function(){}); }, 45000);
+
+/* first look: if no PIN exists yet, show the setup form */
+post({type:"stats",pin:""}).then(function(res){
+  if(res.j && res.j.setup){ isSetup = true; showSetup(); }
+  else if(pin){ load().catch(function(){}); }
+}).catch(function(){});
+</script>
+</body></html>
